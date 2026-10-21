@@ -238,7 +238,7 @@ function SearchInput({
         }}
         placeholder="Buscar nome, tag ou descrição"
         aria-label="Buscar bibliotecas"
-        className="h-10 w-full rounded-md border border-border bg-background pl-9 pr-10 text-sm outline-none transition placeholder:text-muted-foreground focus:border-foreground/50"
+        className="h-10 w-full appearance-none rounded-md border border-border bg-background pl-9 pr-10 text-sm outline-none transition placeholder:text-muted-foreground focus:border-foreground/50"
       />
       {value ? (
         <button
@@ -501,7 +501,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
 
   return (
     <section id="galeria" className="scroll-mt-16">
-      <div className="border-y border-border">
+      <div className="border-b border-border">
         <div className="flex flex-col gap-3 py-4 lg:flex-row lg:items-center">
           <div className="relative lg:w-[480px] xl:w-[544px]">
             <SearchInput
