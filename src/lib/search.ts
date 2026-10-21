@@ -98,6 +98,101 @@ function scoreField(field: string, token: string, weight: number): number {
   return field.startsWith(token) ? weight + PREFIX_BONUS : weight;
 }
 
+/* ------------------------------------------------------------------ *
+ * Escopo: termos que designam uma categoria ou um framework
+ * ------------------------------------------------------------------ */
+
+export type FacetKind = "category" | "framework";
+
+export type ScopeEntry = {
+  kind: FacetKind;
+  value: string;
+  label: string;
+};
+
+export type ScopeGroup = {
+  token: string;
+  entries: ScopeEntry[];
+};
+
+export type SearchScope = ScopeGroup[];
+
+/** Termo curto demais para designar um grupo. */
+const MIN_SCOPE_TOKEN = 3;
+
+/**
+ * O termo designa este rótulo? "mobile" designa "Mobile / Universal",
+ * "react" designa "React", "dados" designa "Dados & Tabelas".
+ * Só o começo do rótulo conta: "componentes" não designa "Web Components".
+ */
+function designates(label: string, token: string): boolean {
+  if (token.length < MIN_SCOPE_TOKEN) return false;
+  const normalized = normalize(label);
+  if (!normalized.startsWith(token)) return false;
+  const next = normalized[token.length] ?? "";
+  return !isWordChar(next);
+}
+
+/**
+ * Descobre quais termos da query designam um grupo do catálogo (categoria ou
+ * framework). "mobile" vira o grupo "Mobile / Universal"; "react" vira o
+ * framework "React".
+ */
+export function resolveScope(
+  tokens: string[],
+  labels: SearchLabels = {},
+): SearchScope {
+  const scope: SearchScope = [];
+  for (const token of tokens) {
+    const entries: ScopeEntry[] = [];
+    for (const [value, label] of Object.entries(labels.category ?? {})) {
+      if (designates(label, token)) {
+        entries.push({ kind: "category", value, label });
+      }
+    }
+    for (const [value, label] of Object.entries(labels.framework ?? {})) {
+      if (designates(label, token)) {
+        entries.push({ kind: "framework", value, label });
+      }
+    }
+    if (entries.length > 0) scope.push({ token, entries });
+  }
+  return scope;
+}
+
+/** Rótulos do escopo, para mostrar na interface ("Mobile / Universal"). */
+export function scopeLabels(scope: SearchScope): string[] {
+  const labels: string[] = [];
+  for (const group of scope) {
+    const unique = [...new Set(group.entries.map((entry) => entry.label))];
+    for (const label of unique) {
+      if (!labels.includes(label)) labels.push(label);
+    }
+  }
+  return labels;
+}
+
+/**
+ * Nota da biblioteca dentro do grupo: 0 = não pertence ao grupo.
+ * Além das libs do grupo, entram as que têm o termo como tag explícita
+ * (ex.: Ionic tem a tag "mobile" mesmo estando na categoria "web").
+ */
+function scoreScopeGroup(group: ScopeGroup, library: Library): number {
+  let best = 0;
+  for (const entry of group.entries) {
+    if (entry.kind === "category" && library.category === entry.value) {
+      best = Math.max(best, 80);
+    }
+    if (entry.kind === "framework" && library.framework === entry.value) {
+      best = Math.max(best, 90);
+    }
+  }
+  if (library.tags.some((tag) => normalize(tag) === group.token)) {
+    best = Math.max(best, 60);
+  }
+  return best;
+}
+
 /** Nota do termo em uma biblioteca — o melhor campo que casou. */
 export function scoreTerm(
   token: string,
@@ -152,12 +247,19 @@ export function searchLibraries(
     return libraries.map((library) => ({ library, score: 0 }));
   }
 
+  const scope = resolveScope(tokens, labels);
+
   const results: ScoredLibrary[] = [];
   for (const library of libraries) {
     let score = 0;
     let matchedAll = true;
     for (const token of tokens) {
-      const termScore = scoreTerm(token, library, labels);
+      // Termo que designa uma categoria ou um framework: a biblioteca precisa
+      // estar no grupo (ou ter o termo como tag).
+      const group = scope.find((item) => item.token === token);
+      const termScore = group
+        ? scoreScopeGroup(group, library)
+        : scoreTerm(token, library, labels);
       if (termScore === 0) {
         matchedAll = false;
         break;

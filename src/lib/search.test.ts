@@ -6,6 +6,8 @@ import type { Library } from "@/types/library";
 import {
   highlightParts,
   normalize,
+  resolveScope,
+  scopeLabels,
   searchLibraries,
   tokenize,
 } from "./search.ts";
@@ -61,6 +63,53 @@ test("a relevância põe o nome mais próximo primeiro", () => {
   const ranked = searchLibraries(libs, tokenize("gsap"), labels);
   assert.equal(ranked[0]?.library.name, "GSAP");
   assert.ok((ranked[0]?.score ?? 0) > 0);
+});
+
+test("termo de categoria vira filtro: mobile mostra só mobile", () => {
+  const result = names(tokenize("mobile"));
+  assert.ok(result.includes("Tamagui"));
+  assert.ok(result.includes("NativeBase"));
+  assert.ok(result.includes("React Native Paper"));
+  assert.ok(result.includes("Ionic")); // tag "mobile"
+  assert.ok(!result.includes("Material UI (MUI)"));
+  assert.ok(!result.includes("shadcn/ui"));
+});
+
+test("termo de framework vira filtro: react mostra só React", () => {
+  const result = names(tokenize("react"));
+  const frameworks = new Set(
+    searchLibraries(libs, tokenize("react"), labels).map(
+      (item) => item.library.framework,
+    ),
+  );
+  assert.deepEqual([...frameworks], ["react"]);
+  assert.ok(result.includes("shadcn/ui"));
+  assert.ok(!result.includes("Vuetify"));
+});
+
+test("só o começo do rótulo designa um grupo", () => {
+  // "componentes" não designa "Web Components": a busca continua pelo texto.
+  const result = names(tokenize("componentes"));
+  assert.ok(result.includes("React Aria Components"));
+  assert.ok(!result.includes("Lit")); // a ficha do Lit está em inglês
+  assert.deepEqual(resolveScope(tokenize("componentes"), labels), []);
+
+  // "components" também não: o prefixo do rótulo é "web".
+  assert.deepEqual(resolveScope(tokenize("components"), labels), []);
+  assert.ok(names(tokenize("components")).includes("Lit"));
+});
+
+test("resolveScope encontra os grupos do catálogo", () => {
+  assert.deepEqual(scopeLabels(resolveScope(tokenize("mobile"), labels)), [
+    "Mobile / Universal",
+  ]);
+  assert.deepEqual(scopeLabels(resolveScope(tokenize("react"), labels)), [
+    "React",
+  ]);
+  assert.deepEqual(scopeLabels(resolveScope(tokenize("dados"), labels)), [
+    "Dados & Tabelas",
+  ]);
+  assert.deepEqual(resolveScope(tokenize("css"), labels), []);
 });
 
 test("highlightParts marca só o trecho casado", () => {
