@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { LibraryCard, domainOf } from "@/components/library-card";
-import { CopyLinkButton } from "@/components/copy-link-button";
 import {
   getAllSlugs,
   getLibraryBySlug,
@@ -170,7 +169,6 @@ async function LibraryPageContent({ params }: PageProps) {
                 GitHub
               </a>
             )}
-            <CopyLinkButton />
           </div>
         </div>
       </div>
