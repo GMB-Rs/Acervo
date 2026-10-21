@@ -127,7 +127,7 @@ GITHUB_TOKEN=ghp_xxx npm run sync:github
 
 O script busca estrelas, data do último push e status de manutenção no GitHub,
 além dos downloads mensais no npm, e reescreve o JSON. Sem token, a API do
-GitHub permite 60 requisições por hora — para as 63 libs do catálogo é
+GitHub permite 60 requisições por hora — para as libs do catálogo é
 necessário um `GITHUB_TOKEN`.
 
 Com o workflow `sync:github` (`.github/workflows/sync-github.yml`) isso
