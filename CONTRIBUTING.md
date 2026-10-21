@@ -125,7 +125,7 @@ comprimento do nome.
 
 - `npm run lint` — ESLint (flat config do Next).
 - `npm run typecheck` — `tsc --noEmit`.
-- `npm run build` — build de produção (as 63 fichas são pré-renderizadas).
+- `npm run build` — build de produção (as fichas do catálogo são pré-renderizadas).
 - O schema do JSON é validado no boot do site.
 
 ## 6. Commits e pull requests

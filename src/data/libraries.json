@@ -1594,5 +1594,30 @@
     "since": 2021,
     "npmPackage": "@radix-ui/react-icons",
     "lastUpdate": "2026-10-20T12:00:00Z"
+  },
+  {
+    "slug": "number-flow",
+    "name": "Number Flow",
+    "description": "Componente de número animado: os dígitos transitam para o novo valor quando ele muda.",
+    "highlight": "Sem dependências, acessível e estilizável por CSS parts — funciona em React, Vue, Svelte e JS puro.",
+    "framework": "web-components",
+    "category": "animation",
+    "website": "https://number-flow.barvian.me",
+    "repo": "barvian/number-flow",
+    "docs": "https://number-flow.barvian.me/",
+    "license": "MIT",
+    "color": "#806BE4",
+    "tags": [
+      "animação",
+      "números",
+      "web components"
+    ],
+    "stars": 7758,
+    "npmDownloads": 8519456,
+    "maintained": true,
+    "since": 2024,
+    "npmPackage": "number-flow",
+    "lastUpdate": "2026-09-20T13:51:56Z",
+    "logoKind": "text"
   }
 ]
