@@ -134,7 +134,7 @@ function Dropdown<T extends string>({
           role="listbox"
           aria-label={label}
           id={`${label.replace(/\s+/g, "-")}-listbox`}
-          className="absolute z-50 mt-1.5 min-w-full sm:min-w-[140px] md:min-w-[160px] lg:min-w-[150px] xl:min-w-[180px] max-w-[90vw] sm:max-w-[260px] md:max-w-[280px] lg:max-w-[260px] xl:max-w-[300px] max-h-56 overflow-auto rounded-md border border-border bg-background shadow-lg py-1"
+          className="absolute z-50 mt-1.5 min-w-full sm:min-w-[140px] md:min-w-[160px] lg:min-w-[150px] xl:min-w-[180px] max-w-[90vw] sm:max-w-[260px] md:max-w-[280px] lg:max-w-[260px] xl:max-w-[300px] max-h-56 overflow-auto rounded-md border border-border bg-background shadow-lg py-1 scrollbar-hide"
         >
           {options.map((option, index) => (
             <button
@@ -150,7 +150,7 @@ function Dropdown<T extends string>({
                 close();
               }}
               onMouseEnter={() => setHighlightedIndex(index)}
-              className={`w-full px-3 py-2 text-sm text-left transition-colors truncate ${
+              className={`w-full px-3 py-2 text-sm text-left transition-colors ${
                 option.value === value
                   ? "bg-muted font-medium text-foreground"
                   : index === highlightedIndex
