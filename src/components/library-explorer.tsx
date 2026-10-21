@@ -107,7 +107,7 @@ function Dropdown<T extends string>({
         type="button"
         role="combobox"
         onClick={open ? close : openDropdown}
-        className="flex items-center gap-2 h-10 rounded-md border border-border bg-background px-3 pr-8 text-sm outline-none transition focus:border-foreground/50 w-full lg:w-[150px] justify-between"
+        className="flex items-center gap-2 h-10 rounded-md border border-border bg-background px-3 pr-8 text-sm outline-none transition focus:border-foreground/50 w-full sm:w-[140px] md:w-[160px] lg:w-[150px] xl:w-[180px] justify-between"
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={`${label.replace(/\s+/g, "-")}-listbox`}
@@ -134,7 +134,7 @@ function Dropdown<T extends string>({
           role="listbox"
           aria-label={label}
           id={`${label.replace(/\s+/g, "-")}-listbox`}
-          className="absolute z-50 mt-1.5 min-w-[150px] max-w-[260px] max-h-56 overflow-auto rounded-md border border-border bg-background shadow-lg py-1"
+          className="absolute z-50 mt-1.5 min-w-full sm:min-w-[140px] md:min-w-[160px] lg:min-w-[150px] xl:min-w-[180px] max-w-[90vw] sm:max-w-[260px] md:max-w-[280px] lg:max-w-[260px] xl:max-w-[300px] max-h-56 overflow-auto rounded-md border border-border bg-background shadow-lg py-1"
         >
           {options.map((option, index) => (
             <button
@@ -295,7 +295,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     <section id="galeria" className="scroll-mt-16">
       <div className="border-y border-border">
         <div className="flex flex-col gap-3 py-4 lg:flex-row lg:items-center">
-          <div className="relative lg:w-72">
+          <div className="relative w-full lg:w-72 xl:w-96">
             <SearchInput
               value={query}
               onChange={setQuery}
