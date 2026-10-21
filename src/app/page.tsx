@@ -1,5 +1,22 @@
+import { Suspense } from "react";
 import { LibraryExplorer } from "@/components/library-explorer";
 import { libraries } from "@/lib/libraries";
+
+/*
+  O explorador lê a query string (`?q=`, `?framework=`, ...) para manter o
+  estado da galeria na URL. Por isso ele precisa de um limite de Suspense:
+  a página continua estática e só essa parte é renderizada no cliente.
+*/
+function ExplorerFallback() {
+  return (
+    <div className="border-y border-border">
+      <div className="flex flex-col gap-3 py-4 lg:flex-row lg:items-center">
+        <div className="h-10 w-full rounded-md border border-border lg:w-[480px] xl:w-[544px]" />
+        <div className="h-10 w-full rounded-md border border-border sm:w-[180px] lg:ml-auto" />
+      </div>
+    </div>
+  );
+}
 
 export default function HomePage() {
   return (
@@ -18,7 +35,9 @@ export default function HomePage() {
       </section>
 
       <div className="mx-auto w-full max-w-6xl px-4 pb-16">
-        <LibraryExplorer libraries={libraries} />
+        <Suspense fallback={<ExplorerFallback />}>
+          <LibraryExplorer libraries={libraries} />
+        </Suspense>
       </div>
     </>
   );

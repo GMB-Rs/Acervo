@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState, useRef, useEffect, useCallback } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { LibraryCard } from "@/components/library-card";
 import {
   CATEGORIES,
@@ -19,6 +20,19 @@ const SORTS: { value: SortOption; label: string }[] = [
   { value: "za", label: "Nome (Z–A)" },
   { value: "recent", label: "Mais recentes" },
 ];
+
+/* Parâmetros da query string: a URL é a fonte da verdade do estado. */
+const PARAM = {
+  query: "q",
+  framework: "framework",
+  category: "categoria",
+  sort: "ordem",
+  page: "pagina",
+} as const;
+
+function isSortOption(value: string): value is SortOption {
+  return SORTS.some((item) => item.value === value);
+}
 
 function normalize(value: string): string {
   return value
@@ -220,11 +234,77 @@ function SearchInput({
 }
 
 export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
-  const [query, setQuery] = useState("");
-  const [framework, setFramework] = useState<Framework | "all">("all");
-  const [category, setCategory] = useState<Category | "all">("all");
-  const [sort, setSort] = useState<SortOption>("popular");
-  const [page, setPage] = useState(1);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  /*
+    A URL é a fonte da verdade: busca, filtros, ordenação e página são lidos
+    de `searchParams`. Assim o estado pode ser compartilhado por link e o botão
+    "voltar" do navegador volta ao filtro anterior.
+  */
+  const urlQuery = searchParams.get(PARAM.query) ?? "";
+  const rawFramework = searchParams.get(PARAM.framework) ?? "all";
+  const framework: Framework | "all" = FRAMEWORKS.includes(
+    rawFramework as Framework,
+  )
+    ? (rawFramework as Framework)
+    : "all";
+  const rawCategory = searchParams.get(PARAM.category) ?? "all";
+  const category: Category | "all" = CATEGORIES.includes(
+    rawCategory as Category,
+  )
+    ? (rawCategory as Category)
+    : "all";
+  const rawSort = searchParams.get(PARAM.sort) ?? "popular";
+  const sort: SortOption = isSortOption(rawSort) ? rawSort : "popular";
+  const rawPage = Number(searchParams.get(PARAM.page) ?? "1");
+  const requestedPage =
+    Number.isFinite(rawPage) && rawPage > 0 ? Math.floor(rawPage) : 1;
+
+  /*
+    O campo de busca é controlado localmente e só vai para a URL depois de
+    300ms sem digitação, para não disparar uma navegação a cada tecla.
+  */
+  const [query, setQuery] = useState(urlQuery);
+  const pushedQuery = useRef(urlQuery);
+
+  useEffect(() => {
+    // Sincroniza o campo quando a URL muda por fora (botão "voltar", link).
+    if (urlQuery === pushedQuery.current) return;
+    pushedQuery.current = urlQuery;
+    setQuery(urlQuery);
+  }, [urlQuery]);
+
+  const pushParams = useCallback(
+    (updates: Record<string, string | null>) => {
+      const params = new URLSearchParams(searchParams.toString());
+      for (const [key, value] of Object.entries(updates)) {
+        // Valores padrão não ficam na URL: ela fica limpa e compartilhável.
+        const isDefault =
+          !value || value === "all" || (key === PARAM.page && value === "1");
+        if (isDefault) {
+          params.delete(key);
+        } else {
+          params.set(key, value);
+        }
+      }
+      const search = params.toString();
+      router.replace(search ? `${pathname}?${search}` : pathname, {
+        scroll: false,
+      });
+    },
+    [pathname, router, searchParams],
+  );
+
+  useEffect(() => {
+    if (query === urlQuery) return;
+    const timer = setTimeout(() => {
+      pushedQuery.current = query;
+      pushParams({ [PARAM.query]: query || null, [PARAM.page]: null });
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [query, urlQuery, pushParams]);
 
   const itemsPerPage = 20;
 
@@ -277,15 +357,12 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   }, [libraries, query, framework, category, sort]);
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
+  // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
+  const page = Math.min(requestedPage, Math.max(totalPages, 1));
   const paginatedResults = filteredResults.slice(
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
-
-  // Reset to page 1 when filters change
-  useEffect(() => {
-    setPage(1); // eslint-disable-line react-hooks/set-state-in-effect
-  }, [query, framework, category, sort]);
 
   const hasActiveFilter =
     query.trim() !== "" || framework !== "all" || category !== "all";
@@ -330,7 +407,12 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             <Dropdown<Category | "all">
               value={category}
               options={categoryOptions}
-              onChange={setCategory}
+              onChange={(value) =>
+                pushParams({
+                  [PARAM.category]: value,
+                  [PARAM.page]: null,
+                })
+              }
               label="Filtrar por categoria"
               placeholder="Categoria"
               className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
@@ -339,7 +421,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             <Dropdown<SortOption>
               value={sort}
               options={sortOptions}
-              onChange={setSort}
+              onChange={(value) =>
+                pushParams({ [PARAM.sort]: value, [PARAM.page]: null })
+              }
               label="Ordenar bibliotecas"
             />
           </div>
@@ -348,7 +432,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border py-3">
           <button
             type="button"
-            onClick={() => setFramework("all")}
+            onClick={() =>
+              pushParams({ [PARAM.framework]: null, [PARAM.page]: null })
+            }
             className={filterButton(framework === "all")}
           >
             <span className={filterButtonLabel(framework === "all")}>Todos</span>
@@ -360,7 +446,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             <button
               key={item}
               type="button"
-              onClick={() => setFramework(item)}
+              onClick={() =>
+                pushParams({ [PARAM.framework]: item, [PARAM.page]: null })
+              }
               className={filterButton(framework === item)}
             >
               <span className={filterButtonLabel(framework === item)}>{FRAMEWORK_LABELS[item]}</span>
@@ -381,8 +469,13 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             type="button"
             onClick={() => {
               setQuery("");
-              setFramework("all");
-              setCategory("all");
+              pushedQuery.current = "";
+              pushParams({
+                [PARAM.query]: null,
+                [PARAM.framework]: null,
+                [PARAM.category]: null,
+                [PARAM.page]: null,
+              });
             }}
             className="underline underline-offset-4 transition hover:text-foreground"
           >
@@ -413,7 +506,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             >
               <button
                 type="button"
-                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                onClick={() =>
+                  pushParams({ [PARAM.page]: String(Math.max(1, page - 1)) })
+                }
                 disabled={page === 1}
                 className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
                 aria-label="Página anterior"
@@ -427,7 +522,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                 <button
                   key={p}
                   type="button"
-                  onClick={() => setPage(p)}
+                  onClick={() => pushParams({ [PARAM.page]: String(p) })}
                   className={`h-10 w-10 rounded-md text-sm font-mono transition ${
                     p === page
                       ? "bg-foreground text-background"
@@ -442,7 +537,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
 
               <button
                 type="button"
-                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                onClick={() =>
+                  pushParams({ [PARAM.page]: String(Math.min(totalPages, page + 1)) })
+                }
                 disabled={page === totalPages}
                 className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
                 aria-label="Próxima página"
