@@ -116,6 +116,7 @@
     "repo": "chakra-ui/ark",
     "docs": "https://ark-ui.com/docs/react",
     "license": "MIT",
+    "logo": "ark-ui.svg",
     "color": "#EB5E41",
     "tags": [
       "headless",
@@ -395,6 +396,7 @@
     "repo": "ag-grid/ag-grid",
     "docs": "https://www.ag-grid.com/react-data-grid/",
     "license": "NOASSERTION",
+    "logo": "ag-grid.svg",
     "color": "#FF8B00",
     "tags": [
       "tabelas",
@@ -419,6 +421,7 @@
     "repo": "recharts/recharts",
     "docs": "https://recharts.org/en-US/guide",
     "license": "MIT",
+    "logo": "recharts.svg",
     "color": "#FC521F",
     "tags": [
       "gráficos",
@@ -519,6 +522,7 @@
     "repo": "tailwindlabs/heroicons",
     "docs": "https://heroicons.com/react",
     "license": "MIT",
+    "logo": "heroicons.svg",
     "color": "#8B5CF6",
     "tags": [
       "ícones",
@@ -618,6 +622,7 @@
     "repo": "formkit/auto-animate",
     "docs": "https://auto-animate.style/docs",
     "license": "MIT",
+    "logo": "auto-animate.svg",
     "color": "#FF6B6B",
     "tags": [
       "animação",
@@ -694,6 +699,7 @@
     "repo": "chakra-ui/panda",
     "docs": "https://panda-css.com/docs/overview",
     "license": "MIT",
+    "logo": "panda-css.svg",
     "color": "#F6E458",
     "tags": [
       "css",
@@ -743,6 +749,7 @@
     "repo": "emotion-js/emotion",
     "docs": "https://emotion.sh/docs/introduction",
     "license": "MIT",
+    "logo": "emotion.svg",
     "color": "#D36AC2",
     "tags": [
       "css-in-js",
@@ -816,6 +823,7 @@
     "repo": "tusen-ai/naive-ui",
     "docs": "https://www.naiveui.com/en-US/os-theme",
     "license": "MIT",
+    "logo": "naive-ui.svg",
     "color": "#5FBC21",
     "tags": [
       "tokens",
@@ -840,6 +848,7 @@
     "repo": "element-plus/element-plus",
     "docs": "https://element-plus.org/en-US/component/button.html",
     "license": "MIT",
+    "logo": "element-plus.svg",
     "color": "#409EFF",
     "tags": [
       "admin",
@@ -989,6 +998,7 @@
     "repo": "valor-software/ngx-bootstrap",
     "docs": "https://valor-software.com/ngx-bootstrap/#/documentation",
     "license": "MIT",
+    "logo": "ngx-bootstrap.svg",
     "color": "#7952B3",
     "tags": [
       "bootstrap",
@@ -1012,6 +1022,7 @@
     "repo": "kobaltedev/kobalte",
     "docs": "https://kobalte.dev/docs",
     "license": "MIT",
+    "logo": "kobalte.svg",
     "color": "#0284C7",
     "tags": [
       "headless",
@@ -1036,6 +1047,7 @@
     "repo": "hope-ui/hope-ui",
     "docs": "https://hope-ui.com/docs",
     "license": "MIT",
+    "logo": "hope-ui.svg",
     "color": "#00A6E2",
     "tags": [
       "solid",
@@ -1183,6 +1195,7 @@
     "repo": "markmead/hyperui",
     "docs": "https://hyperui.dev/components",
     "license": "MIT",
+    "logo": "hyperui.svg",
     "color": "#06B6D4",
     "tags": [
       "tailwind",
@@ -1205,6 +1218,7 @@
     "website": "https://uiverse.io",
     "docs": "https://uiverse.io/components",
     "license": "MIT",
+    "logo": "uiverse.svg",
     "color": "#060606",
     "tags": [
       "css",
@@ -1253,6 +1267,7 @@
     "repo": "themesberg/flowbite",
     "docs": "https://flowbite.com/docs/getting-started/",
     "license": "MIT",
+    "logo": "flowbite.svg",
     "color": "#1B64F2",
     "tags": [
       "tailwind",
@@ -1301,6 +1316,7 @@
     "repo": "argyleink/open-props",
     "docs": "https://open-props.style/",
     "license": "MIT",
+    "logo": "open-props.svg",
     "color": "#3B5BDB",
     "tags": [
       "css variables",

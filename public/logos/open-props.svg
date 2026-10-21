@@ -1,0 +1,9 @@
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff"><title>Open Props</title><g transform="translate(0 0) translate(0 0) scale(0.12)"><style>
+    @media (prefers-color-scheme: dark) {
+      line, circle:first-of-type { stroke:#ffffff}
+      circle:last-of-type { stroke:#ffffff}
+    }
+  </style>
+  <line x1="65" x2="65" y1="100" y2="175" stroke="#ffffff" stroke-width="25"/>
+  <circle cx="100" cy="100" r="35" stroke="#ffffff" fill="#ffffff" stroke-width="25"/>
+  <circle cx="100" cy="100" r="85" stroke="#ffffff" fill="#ffffff" stroke-width="25"/></g></svg>

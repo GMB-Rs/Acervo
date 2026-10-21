@@ -1,0 +1,8 @@
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#ffffff"><title>Remix Icon</title><g transform="translate(0 0) translate(0 0) scale(0.75)"><g fill="none" fill-rule="evenodd">
+        <path d="M0 0h32v32H0z"/>
+        <g transform="translate(3 4)">
+            <path fill="#ffffff" d="M16.332.005A7.662 7.662 0 0 0 16 2.26C16 5.866 19.134 9 23.26 9a6.476 6.476 0 0 0 2.999-.75c.158.725.241 1.478.241 2.25C26.5 16.299 21.799 21 16 21v5H0V0h16c.111 0 .222.002.332.005z"/>
+            <use fill="#ffffff" xlink:href="#b"/>
+        </g>
+        <circle cx="26" cy="6" r="4" fill="#ffffff"/>
+    </g></g></svg>
