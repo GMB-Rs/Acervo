@@ -2,10 +2,9 @@
 
 import { useCallback, useSyncExternalStore } from "react";
 import type { Dictionary } from "@/i18n/dictionaries/types";
+import { THEME_STORAGE_KEY } from "@/lib/theme";
 
 type Theme = "light" | "dark";
-
-const STORAGE_KEY = "diretorio-theme";
 
 /** O tema vive no atributo `data-theme` do <html>, aplicado antes da pintura. */
 function getSnapshot(): Theme {
@@ -34,7 +33,7 @@ export function ThemeToggle({ dict }: { dict: Dictionary }) {
     const next: Theme = theme === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
     try {
-      window.localStorage.setItem(STORAGE_KEY, next);
+      window.localStorage.setItem(THEME_STORAGE_KEY, next);
     } catch {
       // localStorage indisponível (modo privado) — o tema ainda funciona na sessão
     }
