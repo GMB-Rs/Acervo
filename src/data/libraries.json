@@ -408,7 +408,8 @@
     "maintained": true,
     "since": 2012,
     "npmPackage": "ag-grid-react",
-    "lastUpdate": "2026-10-21T00:24:57Z"
+    "lastUpdate": "2026-10-21T00:24:57Z",
+    "logoKind": "text"
   },
   {
     "slug": "recharts",
@@ -433,7 +434,8 @@
     "maintained": true,
     "since": 2016,
     "npmPackage": "recharts",
-    "lastUpdate": "2026-10-20T19:07:20Z"
+    "lastUpdate": "2026-10-20T19:07:20Z",
+    "logoKind": "text"
   },
   {
     "slug": "visx",
@@ -533,7 +535,8 @@
     "maintained": true,
     "since": 2020,
     "npmPackage": "@heroicons/react",
-    "lastUpdate": "2026-05-12T13:51:18Z"
+    "lastUpdate": "2026-05-12T13:51:18Z",
+    "logoKind": "text"
   },
   {
     "slug": "iconify",
@@ -609,7 +612,8 @@
     "maintained": true,
     "since": 2017,
     "npmPackage": "gsap",
-    "lastUpdate": "2026-04-13T13:08:58Z"
+    "lastUpdate": "2026-04-13T13:08:58Z",
+    "logoKind": "wide"
   },
   {
     "slug": "auto-animate",
@@ -736,7 +740,8 @@
     "maintained": true,
     "since": 2015,
     "npmPackage": "styled-components",
-    "lastUpdate": "2026-10-19T02:55:32Z"
+    "lastUpdate": "2026-10-19T02:55:32Z",
+    "logoKind": "text"
   },
   {
     "slug": "emotion",

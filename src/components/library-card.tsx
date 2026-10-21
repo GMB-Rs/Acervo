@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Library } from "@/types/library";
 import { FRAMEWORK_LABELS } from "@/types/library";
 import { formatCompact, getContrastColor, isLightColor } from "@/lib/format";
+import { isTextMark, logoBoxClass, textMarkClass } from "@/lib/logo";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -10,21 +11,6 @@ import { formatCompact, getContrastColor, isLightColor } from "@/lib/format";
   elemento marcante da galeria; a legenda abaixo carrega os dados em
   tipografia monoespaçada, como um índice de catálogo.
 */
-
-const WORDMARK_STYLES = [
-  "font-serif text-2xl font-semibold italic tracking-tight",
-  "font-sans text-2xl font-bold tracking-tight",
-  "font-mono text-lg font-medium tracking-tight",
-  "font-sans text-lg font-semibold uppercase tracking-[0.18em]",
-];
-
-function wordmarkStyle(name: string): string {
-  let hash = 0;
-  for (let i = 0; i < name.length; i += 1) {
-    hash = (hash * 31 + name.charCodeAt(i)) % 997;
-  }
-  return WORDMARK_STYLES[hash % WORDMARK_STYLES.length];
-}
 
 export function domainOf(website: string): string {
   try {
@@ -42,22 +28,22 @@ export function LibraryCard({ library }: { library: Library }) {
   return (
     <Link href={`/libraries/${library.slug}`} className="group block">
       <div
-        className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border transition-colors duration-200 group-hover:border-foreground/40"
+        className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border px-3 transition-colors duration-200 group-hover:border-foreground/40"
         style={{ backgroundColor: library.color }}
       >
-        {library.logo ? (
+        {library.logo && !isTextMark(library) ? (
           <img
             src={`/logos/${library.logo}`}
             alt=""
             width={40}
             height={40}
             loading="lazy"
-            className="h-10 w-10 opacity-95 transition-transform duration-200 group-hover:scale-105"
+            className={`${logoBoxClass(library, "sm")} opacity-95 transition-transform duration-200 group-hover:scale-105`}
             style={logoStyle}
           />
         ) : (
           <span
-            className={`px-4 text-center ${wordmarkStyle(library.name)}`}
+            className={textMarkClass(library.name, "sm")}
             style={{ color: contrastColor }}
           >
             {library.name}

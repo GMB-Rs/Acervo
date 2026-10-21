@@ -9,6 +9,7 @@ import {
   getRelatedLibraries,
 } from "@/lib/libraries";
 import { formatCompact, formatNumber, getContrastColor, isLightColor } from "@/lib/format";
+import { logoBoxClass, isTextMark, textMarkClass } from "@/lib/logo";
 import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "@/types/library";
 
 /* eslint-disable @next/next/no-img-element */
@@ -90,21 +91,21 @@ async function LibraryPageContent({ params }: PageProps) {
 
       <div className="mt-8 grid gap-8 sm:grid-cols-[240px_1fr] sm:items-start">
         <div
-          className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border"
+          className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border px-3"
           style={{ backgroundColor: library.color }}
         >
-          {library.logo ? (
+          {library.logo && !isTextMark(library) ? (
             <img
               src={`/logos/${library.logo}`}
               alt=""
               width={72}
               height={72}
-              className="h-18 w-18 opacity-95"
+              className={`${logoBoxClass(library, "lg")} opacity-95`}
               style={isLightColor(library.color) ? { filter: "invert(1)" } : {}}
             />
           ) : (
             <span
-              className="px-4 text-center text-2xl font-semibold tracking-tight"
+              className={textMarkClass(library.name, "lg")}
               style={{ color: getContrastColor(library.color) }}
             >
               {library.name}

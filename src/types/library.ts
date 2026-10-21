@@ -45,8 +45,16 @@ export type Library = {
   /** Documentação */
   docs?: string;
   license: string;
-  /** Logo em `public/logos` (ausente = wordmark textual) */
+  /** Logo em `public/logos` */
   logo?: string;
+  /**
+   * Como a marca aparece no tile:
+   * - "mark" (padrão): símbolo quadrado, centralizado no tile;
+   * - "wide": wordmark horizontal — o SVG tem viewBox largo e a logo
+   *   ocupa a largura do tile;
+   * - "text": sem imagem — o tile mostra o nome da biblioteca em texto.
+   */
+  logoKind?: "mark" | "wide" | "text";
   /** Cor de fundo do preview (hex) */
   color: string;
   /** Palavras-chave para busca */
