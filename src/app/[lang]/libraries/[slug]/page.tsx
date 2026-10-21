@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
+import { BackLink } from "@/components/back-link";
 import { LibraryCard, domainOf } from "@/components/library-card";
 import {
   getAllSlugs,
@@ -101,6 +103,10 @@ export default async function LibraryPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
+      <Suspense fallback={<BackLinkFallback />}>
+        <BackLink locale={locale} label={dict.detail.back} />
+      </Suspense>
+
       <div className="mt-8 grid gap-8 sm:grid-cols-[240px_1fr] sm:items-start">
         <div
           className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border px-3"
@@ -253,5 +259,12 @@ export default async function LibraryPage({ params }: PageProps) {
         })}
       </p>
     </div>
+  );
+}
+
+/* Esqueleto do botão de voltar, mostrado até o cliente hidratar. */
+function BackLinkFallback() {
+  return (
+    <div className="inline-flex h-[30px] w-[190px] items-center rounded-md border border-border px-3" />
   );
 }

@@ -482,6 +482,14 @@ export function LibraryExplorer({
     category !== "all" ||
     license !== "all";
 
+  /*
+    Endereço da galeria como está na URL — é ele que o botão de voltar da
+    ficha usa para devolver o usuário à mesma galeria, com os mesmos filtros.
+  */
+  const galleryHref = searchParams.toString()
+    ? `${pathname}?${searchParams.toString()}`
+    : pathname;
+
   const filterButton = (active: boolean) =>
     `text-xs transition-colors ${
       active
@@ -681,6 +689,7 @@ export function LibraryExplorer({
                 highlight={tokens}
                 locale={locale}
                 dict={dict}
+                from={galleryHref}
               />
             ))}
           </div>

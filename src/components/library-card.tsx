@@ -28,6 +28,7 @@ export function LibraryCard({
   highlight = [],
   locale,
   dict,
+  from,
 }: {
   library: Library;
   /** Termos buscados: o trecho casado no nome fica sublinhado. */
@@ -35,12 +36,16 @@ export function LibraryCard({
   /** Idioma da página — o link da ficha carrega o idioma. */
   locale: Locale;
   dict: Dictionary;
+  /** Endereço da galeria de origem, para o botão de voltar da ficha. */
+  from?: string;
 }) {
   const lightBg = isLightColor(library.color);
   const contrastColor = getContrastColor(library.color);
   const logoStyle = lightBg ? { filter: "invert(1)" as const } : {};
 
-  const href = `/${locale}/libraries/${library.slug}`;
+  const href = from
+    ? `/${locale}/libraries/${library.slug}?from=${encodeURIComponent(from)}`
+    : `/${locale}/libraries/${library.slug}`;
 
   return (
     <Link href={href} className="group block">
