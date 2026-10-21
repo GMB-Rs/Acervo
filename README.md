@@ -30,7 +30,14 @@ npm run dev        # http://localhost:3000
 | `npm run start`      | Sobe o build de produção                               |
 | `npm run lint`       | ESLint                                                 |
 | `npm run typecheck`  | `tsc --noEmit`                                         |
+| `npm run check`      | `lint` + `typecheck` + `build`                         |
 | `npm run sync:github`| Atualiza estrelas/downloads em `src/data/libraries.json`|
+
+## Contribuindo
+
+O catálogo é um arquivo só (`src/data/libraries.json`). O passo a passo para
+adicionar uma biblioteca, as regras da logo e o que o CI checa estão no
+[CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Estrutura
 
@@ -93,7 +100,8 @@ GITHUB_TOKEN=ghp_xxx npm run sync:github
 
 O script busca estrelas, data do último push e status de manutenção no GitHub,
 além dos downloads mensais no npm, e reescreve o JSON. Sem token, a API do
-GitHub permite 60 requisições por hora (suficiente para as ~53 libs atuais).
+GitHub permite 60 requisições por hora — para as 63 libs do catálogo é
+necessário um `GITHUB_TOKEN`.
 
 Com o workflow `sync:github` (`.github/workflows/sync-github.yml`) isso
 roda sozinho toda segunda-feira: o job sincroniza e, se alguma métrica mudou,
