@@ -3,6 +3,7 @@ import type { Library } from "@/types/library";
 import { FRAMEWORK_LABELS } from "@/types/library";
 import { formatCompact, getContrastColor, isLightColor } from "@/lib/format";
 import { isTextMark, logoBoxClass, textMarkClass } from "@/lib/logo";
+import { highlightParts } from "@/lib/search";
 
 /* eslint-disable @next/next/no-img-element */
 
@@ -20,7 +21,14 @@ export function domainOf(website: string): string {
   }
 }
 
-export function LibraryCard({ library }: { library: Library }) {
+export function LibraryCard({
+  library,
+  highlight = [],
+}: {
+  library: Library;
+  /** Termos buscados: o trecho casado no nome fica sublinhado. */
+  highlight?: string[];
+}) {
   const lightBg = isLightColor(library.color);
   const contrastColor = getContrastColor(library.color);
   const logoStyle = lightBg ? { filter: "invert(1)" as const } : {};
@@ -53,7 +61,18 @@ export function LibraryCard({ library }: { library: Library }) {
 
       <div className="mt-2 flex items-baseline justify-between gap-3">
         <span className="truncate text-[13px] font-medium text-foreground">
-          {library.name}
+          {highlightParts(library.name, highlight).map((part, index) =>
+            part.match ? (
+              <mark
+                key={index}
+                className="bg-transparent text-foreground underline decoration-foreground/50 underline-offset-4"
+              >
+                {part.text}
+              </mark>
+            ) : (
+              <span key={index}>{part.text}</span>
+            ),
+          )}
         </span>
         <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
           {domainOf(library.website)}

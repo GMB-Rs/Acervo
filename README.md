@@ -30,7 +30,8 @@ npm run dev        # http://localhost:3000
 | `npm run start`      | Sobe o build de produção                               |
 | `npm run lint`       | ESLint                                                 |
 | `npm run typecheck`  | `tsc --noEmit`                                         |
-| `npm run check`      | `lint` + `typecheck` + `build`                         |
+| `npm run test`       | Testes da busca (`node --test`)                        |
+| `npm run check`      | `lint` + `typecheck` + `build` + `test`                |
 | `npm run sync:github`| Atualiza estrelas/downloads em `src/data/libraries.json`|
 
 ## Contribuindo
@@ -56,11 +57,33 @@ src/
     libraries.json          # fonte de verdade dos dados
   lib/
     libraries.ts            # parse/validação e consultas
+    search.ts               # busca por termos, relevância e destaque
     format.ts               # formatação de números e datas
   types/
     library.ts              # schema, frameworks e categorias
 scripts/
   sync-github.ts            # sincronização opcional com GitHub/npm
+```
+
+## Busca
+
+A busca da galeria é por **termos**: a query é dividida em palavras e todas
+precisam casar em algum campo da biblioteca (nome, tags, descrição, destaque,
+repositório, site, framework e categoria), em qualquer ordem — `react form` e
+`form react` dão o mesmo resultado.
+
+Com busca ativa, a ordenação padrão passa a ser **por relevância**: o nome
+casado vale mais que a tag, que vale mais que a descrição. O trecho casado
+fica sublinhado no nome do card, para dar para ver por que a biblioteca
+apareceu.
+
+Atalhos: `/` foca o campo de busca e `Esc` limpa a busca.
+
+A lógica vive em `src/lib/search.ts` (funções puras, sem React) e é coberta
+por `src/lib/search.test.ts`, que roda no runner nativo do Node:
+
+```bash
+npm run test
 ```
 
 ## Dados
