@@ -1,0 +1,34 @@
+import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { libraries } from "@/lib/libraries";
+
+export function SiteHeader() {
+  return (
+    <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-6 px-4">
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+        >
+          <span className="inline-flex size-5 items-center justify-center bg-foreground text-[10px] font-bold text-background">
+            D
+          </span>
+          Diretório
+        </Link>
+
+        <nav className="flex items-center gap-5 text-xs text-muted-foreground">
+          <Link href="/#galeria" className="transition hover:text-foreground">
+            Galeria
+          </Link>
+        </nav>
+
+        <div className="ml-auto flex items-center gap-4">
+          <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
+            {libraries.length} libs
+          </span>
+          <ThemeToggle />
+        </div>
+      </div>
+    </header>
+  );
+}

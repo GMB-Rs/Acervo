@@ -1,0 +1,272 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import { LibraryCard } from "@/components/library-card";
+import {
+  CATEGORIES,
+  FRAMEWORKS,
+  type Category,
+  type Framework,
+  type Library,
+} from "@/types/library";
+import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "@/types/library";
+
+type SortOption = "popular" | "az" | "za" | "recent";
+
+const SORTS: { value: SortOption; label: string }[] = [
+  { value: "popular", label: "Mais populares" },
+  { value: "az", label: "Nome (A–Z)" },
+  { value: "za", label: "Nome (Z–A)" },
+  { value: "recent", label: "Mais recentes" },
+];
+
+function normalize(value: string): string {
+  return value
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase();
+}
+
+function Select({ value, onChange, children, className = "" }: React.SelectHTMLAttributes<HTMLSelectElement> & { className?: string }) {
+  return (
+    <div className="relative">
+      <select
+        value={value}
+        onChange={onChange}
+        className={`appearance-none h-10 rounded-md border border-border bg-background px-3 pr-10 text-sm outline-none transition focus:border-foreground/50 ${className}`}
+      >
+        {children}
+      </select>
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="pointer-events-none absolute right-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+        aria-hidden="true"
+      >
+        <path d="m6 9 6 6 6-6" />
+      </svg>
+    </div>
+  );
+}
+
+function SearchInput({
+  value,
+  onChange,
+  onClear,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+  onClear: () => void;
+}) {
+  return (
+    <div className="relative">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        className="pointer-events-none absolute left-3 top-1/2 size-4 -translate-y-1/2 text-muted-foreground"
+        aria-hidden="true"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="m20 20-3.5-3.5" />
+      </svg>
+      <input
+        type="search"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder="Buscar biblioteca"
+        aria-label="Buscar bibliotecas"
+        className="h-10 w-full rounded-md border border-border bg-background pl-9 pr-10 text-sm outline-none transition placeholder:text-muted-foreground focus:border-foreground/50"
+      />
+      {value && (
+        <button
+          type="button"
+          onClick={onClear}
+          className="absolute right-3 top-1/2 size-5 -translate-y-1/2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition"
+          aria-label="Limpar busca"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
+            <line x1="18" y1="6" x2="6" y2="18" />
+            <line x1="6" y1="6" x2="18" y2="18" />
+          </svg>
+        </button>
+      )}
+    </div>
+  );
+}
+
+export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
+  const [query, setQuery] = useState("");
+  const [framework, setFramework] = useState<Framework | "all">("all");
+  const [category, setCategory] = useState<Category | "all">("all");
+  const [sort, setSort] = useState<SortOption>("popular");
+
+  const frameworkCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const item of libraries) {
+      counts.set(item.framework, (counts.get(item.framework) ?? 0) + 1);
+    }
+    return counts;
+  }, [libraries]);
+
+  const categoryCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    for (const item of libraries) {
+      counts.set(item.category, (counts.get(item.category) ?? 0) + 1);
+    }
+    return counts;
+  }, [libraries]);
+
+  const results = useMemo(() => {
+    const term = normalize(query.trim());
+
+    const filtered = libraries.filter((item) => {
+      if (framework !== "all" && item.framework !== framework) return false;
+      if (category !== "all" && item.category !== category) return false;
+      if (!term) return true;
+
+      const haystack = normalize(
+        [item.name, item.description, item.highlight, ...item.tags].join(" "),
+      );
+      return haystack.includes(term);
+    });
+
+    const sorted = [...filtered];
+    sorted.sort((a, b) => {
+      switch (sort) {
+        case "az":
+          return a.name.localeCompare(b.name, "pt-BR");
+        case "za":
+          return b.name.localeCompare(a.name, "pt-BR");
+        case "recent":
+          return b.since - a.since || a.name.localeCompare(b.name, "pt-BR");
+        case "popular":
+        default:
+          return (b.stars ?? 0) - (a.stars ?? 0);
+      }
+    });
+
+    return sorted;
+  }, [libraries, query, framework, category, sort]);
+
+  const hasActiveFilter =
+    query.trim() !== "" || framework !== "all" || category !== "all";
+
+  const filterButton = (active: boolean) =>
+    `text-xs transition-colors ${
+      active
+        ? "text-foreground underline underline-offset-4 decoration-foreground/40"
+        : "text-muted-foreground hover:text-foreground"
+    }`;
+
+  return (
+    <section id="galeria" className="scroll-mt-16">
+      <div className="border-y border-border">
+        <div className="flex flex-col gap-3 py-4 lg:flex-row lg:items-center">
+          <div className="relative lg:w-96">
+            <SearchInput
+              value={query}
+              onChange={setQuery}
+              onClear={() => setQuery("")}
+            />
+          </div>
+
+          <div className="flex flex-col gap-3 sm:flex-row lg:ml-auto">
+            <Select
+              value={category}
+              onChange={(e) =>
+                setCategory(e.target.value as Category | "all")
+              }
+              aria-label="Filtrar por categoria"
+            >
+              <option value="all">Todas as categorias</option>
+              {CATEGORIES.map((item) => (
+                <option key={item} value={item}>
+                  {CATEGORY_LABELS[item]} ({categoryCounts.get(item) ?? 0})
+                </option>
+              ))}
+            </Select>
+
+            <Select
+              value={sort}
+              onChange={(e) => setSort(e.target.value as SortOption)}
+              aria-label="Ordenar bibliotecas"
+            >
+              {SORTS.map((item) => (
+                <option key={item.value} value={item.value}>
+                  {item.label}
+                </option>
+              ))}
+            </Select>
+          </div>
+        </div>
+
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border py-3">
+          <button
+            type="button"
+            onClick={() => setFramework("all")}
+            className={filterButton(framework === "all")}
+          >
+            Todos
+            <span className="ml-1.5 font-mono text-[11px] opacity-60">
+              {libraries.length}
+            </span>
+          </button>
+          {FRAMEWORKS.map((item) => (
+            <button
+              key={item}
+              type="button"
+              onClick={() => setFramework(item)}
+              className={filterButton(framework === item)}
+            >
+              {FRAMEWORK_LABELS[item]}
+              <span className="ml-1.5 font-mono text-[11px] opacity-60">
+                {frameworkCounts.get(item) ?? 0}
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between py-3 text-xs text-muted-foreground">
+        <span className="font-mono">
+          {results.length} {results.length === 1 ? "biblioteca" : "bibliotecas"}
+        </span>
+        {hasActiveFilter && (
+          <button
+            type="button"
+            onClick={() => {
+              setQuery("");
+              setFramework("all");
+              setCategory("all");
+            }}
+            className="underline underline-offset-4 transition hover:text-foreground"
+          >
+            Limpar filtros
+          </button>
+        )}
+      </div>
+
+      {results.length === 0 ? (
+        <div className="border border-dashed border-border px-6 py-20 text-center">
+          <p className="text-sm font-medium">Nenhuma biblioteca encontrada</p>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Tente outro termo ou limpe os filtros aplicados.
+          </p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+          {results.map((library) => (
+            <LibraryCard key={library.slug} library={library} />
+          ))}
+        </div>
+      )}
+    </section>
+  );
+}

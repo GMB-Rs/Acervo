@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+/*
+  Paleta monocromática: preto e branco.
+  A marca branca sobre o tile preto é o único elemento "vivo" da página —
+  todo o resto é fio de 1px e texto.
+*/
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #0a0a0a;
+  --card: #fafafa;
+  --muted: #f2f2f2;
+  --muted-foreground: #6e6e6e;
+  --border: #e4e4e4;
+  --accent: #0a0a0a;
+  --accent-foreground: #ffffff;
+  --ring: #0a0a0a;
+}
+
+[data-theme="dark"] {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #0a0a0a;
+  --muted: #141414;
+  --muted-foreground: #8b8b8b;
+  --border: #1f1f1f;
+  --accent: #ffffff;
+  --accent-foreground: #000000;
+  --ring: #ffffff;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-ring: var(--ring);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+body {
+  background-color: var(--background);
+  color: var(--foreground);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::selection {
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+/* Foco visível e consistente, sem cor. */
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

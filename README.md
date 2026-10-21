@@ -1,36 +1,106 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Diretório
 
-## Getting Started
+Galeria de bibliotecas de componentes para **web**. O site cataloga libs de UI
+kit, headless, design systems, formulários, tabelas, ícones e animações —
+organizadas por framework e categoria, com busca e filtros.
 
-First, run the development server:
+> Escopo atual: **Web UI**. Mobile (React Native, Flutter) entra em uma
+> próxima fase, reaproveitando o mesmo schema de dados.
+
+## Stack
+
+- [Next.js 16](https://nextjs.org) (App Router, Turbopack, Cache Components)
+- React 19 + TypeScript
+- Tailwind CSS v4
+- ESLint flat config
+
+## Como rodar
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Script               | O que faz                                              |
+| -------------------- | ------------------------------------------------------ |
+| `npm run dev`        | Servidor de desenvolvimento                             |
+| `npm run build`      | Build de produção                                      |
+| `npm run start`      | Sobe o build de produção                               |
+| `npm run lint`       | ESLint                                                 |
+| `npm run typecheck`  | `tsc --noEmit`                                         |
+| `npm run sync:github`| Atualiza estrelas/downloads em `src/data/libraries.json`|
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Estrutura
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+  app/
+    layout.tsx              # shell, header/footer, tema claro/escuro
+    page.tsx                # home: hero + destaques + galeria
+    libraries/[slug]/page.tsx  # página de detalhe (SSG)
+    sitemap.ts / robots.ts  # metadados para buscadores
+  components/
+    library-card.tsx        # card da galeria
+    library-explorer.tsx    # busca + filtros (client component)
+    site-header.tsx / site-footer.tsx / theme-toggle.tsx
+  data/
+    libraries.json          # fonte de verdade dos dados
+  lib/
+    libraries.ts            # parse/validação e consultas
+    format.ts               # formatação de números e datas
+  types/
+    library.ts              # schema, frameworks e categorias
+scripts/
+  sync-github.ts            # sincronização opcional com GitHub/npm
+```
 
-## Learn More
+## Dados
 
-To learn more about Next.js, take a look at the following resources:
+O catálogo vive em `src/data/libraries.json` e é **editado à mão**. O schema é
+validado em `src/lib/libraries.ts` no boot — framework ou categoria inválidos
+quebram o build em vez de vazar para a UI.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Campos principais por biblioteca:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```jsonc
+{
+  "slug": "shadcn-ui",          // usado na URL
+  "name": "shadcn/ui",
+  "description": "...",
+  "highlight": "...",
+  "framework": "react",         // react | vue | svelte | angular | solid | qwik | web-components | vanilla
+  "category": "ui-kit",         // ui-kit | headless | design-system | utility | forms | data | icons | animation
+  "website": "https://...",
+  "repo": "shadcn-ui/ui",       // owner/repo -> GitHub API
+  "npmPackage": "shadcn",       // -> api.npmjs.org
+  "license": "MIT",
+  "tags": ["tailwind", "radix"],
+  "stars": 94000,               // <- atualizado pelo sync
+  "npmDownloads": 0,            // <- atualizado pelo sync
+  "featured": true,
+  "maintained": true,           // <- atualizado pelo sync
+  "since": 2023
+}
+```
 
-## Deploy on Vercel
+### Sincronização automática (opcional)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+GITHUB_TOKEN=ghp_xxx npm run sync:github
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+O script busca estrelas, data do último push e status de manutenção no GitHub,
+além dos downloads mensais no npm, e reescreve o JSON. Sem token, a API do
+GitHub permite 60 requisições por hora (suficiente para as ~53 libs atuais).
+
+## Temas
+
+Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). O script
+inline no `layout.tsx` aplica o tema antes da primeira pintura para evitar
+"flash" de tema incorreto.
+
+## Deploy
+
+Basta conectar o repositório na Vercel. O `metadataBase` e as URLs do
+`sitemap.ts` / `robots.ts` apontam para `https://diretorio.dev` — ajuste para o
+domínio real antes de publicar.
