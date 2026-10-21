@@ -35,12 +35,14 @@ function Dropdown<T extends string>({
   onChange,
   label,
   placeholder,
+  className = "",
 }: {
   value: T;
   options: Array<DropdownOption & { value: T }>;
   onChange: (value: T) => void;
   label: string;
   placeholder?: string;
+  className?: string;
 }) {
   const [open, setOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -107,7 +109,7 @@ function Dropdown<T extends string>({
         type="button"
         role="combobox"
         onClick={open ? close : openDropdown}
-        className="flex items-center gap-3 h-10 rounded-md border border-border bg-background px-3 pr-10 text-sm outline-none transition focus:border-foreground/50 hover:border-border/80 w-full sm:w-[140px] md:w-[160px] lg:w-[150px] xl:w-[180px] justify-between"
+        className={`flex items-center gap-3 h-10 rounded-md border border-border bg-background px-3 pr-10 text-sm outline-none transition focus:border-foreground/50 hover:border-border/80 w-full sm:w-[140px] md:w-[160px] lg:w-[150px] xl:w-[180px] justify-between ${className}`}
         aria-haspopup="listbox"
         aria-expanded={open}
         aria-controls={`${label.replace(/\s+/g, "-")}-listbox`}
@@ -312,6 +314,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               onChange={setCategory}
               label="Filtrar por categoria"
               placeholder="Categoria"
+              className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
             />
 
             <Dropdown<SortOption>
