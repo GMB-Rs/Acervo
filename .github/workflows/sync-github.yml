@@ -1,0 +1,95 @@
+name: sync:github
+
+on:
+  schedule:
+    # Segunda-feira, 04:17 UTC — fora do horário de pico da API.
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-github
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sincroniza métricas
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+
+      # O script só usa APIs do Node — não é preciso instalar dependências.
+      - name: Sincroniza estrelas e downloads
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/sync-github.ts --summary-file sync-summary.md
+
+      - name: Verifica se houve mudanças
+        id: check
+        run: |
+          if git diff --quiet -- src/data/libraries.json; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Nenhuma métrica mudou — nada a fazer."
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+            git diff --stat -- src/data/libraries.json
+          fi
+
+      - name: Valida o catálogo
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          node --input-type=module -e "
+          import { readFile } from 'node:fs/promises';
+          const libs = JSON.parse(await readFile('src/data/libraries.json', 'utf8'));
+          const required = ['slug', 'name', 'description', 'framework', 'category', 'color', 'license'];
+          for (const lib of libs) {
+            for (const field of required) {
+              if (!lib[field]) throw new Error(lib.slug + ': campo ausente ' + field);
+            }
+            if (!/^#[0-9a-f]{6}\$/i.test(lib.color)) throw new Error(lib.slug + ': cor invalida');
+          }
+          console.log(libs.length + ' bibliotecas validas.');
+          "
+
+      - name: Abre pull request
+        if: steps.check.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c chore/sync-github
+          git add src/data/libraries.json
+          git commit -m "chore(sync): atualiza estrelas e downloads"
+          git push --force origin chore/sync-github
+
+          body=$(cat <<EOF
+          Atualização automática das métricas do catálogo (estrelas do GitHub,
+          downloads do npm e data da última atualização).
+
+          $(cat sync-summary.md)
+
+          \`src/data/libraries.json\` foi regerado por \`scripts/sync-github.ts\`.
+          EOF
+          )
+
+          if gh pr list --head chore/sync-github --state open --json number --jq '.[0].number // empty' | grep -q .; then
+            gh pr edit chore/sync-github --body "$body"
+            echo "Pull request existente atualizado."
+          else
+            gh pr create \
+              --base main \
+              --head chore/sync-github \
+              --title "chore(sync): atualiza estrelas e downloads" \
+              --body "$body"
+          fi

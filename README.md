@@ -1,5 +1,7 @@
 # Diretório
 
+![sync:github](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml/badge.svg)
+
 Galeria de bibliotecas de componentes para **web**. O site cataloga libs de UI
 kit, headless, design systems, formulários, tabelas, ícones e animações —
 organizadas por framework e categoria, com busca e filtros.
