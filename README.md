@@ -57,6 +57,7 @@ src/
     language-select.tsx     # seletor de idioma
     back-link.tsx           # "voltar para a galeria" da ficha
     site-header.tsx / site-footer.tsx / theme-toggle.tsx
+    theme-script.tsx          # script de tema injetado no <head> do servidor
   data/
     libraries.json          # fonte de verdade dos dados (pt-BR)
     translations/
@@ -71,6 +72,7 @@ src/
     libraries.ts            # parse/validação e consultas
     search.ts               # busca por termos, relevância e destaque
     format.ts               # formatação de números e datas
+    theme.ts                # tema (escolha salva ou preferência do sistema)
   types/
     library.ts              # schema, frameworks e categorias
 scripts/
@@ -187,9 +189,12 @@ na mão em **Actions → sync:github → Run workflow**.
 
 ## Temas
 
-Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). O script
-inline no `app/[lang]/layout.tsx` aplica o tema antes da primeira pintura para
-evitar "flash" de tema incorreto.
+Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). A lógica
+mora em `src/lib/theme.ts`: a versão inline (`THEME_SCRIPT`) entra no `<head>`
+do HTML do servidor pelo `useServerInsertedHTML` e aplica o tema antes da
+primeira pintura, para evitar "flash" de tema incorreto. No cliente, um
+efeito de layout reaplica o tema quando a troca de idioma remonta o layout e o
+`<html>` é recriado.
 
 ## Deploy
 
