@@ -95,6 +95,11 @@ O script busca estrelas, data do último push e status de manutenção no GitHub
 além dos downloads mensais no npm, e reescreve o JSON. Sem token, a API do
 GitHub permite 60 requisições por hora (suficiente para as ~53 libs atuais).
 
+Com o workflow `sync:github` (`.github/workflows/sync-github.yml`) isso
+roda sozinho toda segunda-feira: o job sincroniza e, se alguma métrica mudou,
+abre um pull request com o catálogo atualizado. Ele também pode ser disparado
+na mão em **Actions → sync:github → Run workflow**.
+
 ## Temas
 
 Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). O script
