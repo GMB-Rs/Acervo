@@ -297,7 +297,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     <section id="galeria" className="scroll-mt-16">
       <div className="border-y border-border">
         <div className="flex flex-col gap-3 py-4 lg:flex-row lg:items-center">
-          <div className="relative lg:w-96">
+          <div className="relative lg:w-[480px] xl:w-[544px]">
             <SearchInput
               value={query}
               onChange={setQuery}
