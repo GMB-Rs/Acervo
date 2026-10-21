@@ -17,22 +17,20 @@ import {
   type Framework,
   type Library,
 } from "@/types/library";
-import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "@/types/library";
 import {
   LICENSE_FAMILIES,
   licenseFamily,
   type LicenseFamily,
 } from "@/lib/license";
 import { resolveScope, scopeLabels, searchLibraries, tokenize } from "@/lib/search";
+import type { SearchLabels } from "@/lib/search";
+import { HTML_LANG, type Locale } from "@/i18n/config";
+import { formatText } from "@/i18n/format";
+import type { Dictionary } from "@/i18n/dictionaries/types";
 
 type SortOption = "popular" | "az" | "za" | "recent";
 
-const SORTS: { value: SortOption; label: string }[] = [
-  { value: "popular", label: "Mais populares" },
-  { value: "az", label: "Nome (A–Z)" },
-  { value: "za", label: "Nome (Z–A)" },
-  { value: "recent", label: "Mais recentes" },
-];
+const SORT_VALUES: SortOption[] = ["popular", "az", "za", "recent"];
 
 /* Parâmetros da query string: a URL é a fonte da verdade do estado. */
 const PARAM = {
@@ -45,14 +43,8 @@ const PARAM = {
 } as const;
 
 function isSortOption(value: string): value is SortOption {
-  return SORTS.some((item) => item.value === value);
+  return SORT_VALUES.includes(value as SortOption);
 }
-
-/* Rótulos usados pela busca: framework e categoria também são pesquisáveis. */
-const SEARCH_LABELS = {
-  framework: FRAMEWORK_LABELS,
-  category: CATEGORY_LABELS,
-};
 
 type DropdownOption = { value: string; label: string };
 
@@ -142,7 +134,7 @@ function Dropdown<T extends string>({
         aria-controls={`${label.replace(/\s+/g, "-")}-listbox`}
         aria-label={label}
       >
-        <span className="truncate">{selectedOption?.label ?? placeholder ?? "Selecionar"}</span>
+        <span className="truncate">{selectedOption?.label ?? placeholder ?? ""}</span>
         <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center pr-3">
           <svg
             viewBox="0 0 24 24"
@@ -203,11 +195,13 @@ function SearchInput({
   onChange,
   onClear,
   inputRef,
+  dict,
 }: {
   value: string;
   onChange: (v: string) => void;
   onClear: () => void;
   inputRef: RefObject<HTMLInputElement | null>;
+  dict: Dictionary;
 }) {
   return (
     <div className="relative">
@@ -236,8 +230,8 @@ function SearchInput({
             e.currentTarget.blur();
           }
         }}
-        placeholder="Buscar nome, tag ou descrição"
-        aria-label="Buscar bibliotecas"
+        placeholder={dict.search.placeholder}
+        aria-label={dict.search.label}
         className="h-10 w-full appearance-none rounded-md border border-border bg-background pl-9 pr-10 text-sm outline-none transition placeholder:text-muted-foreground focus:border-foreground/50"
       />
       {value ? (
@@ -245,7 +239,7 @@ function SearchInput({
           type="button"
           onClick={onClear}
           className="absolute right-3 top-1/2 size-5 -translate-y-1/2 rounded-full text-muted-foreground hover:text-foreground hover:bg-muted transition"
-          aria-label="Limpar busca"
+          aria-label={dict.search.clear}
         >
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="size-4">
             <line x1="18" y1="6" x2="6" y2="18" />
@@ -264,10 +258,30 @@ function SearchInput({
   );
 }
 
-export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
+export function LibraryExplorer({
+  libraries,
+  locale,
+  dict,
+  scopeLabelSets,
+}: {
+  libraries: Library[];
+  locale: Locale;
+  dict: Dictionary;
+  /** Rótulos de todos os idiomas: a busca entende "forms" e "data" sempre. */
+  scopeLabelSets: SearchLabels[];
+}) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+
+  /* Rótulos do idioma da tela: framework e categoria também são pesquisáveis. */
+  const searchLabels = useMemo<SearchLabels>(
+    () => ({
+      framework: dict.frameworkLabels,
+      category: dict.categoryLabels,
+    }),
+    [dict],
+  );
 
   /*
     A URL é a fonte da verdade: busca, filtros, ordenação e página são lidos
@@ -290,8 +304,8 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   const rawSort = searchParams.get(PARAM.sort) ?? "popular";
   const sort: SortOption = isSortOption(rawSort) ? rawSort : "popular";
   const rawLicense = searchParams.get(PARAM.license) ?? "all";
-  const license: LicenseFamily | "all" = LICENSE_FAMILIES.some(
-    (item) => item.value === rawLicense,
+  const license: LicenseFamily | "all" = LICENSE_FAMILIES.includes(
+    rawLicense as LicenseFamily,
   )
     ? (rawLicense as LicenseFamily)
     : "all";
@@ -354,7 +368,10 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     Termos que designam uma categoria ou um framework viram filtro:
     buscar "mobile" mostra só as libs de mobile, buscar "react" só as de React.
   */
-  const scope = useMemo(() => resolveScope(tokens, SEARCH_LABELS), [tokens]);
+  const scope = useMemo(
+    () => resolveScope(tokens, scopeLabelSets, searchLabels),
+    [tokens, scopeLabelSets, searchLabels],
+  );
   const scopeNames = useMemo(() => scopeLabels(scope), [scope]);
 
   const searchRef = useRef<HTMLInputElement>(null);
@@ -416,7 +433,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     });
 
     // Só entram as libs que casam com todos os termos, com a nota de relevância.
-    const scored = searchLibraries(filtered, tokens, SEARCH_LABELS);
+    const scored = searchLibraries(filtered, tokens, searchLabels, scopeLabelSets);
 
     const sorted = [...scored];
     sorted.sort((a, b) => {
@@ -425,18 +442,18 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
         return (
           b.score - a.score ||
           (b.library.stars ?? 0) - (a.library.stars ?? 0) ||
-          a.library.name.localeCompare(b.library.name, "pt-BR")
+          a.library.name.localeCompare(b.library.name, HTML_LANG[locale])
         );
       }
       switch (sort) {
         case "az":
-          return a.library.name.localeCompare(b.library.name, "pt-BR");
+          return a.library.name.localeCompare(b.library.name, HTML_LANG[locale]);
         case "za":
-          return b.library.name.localeCompare(a.library.name, "pt-BR");
+          return b.library.name.localeCompare(a.library.name, HTML_LANG[locale]);
         case "recent":
           return (
             b.library.since - a.library.since ||
-            a.library.name.localeCompare(b.library.name, "pt-BR")
+            a.library.name.localeCompare(b.library.name, HTML_LANG[locale])
           );
         case "popular":
         default:
@@ -445,7 +462,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     });
 
     return sorted.map((item) => item.library);
-  }, [libraries, tokens, framework, category, license, sort]);
+  }, [libraries, tokens, searchLabels, scopeLabelSets, framework, category, license, sort, locale]);
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
   // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
@@ -478,26 +495,35 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
       : "";
 
   const categoryOptions = useMemo<Array<DropdownOption & { value: Category | "all" }>>(() => [
-    { value: "all", label: `Todas as categorias (${libraries.length})` },
+    {
+      value: "all",
+      label: formatText(dict.filters.allCategories, { n: libraries.length }),
+    },
     ...CATEGORIES.map((item) => ({
       value: item,
-      label: `${CATEGORY_LABELS[item]} (${categoryCounts.get(item) ?? 0})`,
+      label: `${dict.categoryLabels[item]} (${categoryCounts.get(item) ?? 0})`,
     })),
-  ], [libraries.length, categoryCounts]);
+  ], [libraries.length, categoryCounts, dict]);
 
-  const sortOptions = useMemo<Array<DropdownOption & { value: SortOption }>>(() =>
-    SORTS.map((item) => ({ value: item.value, label: item.label })),
-  []);
+  const sortOptions = useMemo<Array<DropdownOption & { value: SortOption }>>(() => [
+    { value: "popular", label: dict.sorts.popular },
+    { value: "az", label: dict.sorts.az },
+    { value: "za", label: dict.sorts.za },
+    { value: "recent", label: dict.sorts.recent },
+  ], [dict]);
 
   const licenseOptions = useMemo<
     Array<DropdownOption & { value: LicenseFamily | "all" }>
   >(() => [
-    { value: "all", label: `Todas as licenças (${libraries.length})` },
+    {
+      value: "all",
+      label: formatText(dict.filters.allLicenses, { n: libraries.length }),
+    },
     ...LICENSE_FAMILIES.map((item) => ({
-      value: item.value,
-      label: `${item.label} (${licenseCounts.get(item.value) ?? 0})`,
+      value: item,
+      label: `${dict.license.families[item]} (${licenseCounts.get(item) ?? 0})`,
     })),
-  ], [libraries.length, licenseCounts]);
+  ], [libraries.length, licenseCounts, dict]);
 
   return (
     <section id="galeria" className="scroll-mt-16">
@@ -509,6 +535,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               onChange={setQuery}
               onClear={() => setQuery("")}
               inputRef={searchRef}
+              dict={dict}
             />
           </div>
 
@@ -522,8 +549,8 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                   [PARAM.page]: null,
                 })
               }
-              label="Filtrar por categoria"
-              placeholder="Categoria"
+              label={dict.filters.category}
+              placeholder={dict.filters.select}
               className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
             />
 
@@ -533,8 +560,8 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               onChange={(value) =>
                 pushParams({ [PARAM.license]: value, [PARAM.page]: null })
               }
-              label="Filtrar por licença"
-              placeholder="Licença"
+              label={dict.filters.license}
+              placeholder={dict.filters.select}
               className="w-full sm:w-[160px] md:w-[170px] lg:w-[160px] xl:w-[180px]"
             />
 
@@ -544,7 +571,8 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               onChange={(value) =>
                 pushParams({ [PARAM.sort]: value, [PARAM.page]: null })
               }
-              label="Ordenar bibliotecas"
+              label={dict.filters.sort}
+              placeholder={dict.filters.select}
             />
           </div>
         </div>
@@ -557,7 +585,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             }
             className={filterButton(framework === "all")}
           >
-            <span className={filterButtonLabel(framework === "all")}>Todos</span>
+            <span className={filterButtonLabel(framework === "all")}>
+              {dict.filters.all}
+            </span>
             <span className="ml-1.5 font-mono text-[11px] opacity-60">
               {libraries.length}
             </span>
@@ -571,7 +601,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               }
               className={filterButton(framework === item)}
             >
-              <span className={filterButtonLabel(framework === item)}>{FRAMEWORK_LABELS[item]}</span>
+              <span className={filterButtonLabel(framework === item)}>
+                {dict.frameworkLabels[item]}
+              </span>
               <span className="ml-1.5 font-mono text-[11px] opacity-60">
                 {frameworkCounts.get(item) ?? 0}
               </span>
@@ -583,9 +615,13 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
       <div className="flex items-center justify-between py-3 text-xs text-muted-foreground">
         <span className="flex items-center gap-2">
           <span className="font-mono">
-            {filteredResults.length} {filteredResults.length === 1 ? "biblioteca" : "bibliotecas"}
+            {filteredResults.length === 1
+              ? dict.results.countOne
+              : formatText(dict.results.countMany, { n: filteredResults.length })}
           </span>
-          {byRelevance && <span className="opacity-70">por relevância</span>}
+          {byRelevance && (
+            <span className="opacity-70">{dict.results.byRelevance}</span>
+          )}
           {scopeNames.map((name) => (
             <span
               key={name}
@@ -611,7 +647,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             }}
             className="underline underline-offset-4 transition hover:text-foreground"
           >
-            Limpar filtros
+            {dict.filters.clearAll}
           </button>
         )}
       </div>
@@ -621,17 +657,18 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
           <p className="text-sm font-medium">
             {query.trim() ? (
               <>
-                Nenhuma biblioteca encontrada para{" "}
-                <span className="font-mono">“{query.trim()}”</span>
+                {formatText(dict.results.emptyWithQuery, {
+                  query: query.trim(),
+                })}
               </>
             ) : (
-              "Nenhuma biblioteca encontrada"
+              dict.results.empty
             )}
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
             {tokens.length > 1
-              ? "A busca exige todos os termos: cada palavra precisa aparecer em algum campo."
-              : "Tente outro termo ou limpe os filtros aplicados."}
+              ? dict.results.emptyHintMulti
+              : dict.results.emptyHintSingle}
           </p>
         </div>
       ) : (
@@ -642,6 +679,8 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                 key={library.slug}
                 library={library}
                 highlight={tokens}
+                locale={locale}
+                dict={dict}
               />
             ))}
           </div>
@@ -649,7 +688,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
           {totalPages > 1 && (
             <nav
               className="mt-8 flex items-center justify-center gap-1"
-              aria-label="Paginação"
+              aria-label={dict.pagination.label}
             >
               <button
                 type="button"
@@ -658,7 +697,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                 }
                 disabled={page === 1}
                 className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
-                aria-label="Página anterior"
+                aria-label={dict.pagination.previous}
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
                   <path d="m15 18-6-6 6-6" />
@@ -675,7 +714,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                       ? "bg-foreground text-background"
                       : "bg-background text-muted-foreground hover:bg-muted hover:text-foreground border border-border"
                   }`}
-                  aria-label={`Página ${p}`}
+                  aria-label={formatText(dict.pagination.page, { page: p })}
                   aria-current={p === page ? "page" : undefined}
                 >
                   {p}
@@ -689,7 +728,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                 }
                 disabled={page === totalPages}
                 className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
-                aria-label="Próxima página"
+                aria-label={dict.pagination.next}
               >
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
                   <path d="m9 6 6 6-6 6" />
@@ -699,7 +738,11 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
           )}
 
           <p className="mt-4 text-xs text-muted-foreground text-center font-mono">
-            Mostrando {(page - 1) * itemsPerPage + 1}–{Math.min(page * itemsPerPage, filteredResults.length)} de {filteredResults.length} bibliotecas
+            {formatText(dict.results.showing, {
+              from: (page - 1) * itemsPerPage + 1,
+              to: Math.min(page * itemsPerPage, filteredResults.length),
+              total: filteredResults.length,
+            })}
           </p>
         </>
       )}

@@ -137,22 +137,38 @@ function designates(label: string, token: string): boolean {
  * Descobre quais termos da query designam um grupo do catálogo (categoria ou
  * framework). "mobile" vira o grupo "Mobile / Universal"; "react" vira o
  * framework "React".
+ *
+ * Os rótulos podem vir de mais de um idioma: assim "data" também filtra o
+ * grupo "Dados & Tabelas" mesmo na interface em português. O rótulo exibido
+ * é sempre o do idioma da tela (`displayLabels`).
  */
 export function resolveScope(
   tokens: string[],
-  labels: SearchLabels = {},
+  labelSets: SearchLabels | SearchLabels[] = {},
+  displayLabels?: SearchLabels,
 ): SearchScope {
+  const sets = Array.isArray(labelSets) ? labelSets : [labelSets];
   const scope: SearchScope = [];
   for (const token of tokens) {
     const entries: ScopeEntry[] = [];
-    for (const [value, label] of Object.entries(labels.category ?? {})) {
-      if (designates(label, token)) {
-        entries.push({ kind: "category", value, label });
+    for (const labels of sets) {
+      for (const [value, label] of Object.entries(labels.category ?? {})) {
+        if (designates(label, token)) {
+          entries.push({
+            kind: "category",
+            value,
+            label: displayLabels?.category?.[value] ?? label,
+          });
+        }
       }
-    }
-    for (const [value, label] of Object.entries(labels.framework ?? {})) {
-      if (designates(label, token)) {
-        entries.push({ kind: "framework", value, label });
+      for (const [value, label] of Object.entries(labels.framework ?? {})) {
+        if (designates(label, token)) {
+          entries.push({
+            kind: "framework",
+            value,
+            label: displayLabels?.framework?.[value] ?? label,
+          });
+        }
       }
     }
     if (entries.length > 0) scope.push({ token, entries });
@@ -237,17 +253,23 @@ export function scoreTerm(
 /**
  * Filtra e pontua as bibliotecas: só entram as que casam com **todos** os
  * termos, e o resultado vem ordenado por relevância.
+ *
+ * `labels` são os rótulos do idioma da tela (usados na nota e na exibição).
+ * `scopeLabelSets` são os rótulos que podem *designar* um grupo — pode
+ * incluir os de outros idiomas, para a busca entender "forms" e "data" em
+ * qualquer interface.
  */
 export function searchLibraries(
   libraries: Library[],
   tokens: string[],
   labels: SearchLabels = {},
+  scopeLabelSets: SearchLabels | SearchLabels[] = labels,
 ): ScoredLibrary[] {
   if (tokens.length === 0) {
     return libraries.map((library) => ({ library, score: 0 }));
   }
 
-  const scope = resolveScope(tokens, labels);
+  const scope = resolveScope(tokens, scopeLabelSets, labels);
 
   const results: ScoredLibrary[] = [];
   for (const library of libraries) {

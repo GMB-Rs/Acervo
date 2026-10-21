@@ -1,0 +1,258 @@
+{
+  "shadcn-ui": {
+    "description": "A collection of accessible components built on Radix UI and Tailwind, with copy-and-paste code straight into your project.",
+    "highlight": "You don't install a package: the component code is copied into your app and becomes yours."
+  },
+  "radix-ui": {
+    "description": "Headless, unstyled components for building accessible design systems, focused on behaviour and accessibility.",
+    "highlight": "The infrastructure behind a good share of the most popular kits in the React ecosystem."
+  },
+  "react-aria-components": {
+    "description": "A collection of headless components that implements interactions, focus and accessibility following the ARIA patterns.",
+    "highlight": "Complex behaviours (combobox, listbox, tables) ready and tested with keyboard navigation."
+  },
+  "headless-ui": {
+    "description": "Accessible, unstyled components maintained by the Tailwind CSS team.",
+    "highlight": "Ideal when you want 100% visual control without reimplementing focus, keyboard and ARIA."
+  },
+  "ark-ui": {
+    "description": "Multi-framework headless UI primitives (React, Vue, Solid, Svelte) with the same API and accessibility through Zag.js.",
+    "highlight": "A single headless design system that serves React, Vue, Solid and Svelte at once."
+  },
+  "mantine": {
+    "description": "A complete React component framework with more than 120 components, hooks and ready-made utils.",
+    "highlight": "Quite complete: notifications, modals, forms with validation, dates and utility hooks."
+  },
+  "ant-design": {
+    "description": "Alibaba's enterprise design system, with more than 70 components aimed at complex products.",
+    "highlight": "A reference for tables, forms and complex back-office flows."
+  },
+  "mui": {
+    "description": "React implementation of the Material Design components, with the largest examples ecosystem on the web.",
+    "highlight": "Thousands of examples, templates and ready-made integrations in the ecosystem."
+  },
+  "chakra-ui": {
+    "description": "A component library focused on productivity, with a simple props API and a props-based style system.",
+    "highlight": "Great for quickly putting together your own design system, with token-based themes."
+  },
+  "semantic-ui-react": {
+    "description": "The React port of the popular Semantic UI framework, with strong semantics and coherent naming.",
+    "highlight": "A meaning-driven API: just like semantic HTML."
+  },
+  "base-ui": {
+    "description": "A headless library of unstyled components, from the same family as MUI, focused on accessibility and composition.",
+    "highlight": "A natural successor to MUI Base: portals, focus traps and ARIA already solved."
+  },
+  "tanstack-form": {
+    "description": "A headless form manager with strong typing, schema validation and adapters for any UI.",
+    "highlight": "End-to-end typing: the form errors are inferred from the validation schema."
+  },
+  "react-hook-form": {
+    "description": "A performant form library built on hooks, with validation and minimised re-renders.",
+    "highlight": "The market standard for complex forms in React."
+  },
+  "formik": {
+    "description": "A form manager for React with render props and easy integration with validation schemas.",
+    "highlight": "Very stable and battle-tested, even though it predates the more modern alternatives."
+  },
+  "tanstack-table": {
+    "description": "A headless table library with sorting, filtering, pagination, grouping and virtualisation.",
+    "highlight": "Works for plain HTML as well as for React/Vue/Svelte/Angular with the same logic."
+  },
+  "ag-grid": {
+    "description": "A high-performance data grid for large grids, with grouping, filtering and charts.",
+    "highlight": "The Community edition is free and already handles millions of rows with virtualisation."
+  },
+  "recharts": {
+    "description": "React chart components built on SVG, with a simple declarative API.",
+    "highlight": "Easy to use for line, bar, area and pie charts."
+  },
+  "visx": {
+    "description": "A low-level charting kit for React, with SVG primitives and d3 scales.",
+    "highlight": "For those who want total control over data visualisation."
+  },
+  "lucide-react": {
+    "description": "An open source icon library with more than 1,500 consistent SVG icons.",
+    "highlight": "Derived from Feather Icons, with a uniform stroke and per-icon installs to keep the bundle small."
+  },
+  "phosphor-icons": {
+    "description": "A flexible icon family with variable weights and filled/outline/duotone variants.",
+    "highlight": "An icon set that changes weight without losing its consistent stroke."
+  },
+  "heroicons": {
+    "description": "Icons made by the Tailwind CSS team, in outline and solid, great for interfaces.",
+    "highlight": "A design consistent with Tailwind's visual language."
+  },
+  "iconify": {
+    "description": "Unifies more than 200 icon sets in a single component, with search and a consistent API.",
+    "highlight": "Lets you swap the icon package without rewriting the application code."
+  },
+  "framer-motion": {
+    "description": "An animation library for React with gestures, layout animations, scroll-linked effects and more.",
+    "highlight": "Declarative animations with physical springs and support for native gestures."
+  },
+  "gsap": {
+    "description": "A high-performance web animation engine with timelines, ScrollTrigger and plugins.",
+    "highlight": "The industry standard for complex animations and high-performance micro-interactions."
+  },
+  "auto-animate": {
+    "description": "Adds transition animations to any component with a single line of code.",
+    "highlight": "Zero configuration: it detects DOM changes and animates on its own."
+  },
+  "tailwindcss": {
+    "description": "A utility CSS framework for building responsive designs without leaving your HTML.",
+    "highlight": "The styling base of most of today's component kits."
+  },
+  "unocss": {
+    "description": "An extremely fast utility CSS engine with presets and a configurable theme.",
+    "highlight": "Much faster than Tailwind, with total freedom over the rules."
+  },
+  "panda-css": {
+    "description": "Utility CSS with design tokens and variants, focused on DX and on-demand generation.",
+    "highlight": "Design tokens as code, ideal for multi-platform design systems."
+  },
+  "styled-components": {
+    "description": "CSS-in-JS with tagged template literals, theming and dynamic props.",
+    "highlight": "The most popular CSS-in-JS library, widely adopted in the React ecosystem."
+  },
+  "emotion": {
+    "description": "A CSS-in-JS styling library focused on performance, with an API similar to styled-components.",
+    "highlight": "A styling engine with fast insertion and support for Server Components."
+  },
+  "vue": {
+    "description": "A progressive framework for building interfaces, with templates and native reactivity.",
+    "highlight": "The base of Nuxt, Vuetify, Naive UI and much of the Vue ecosystem."
+  },
+  "vuetify": {
+    "description": "A Vue component framework following Material Design, with themes and responsive layout.",
+    "highlight": "The most adopted Vue component kit in large projects."
+  },
+  "naive-ui": {
+    "description": "A component library for Vue 3 focused on token-based theming and tree-shaking.",
+    "highlight": "A very granular CSS-in-JS theming system, with no configuration boilerplate."
+  },
+  "element-plus": {
+    "description": "A Vue 3 component library widely used in admin panels.",
+    "highlight": "Strong on tables, forms and admin CRUD."
+  },
+  "primevue": {
+    "description": "A Vue component suite with themes, primitives and an unstyled mode.",
+    "highlight": "The unstyled mode lets you apply PrimeFlex tokens to any design system."
+  },
+  "svelte": {
+    "description": "A compiler that turns components into lean JavaScript, with no client runtime.",
+    "highlight": "Each component compiles to a single file — a tiny bundle by default."
+  },
+  "shadcn-svelte": {
+    "description": "A port of the shadcn/ui philosophy to Svelte, with accessible components and copyable code.",
+    "highlight": "The same copy-and-paste experience, but with snippets for SvelteKit."
+  },
+  "skeleton": {
+    "description": "A component kit for SvelteKit and Tailwind, with themes and accessible components.",
+    "highlight": "Built for SvelteKit: it works with loaders and action forms."
+  },
+  "angular-material": {
+    "description": "The UI component library from the official Angular team, following Material Design.",
+    "highlight": "It follows the Angular release cycle and uses Signals."
+  },
+  "ngx-bootstrap": {
+    "description": "Bootstrap 5 components ported to Angular, with datepicker, tooltip, modal, timepicker and more.",
+    "highlight": "Full Bootstrap inside Angular, without Bootstrap's JavaScript — components only."
+  },
+  "kobalte": {
+    "description": "A headless library of accessible components for SolidJS, created by the Hope UI team.",
+    "highlight": "Unstyled components focused on accessibility and composition."
+  },
+  "hope-ui": {
+    "description": "A complete design system for SolidJS with more than 60 styled components.",
+    "highlight": "One of the few UI libraries already ready for the Solid ecosystem."
+  },
+  "qwik-ui": {
+    "description": "Headless and styled components for Qwik, focused on resilience and streaming.",
+    "highlight": "Designed to work well with Qwik's resumability."
+  },
+  "material-web": {
+    "description": "Web components from the Material team, written in TypeScript with no framework.",
+    "highlight": "Three flavours: React, Vue and plain Web Components."
+  },
+  "webawesome": {
+    "description": "Ready-to-use Web Components with themes, icons and animations, with no framework dependencies.",
+    "highlight": "The successor to Shoelace: import the component and use the HTML tag — it works in any stack."
+  },
+  "lit": {
+    "description": "A minimal library for building Web Components with templates, reactive properties and styles.",
+    "highlight": "Tiny (~5kb), interoperable and used as the base by several frameworks."
+  },
+  "ionic": {
+    "description": "A component kit for hybrid and web apps, focused on mobile-first and native platforms.",
+    "highlight": "One codebase for iOS, Android and the web (Capacitor)."
+  },
+  "hyperui": {
+    "description": "A free collection of ready-to-copy HTML/Tailwind components.",
+    "highlight": "No dependencies, no heavy CSS classes — just HTML and Tailwind."
+  },
+  "uiverse": {
+    "description": "A library of components, buttons and CSS animations ready to use in any project.",
+    "highlight": "Thousands of visual snippets you paste into your HTML."
+  },
+  "daisyui": {
+    "description": "A Tailwind CSS plugin with more than 50 components and multiple ready-made themes.",
+    "highlight": "Swap themes with a single class, and still build your own themes with CSS."
+  },
+  "flowbite": {
+    "description": "Components, templates and code blocks for Tailwind, with an official plugin.",
+    "highlight": "A large library of ready-made blocks: dashboards, e-commerce, charts and pages."
+  },
+  "bulma": {
+    "description": "A Flexbox-based CSS framework with ready-made components and customisation through Sass variables.",
+    "highlight": "CSS only: no JavaScript and no framework dependency, so Bulma serves any stack."
+  },
+  "open-props": {
+    "description": "Modernised CSS custom properties with variants, defaults and quick adjustments for your design system.",
+    "highlight": "CSS variables with a defaults system that adjusts itself by context."
+  },
+  "tamagui": {
+    "description": "A universal UI kit for React Native and the web, with compiled styles, tokens and optimised components.",
+    "highlight": "One codebase for iOS, Android and the web with native-like styling performance."
+  },
+  "nativebase": {
+    "description": "A component library for React Native and the web, with themes and an accessible design system.",
+    "highlight": "Universal components that behave the same on React Native, the web and Expo."
+  },
+  "react-native-paper": {
+    "description": "A Material Design implementation for React Native with more than 30 accessible components.",
+    "highlight": "Material You (Dynamic Color) and native RTL support."
+  },
+  "tabler-icons": {
+    "description": "More than 5,500 open source icons in a fillable outline style, consistent on a 24x24 grid.",
+    "highlight": "Variable weights (outline/filled) and packages for React, Vue, Svelte, HTML and Figma."
+  },
+  "remix-icon": {
+    "description": "An open source line-style icon set with more than 2,700 neutral, readable symbols.",
+    "highlight": "A neutral design that works in any interface, with official packages for multiple frameworks."
+  },
+  "bootstrap-icons": {
+    "description": "The official Bootstrap icon library with more than 1,800 optimised SVG icons.",
+    "highlight": "Designed to work with or without Bootstrap, in any web project."
+  },
+  "iconoir": {
+    "description": "More than 1,300 free open source icons, with no dependencies and a consistent style.",
+    "highlight": "100% free, no pro version, with packages for React, Vue, Flutter, HTML and Figma."
+  },
+  "eva-icons": {
+    "description": "Akveo's icon package with more than 600 icons, outline and fill styles, animations included.",
+    "highlight": "Animated icons via Lottie/Web, with native support for React Native and the web."
+  },
+  "material-icons": {
+    "description": "The official Google Material Design icons, with 2,100+ symbols in 5 styles.",
+    "highlight": "Outlined, Filled, Rounded, Sharp and Two-tone — all variable through a font variable."
+  },
+  "radix-icons": {
+    "description": "A 15x15 icon set from the Radix team, designed for UI density and clarity.",
+    "highlight": "A single size optimised for buttons and inputs, with packages for React and Web Components."
+  },
+  "number-flow": {
+    "description": "An animated number component: the digits transition to the new value whenever it changes.",
+    "highlight": "No dependencies, accessible and styleable through CSS parts — works in React, Vue, Svelte and plain JS."
+  }
+}

@@ -1,0 +1,93 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import { notFound } from "next/navigation";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
+import { HTML_LANG, LOCALES, isLocale } from "@/i18n/config";
+import { getDictionary } from "@/i18n/get-dictionary";
+import "../globals.css";
+
+/*
+  Layout raiz do site — ele mora dentro de `[lang]` para que o atributo
+  `lang` do <html> e o idioma da página venham da URL (`/pt`, `/en`).
+
+  O idioma é lido no topo do layout (é ele que escolhe o dicionário inteiro),
+  então a navegação para dentro de um idioma bloqueia — `instant = false`
+  assume isso na cara.
+*/
+export const instant = false;
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export function generateStaticParams() {
+  return LOCALES.map((lang) => ({ lang }));
+}
+
+export async function generateMetadata({
+  params,
+}: LayoutProps<"/[lang]">): Promise<Metadata> {
+  const { lang } = await params;
+  const locale = isLocale(lang) ? lang : "pt";
+  const dict = getDictionary(locale);
+
+  return {
+    metadataBase: new URL("https://diretorio.dev"),
+    title: {
+      default: dict.meta.title,
+      template: dict.meta.template,
+    },
+    description: dict.meta.description,
+    keywords: dict.meta.keywords,
+    openGraph: {
+      type: "website",
+      locale: HTML_LANG[locale].replace("-", "_"),
+      siteName: "Diretório",
+      title: dict.meta.title,
+      description: dict.meta.description,
+    },
+    alternates: {
+      canonical: `/${locale}`,
+      languages: {
+        "pt-BR": "/pt",
+        en: "/en",
+      },
+    },
+  };
+}
+
+const themeScript = `(function(){try{var s=localStorage.getItem('diretorio-theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=(s==='light'||s==='dark')?s:(m?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
+
+export default async function LocaleLayout({
+  children,
+  params,
+}: LayoutProps<"/[lang]">) {
+  const { lang } = await params;
+  if (!isLocale(lang)) notFound();
+
+  const dict = getDictionary(lang);
+
+  return (
+    <html
+      lang={HTML_LANG[lang]}
+      suppressHydrationWarning
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="flex min-h-full flex-col">
+        <SiteHeader locale={lang} dict={dict} />
+        <main className="flex-1">{children}</main>
+        <SiteFooter dict={dict} />
+      </body>
+    </html>
+  );
+}

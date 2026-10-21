@@ -1,7 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import libraries from "../data/libraries.json" with { type: "json" };
-import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "../types/library.ts";
+import { pt } from "../i18n/dictionaries/pt.ts";
+import { en } from "../i18n/dictionaries/en.ts";
 import type { Library } from "@/types/library";
 import {
   highlightParts,
@@ -13,7 +14,14 @@ import {
 } from "./search.ts";
 
 const libs = libraries as unknown as Library[];
-const labels = { framework: FRAMEWORK_LABELS, category: CATEGORY_LABELS };
+const labels = {
+  framework: pt.frameworkLabels,
+  category: pt.categoryLabels,
+};
+const englishLabels = {
+  framework: en.frameworkLabels,
+  category: en.categoryLabels,
+};
 
 function names(tokens: string[]): string[] {
   return searchLibraries(libs, tokens, labels)
@@ -124,4 +132,27 @@ test("highlightParts marca só o trecho casado", () => {
   assert.deepEqual(highlightParts("Ant Design", ["xyz"]), [
     { text: "Ant Design", match: false },
   ]);
+});
+
+test("os rótulos de outro idioma também designam um grupo", () => {
+  // Na interface em português, "forms" (inglês) ainda filtra o grupo.
+  const scope = resolveScope(tokenize("forms"), [labels, englishLabels], labels);
+  assert.deepEqual(scopeLabels(scope), ["Formulários"]);
+
+  // E "data" acha o mesmo grupo que "dados".
+  assert.deepEqual(
+    scopeLabels(resolveScope(tokenize("data"), [labels, englishLabels], labels)),
+    ["Dados & Tabelas"],
+  );
+});
+
+test("a busca filtra pelo grupo mesmo com os rótulos em inglês", () => {
+  const result = searchLibraries(
+    libs,
+    tokenize("forms"),
+    labels,
+    [labels, englishLabels],
+  ).map((item) => item.library.name);
+  assert.ok(result.includes("React Hook Form"));
+  assert.ok(!result.includes("shadcn/ui"));
 });

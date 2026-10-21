@@ -1,24 +1,26 @@
-const numberFormatter = new Intl.NumberFormat("pt-BR");
-const compactFormatter = new Intl.NumberFormat("pt-BR", {
-  notation: "compact",
-  maximumFractionDigits: 1,
-});
+/*
+  Formatação de números — o idioma entra como argumento para que a versão
+  em inglês use "34.4K" em vez de "34,4 mil".
+*/
 
-export function formatNumber(value?: number): string {
+export function formatNumber(value?: number, locale = "pt-BR"): string {
   if (value === undefined) return "—";
-  return numberFormatter.format(value);
+  return new Intl.NumberFormat(locale).format(value);
 }
 
-export function formatCompact(value?: number): string {
+export function formatCompact(value?: number, locale = "pt-BR"): string {
   if (value === undefined) return "—";
-  return compactFormatter.format(value);
+  return new Intl.NumberFormat(locale, {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(value);
 }
 
-export function formatMonthYear(value?: string): string {
+export function formatMonthYear(value?: string, locale = "pt-BR"): string {
   if (!value) return "—";
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return "—";
-  return new Intl.DateTimeFormat("pt-BR", {
+  return new Intl.DateTimeFormat(locale, {
     month: "short",
     year: "numeric",
   }).format(date);

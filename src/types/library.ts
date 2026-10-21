@@ -71,26 +71,7 @@ export type Library = {
   since: number;
 };
 
-export const FRAMEWORK_LABELS: Record<Framework, string> = {
-  react: "React",
-  vue: "Vue",
-  svelte: "Svelte",
-  angular: "Angular",
-  solid: "Solid",
-  qwik: "Qwik",
-  "web-components": "Web Components",
-  vanilla: "Vanilla JS",
-};
-
-export const CATEGORY_LABELS: Record<Category, string> = {
-  "ui-kit": "UI Kit",
-  headless: "Headless",
-  "design-system": "Design System",
-  utility: "Utilitários / CSS",
-  forms: "Formulários",
-  data: "Dados & Tabelas",
-  icons: "Ícones",
-  animation: "Animação",
-  mobile: "Mobile / Universal",
-  web: "Web Components",
-};
+/*
+  Os rótulos de framework e categoria (usados na busca, nos filtros e nas
+  fichas) moram nos dicionários de idioma: `src/i18n/dictionaries`.
+*/
