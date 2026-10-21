@@ -1,6 +1,13 @@
 "use client";
 
-import { useMemo, useState, useRef, useEffect, useCallback } from "react";
+import {
+  useMemo,
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+  type RefObject,
+} from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { LibraryCard } from "@/components/library-card";
 import {
@@ -16,6 +23,7 @@ import {
   licenseFamily,
   type LicenseFamily,
 } from "@/lib/license";
+import { searchLibraries, tokenize } from "@/lib/search";
 
 type SortOption = "popular" | "az" | "za" | "recent";
 
@@ -40,12 +48,11 @@ function isSortOption(value: string): value is SortOption {
   return SORTS.some((item) => item.value === value);
 }
 
-function normalize(value: string): string {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase();
-}
+/* Rótulos usados pela busca: framework e categoria também são pesquisáveis. */
+const SEARCH_LABELS = {
+  framework: FRAMEWORK_LABELS,
+  category: CATEGORY_LABELS,
+};
 
 type DropdownOption = { value: string; label: string };
 
@@ -195,10 +202,12 @@ function SearchInput({
   value,
   onChange,
   onClear,
+  inputRef,
 }: {
   value: string;
   onChange: (v: string) => void;
   onClear: () => void;
+  inputRef: RefObject<HTMLInputElement | null>;
 }) {
   return (
     <div className="relative">
@@ -215,14 +224,23 @@ function SearchInput({
         <path d="m20 20-3.5-3.5" />
       </svg>
       <input
+        ref={inputRef}
         type="search"
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        placeholder="Buscar biblioteca"
+        onKeyDown={(e) => {
+          // Esc limpa a busca e tira o foco do campo.
+          if (e.key === "Escape" && value) {
+            e.preventDefault();
+            onClear();
+            e.currentTarget.blur();
+          }
+        }}
+        placeholder="Buscar nome, tag ou descrição"
         aria-label="Buscar bibliotecas"
         className="h-10 w-full rounded-md border border-border bg-background pl-9 pr-10 text-sm outline-none transition placeholder:text-muted-foreground focus:border-foreground/50"
       />
-      {value && (
+      {value ? (
         <button
           type="button"
           onClick={onClear}
@@ -234,6 +252,13 @@ function SearchInput({
             <line x1="6" y1="6" x2="18" y2="18" />
           </svg>
         </button>
+      ) : (
+        <kbd
+          aria-hidden="true"
+          className="pointer-events-none absolute right-3 top-1/2 hidden -translate-y-1/2 rounded border border-border px-1.5 font-mono text-[10px] text-muted-foreground sm:block"
+        >
+          /
+        </kbd>
       )}
     </div>
   );
@@ -320,6 +345,35 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
 
   const itemsPerPage = 20;
 
+  /*
+    A busca é por termos: "react form" exige os dois termos, em qualquer
+    ordem, e os resultados saem ordenados por relevância.
+  */
+  const tokens = useMemo(() => tokenize(query), [query]);
+
+  const searchRef = useRef<HTMLInputElement>(null);
+
+  // "/" foca a busca, a não ser que o usuário esteja digitando em outro campo.
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey) return;
+      const target = e.target as HTMLElement | null;
+      if (
+        target &&
+        (target.tagName === "INPUT" ||
+          target.tagName === "TEXTAREA" ||
+          target.isContentEditable)
+      ) {
+        return;
+      }
+      e.preventDefault();
+      searchRef.current?.focus();
+      searchRef.current?.select();
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const frameworkCounts = useMemo(() => {
     const counts = new Map<string, number>();
     for (const item of libraries) {
@@ -346,39 +400,46 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   }, [libraries]);
 
   const filteredResults = useMemo(() => {
-    const term = normalize(query.trim());
-
     const filtered = libraries.filter((item) => {
       if (framework !== "all" && item.framework !== framework) return false;
       if (category !== "all" && item.category !== category) return false;
       if (license !== "all" && licenseFamily(item.license) !== license) {
         return false;
       }
-      if (!term) return true;
-
-      const haystack = normalize(
-        [item.name, item.description, item.highlight, ...item.tags].join(" "),
-      );
-      return haystack.includes(term);
+      return true;
     });
 
-    const sorted = [...filtered];
+    // Só entram as libs que casam com todos os termos, com a nota de relevância.
+    const scored = searchLibraries(filtered, tokens, SEARCH_LABELS);
+
+    const sorted = [...scored];
     sorted.sort((a, b) => {
+      // Com busca ativa, a ordenação padrão vira "por relevância".
+      if (tokens.length > 0 && sort === "popular") {
+        return (
+          b.score - a.score ||
+          (b.library.stars ?? 0) - (a.library.stars ?? 0) ||
+          a.library.name.localeCompare(b.library.name, "pt-BR")
+        );
+      }
       switch (sort) {
         case "az":
-          return a.name.localeCompare(b.name, "pt-BR");
+          return a.library.name.localeCompare(b.library.name, "pt-BR");
         case "za":
-          return b.name.localeCompare(a.name, "pt-BR");
+          return b.library.name.localeCompare(a.library.name, "pt-BR");
         case "recent":
-          return b.since - a.since || a.name.localeCompare(b.name, "pt-BR");
+          return (
+            b.library.since - a.library.since ||
+            a.library.name.localeCompare(b.library.name, "pt-BR")
+          );
         case "popular":
         default:
-          return (b.stars ?? 0) - (a.stars ?? 0);
+          return (b.library.stars ?? 0) - (a.library.stars ?? 0);
       }
     });
 
-    return sorted;
-  }, [libraries, query, framework, category, license, sort]);
+    return sorted.map((item) => item.library);
+  }, [libraries, tokens, framework, category, license, sort]);
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
   // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
@@ -387,6 +448,10 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     (page - 1) * itemsPerPage,
     page * itemsPerPage
   );
+
+  // Com busca ativa, a ordenação padrão vira "por relevância".
+  const byRelevance =
+    tokens.length > 0 && sort === "popular" && filteredResults.length > 0;
 
   const hasActiveFilter =
     query.trim() !== "" ||
@@ -437,6 +502,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               value={query}
               onChange={setQuery}
               onClear={() => setQuery("")}
+              inputRef={searchRef}
             />
           </div>
 
@@ -511,6 +577,9 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
       <div className="flex items-center justify-between py-3 text-xs text-muted-foreground">
         <span className="font-mono">
           {filteredResults.length} {filteredResults.length === 1 ? "biblioteca" : "bibliotecas"}
+          {byRelevance && (
+            <span className="ml-2 font-sans opacity-70">por relevância</span>
+          )}
         </span>
         {hasActiveFilter && (
           <button
@@ -535,16 +604,31 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
 
       {filteredResults.length === 0 ? (
         <div className="border border-dashed border-border px-6 py-20 text-center">
-          <p className="text-sm font-medium">Nenhuma biblioteca encontrada</p>
+          <p className="text-sm font-medium">
+            {query.trim() ? (
+              <>
+                Nenhuma biblioteca encontrada para{" "}
+                <span className="font-mono">“{query.trim()}”</span>
+              </>
+            ) : (
+              "Nenhuma biblioteca encontrada"
+            )}
+          </p>
           <p className="mt-1 text-sm text-muted-foreground">
-            Tente outro termo ou limpe os filtros aplicados.
+            {tokens.length > 1
+              ? "A busca exige todos os termos: cada palavra precisa aparecer em algum campo."
+              : "Tente outro termo ou limpe os filtros aplicados."}
           </p>
         </div>
       ) : (
         <>
           <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {paginatedResults.map((library) => (
-              <LibraryCard key={library.slug} library={library} />
+              <LibraryCard
+                key={library.slug}
+                library={library}
+                highlight={tokens}
+              />
             ))}
           </div>
 
