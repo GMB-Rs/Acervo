@@ -11,6 +11,11 @@ import {
   type Library,
 } from "@/types/library";
 import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "@/types/library";
+import {
+  LICENSE_FAMILIES,
+  licenseFamily,
+  type LicenseFamily,
+} from "@/lib/license";
 
 type SortOption = "popular" | "az" | "za" | "recent";
 
@@ -26,6 +31,7 @@ const PARAM = {
   query: "q",
   framework: "framework",
   category: "categoria",
+  license: "licenca",
   sort: "ordem",
   page: "pagina",
 } as const;
@@ -258,6 +264,12 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     : "all";
   const rawSort = searchParams.get(PARAM.sort) ?? "popular";
   const sort: SortOption = isSortOption(rawSort) ? rawSort : "popular";
+  const rawLicense = searchParams.get(PARAM.license) ?? "all";
+  const license: LicenseFamily | "all" = LICENSE_FAMILIES.some(
+    (item) => item.value === rawLicense,
+  )
+    ? (rawLicense as LicenseFamily)
+    : "all";
   const rawPage = Number(searchParams.get(PARAM.page) ?? "1");
   const requestedPage =
     Number.isFinite(rawPage) && rawPage > 0 ? Math.floor(rawPage) : 1;
@@ -324,12 +336,24 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     return counts;
   }, [libraries]);
 
+  const licenseCounts = useMemo(() => {
+    const counts = new Map<LicenseFamily, number>();
+    for (const item of libraries) {
+      const family = licenseFamily(item.license);
+      counts.set(family, (counts.get(family) ?? 0) + 1);
+    }
+    return counts;
+  }, [libraries]);
+
   const filteredResults = useMemo(() => {
     const term = normalize(query.trim());
 
     const filtered = libraries.filter((item) => {
       if (framework !== "all" && item.framework !== framework) return false;
       if (category !== "all" && item.category !== category) return false;
+      if (license !== "all" && licenseFamily(item.license) !== license) {
+        return false;
+      }
       if (!term) return true;
 
       const haystack = normalize(
@@ -354,7 +378,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     });
 
     return sorted;
-  }, [libraries, query, framework, category, sort]);
+  }, [libraries, query, framework, category, license, sort]);
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
   // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
@@ -365,7 +389,10 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   );
 
   const hasActiveFilter =
-    query.trim() !== "" || framework !== "all" || category !== "all";
+    query.trim() !== "" ||
+    framework !== "all" ||
+    category !== "all" ||
+    license !== "all";
 
   const filterButton = (active: boolean) =>
     `text-xs transition-colors ${
@@ -390,6 +417,16 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   const sortOptions = useMemo<Array<DropdownOption & { value: SortOption }>>(() =>
     SORTS.map((item) => ({ value: item.value, label: item.label })),
   []);
+
+  const licenseOptions = useMemo<
+    Array<DropdownOption & { value: LicenseFamily | "all" }>
+  >(() => [
+    { value: "all", label: `Todas as licenças (${libraries.length})` },
+    ...LICENSE_FAMILIES.map((item) => ({
+      value: item.value,
+      label: `${item.label} (${licenseCounts.get(item.value) ?? 0})`,
+    })),
+  ], [libraries.length, licenseCounts]);
 
   return (
     <section id="galeria" className="scroll-mt-16">
@@ -416,6 +453,17 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               label="Filtrar por categoria"
               placeholder="Categoria"
               className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
+            />
+
+            <Dropdown<LicenseFamily | "all">
+              value={license}
+              options={licenseOptions}
+              onChange={(value) =>
+                pushParams({ [PARAM.license]: value, [PARAM.page]: null })
+              }
+              label="Filtrar por licença"
+              placeholder="Licença"
+              className="w-full sm:w-[160px] md:w-[170px] lg:w-[160px] xl:w-[180px]"
             />
 
             <Dropdown<SortOption>
@@ -474,6 +522,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
                 [PARAM.query]: null,
                 [PARAM.framework]: null,
                 [PARAM.category]: null,
+                [PARAM.license]: null,
                 [PARAM.page]: null,
               });
             }}
