@@ -293,9 +293,14 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
   const filterButton = (active: boolean) =>
     `text-xs transition-colors ${
       active
-        ? "text-foreground underline underline-offset-4 decoration-foreground/40"
+        ? "text-foreground"
         : "text-muted-foreground hover:text-foreground"
     }`;
+
+  const filterButtonLabel = (active: boolean) =>
+    active
+      ? "underline underline-offset-4 decoration-foreground/40"
+      : "";
 
   const categoryOptions = useMemo<Array<DropdownOption & { value: Category | "all" }>>(() => [
     { value: "all", label: `Todas as categorias (${libraries.length})` },
@@ -346,7 +351,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
             onClick={() => setFramework("all")}
             className={filterButton(framework === "all")}
           >
-            Todos
+            <span className={filterButtonLabel(framework === "all")}>Todos</span>
             <span className="ml-1.5 font-mono text-[11px] opacity-60">
               {libraries.length}
             </span>
@@ -358,7 +363,7 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
               onClick={() => setFramework(item)}
               className={filterButton(framework === item)}
             >
-              {FRAMEWORK_LABELS[item]}
+              <span className={filterButtonLabel(framework === item)}>{FRAMEWORK_LABELS[item]}</span>
               <span className="ml-1.5 font-mono text-[11px] opacity-60">
                 {frameworkCounts.get(item) ?? 0}
               </span>
