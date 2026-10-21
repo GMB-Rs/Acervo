@@ -171,12 +171,9 @@ async function LibraryPageContent({ params }: PageProps) {
         </div>
       </div>
 
-      <dl className="mt-12 grid grid-cols-2 gap-y-6 border-t border-border lg:grid-cols-4 lg:gap-y-0">
+      <dl className="mt-12 grid grid-cols-4 gap-x-6 border-t border-border border-b border-border py-4">
         {facts.map((fact) => (
-          <div
-            key={fact.label}
-            className="border-b border-border py-4 pr-4 lg:border-b-0 lg:border-r lg:last:border-r-0"
-          >
+          <div key={fact.label} className="min-w-0">
             <dt className="font-mono text-[11px] text-muted-foreground">
               {fact.label}
             </dt>
