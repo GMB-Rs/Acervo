@@ -8,10 +8,10 @@ import type { Dictionary } from "./types";
 
 export const pt: Dictionary = {
   meta: {
-    title: "Diretório — Bibliotecas de componentes web",
-    template: "%s | Diretório",
+    title: "Acervo — Bibliotecas de componentes web",
+    template: "%s | Acervo",
     description:
-      "Galeria curada de bibliotecas de componentes para web: React, Vue, Svelte, Angular, Solid, Qwik e Web Components. Compare, filtre e escolha a stack certa.",
+      "Acervo: galeria curada de bibliotecas de componentes para web — React, Vue, Svelte, Angular, Solid, Qwik e Web Components. Compare, filtre e escolha a stack certa.",
     keywords: [
       "bibliotecas de componentes",
       "design system",
@@ -29,9 +29,9 @@ export const pt: Dictionary = {
     language: "Idioma",
   },
   home: {
-    title: "Bibliotecas de componentes web",
+    title: "Acervo: bibliotecas de componentes web",
     intro:
-      "Galeria de {n} bibliotecas que já existem: UI kits, headless, design systems, formulários, tabelas, ícones e animações. Filtre por framework ou categoria e abra a ficha de cada uma.",
+      "O Acervo reúne {n} bibliotecas que já existem: UI kits, headless, design systems, formulários, tabelas, ícones e animações. Filtre por framework ou categoria e abra a ficha de cada uma.",
   },
   search: {
     placeholder: "Buscar nome, tag ou descrição",
@@ -101,7 +101,7 @@ export const pt: Dictionary = {
     cta: "Voltar para a galeria",
   },
   footer: {
-    about: "Diretório de bibliotecas de componentes web, mantido pela comunidade.",
+    about: "Acervo de bibliotecas de componentes web, mantido pela comunidade.",
     metrics: "estrelas e downloads sincronizados com GitHub e npm",
   },
   theme: {

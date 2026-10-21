@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandMark } from "@/components/brand-mark";
 import { LanguageSelect } from "@/components/language-select";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { libraries } from "@/lib/libraries";
@@ -20,10 +21,8 @@ export function SiteHeader({
           href={`/${locale}`}
           className="flex items-center gap-2 text-sm font-semibold tracking-tight"
         >
-          <span className="inline-flex size-5 items-center justify-center bg-foreground text-[10px] font-bold text-background">
-            D
-          </span>
-          Diretório
+          <BrandMark className="size-5 shrink-0" />
+          Acervo
         </Link>
 
         <div className="ml-auto flex items-center gap-4">

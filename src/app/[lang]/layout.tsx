@@ -50,7 +50,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: HTML_LANG[locale].replace("-", "_"),
-      siteName: "Diretório",
+      siteName: "Acervo",
       title: dict.meta.title,
       description: dict.meta.description,
     },

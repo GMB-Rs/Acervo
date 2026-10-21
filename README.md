@@ -1,8 +1,8 @@
-# Diretório
+# Acervo
 
 ![sync:github](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml/badge.svg)
 
-Galeria de bibliotecas de componentes para **web**. O site cataloga libs de UI
+Acervo de bibliotecas de componentes para **web**. O site cataloga libs de UI
 kit, headless, design systems, formulários, tabelas, ícones e animações —
 organizadas por framework e categoria, com busca e filtros.
 
@@ -56,6 +56,7 @@ src/
     library-explorer.tsx    # busca + filtros (client component)
     language-select.tsx     # seletor de idioma
     back-link.tsx           # "voltar para a galeria" da ficha
+    brand-mark.tsx          # logo geométrica (grade 2x2) do Acervo
     site-header.tsx / site-footer.tsx / theme-toggle.tsx
     theme-script.tsx          # script de tema injetado no <head> do servidor
   data/
@@ -189,12 +190,21 @@ na mão em **Actions → sync:github → Run workflow**.
 
 ## Temas
 
-Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). A lógica
+Claro e escuro, com persistência em `localStorage` (`diretorio-theme` — a chave
+antiga, mantida para não perder a preferência de quem já visitou o site). A lógica
 mora em `src/lib/theme.ts`: a versão inline (`THEME_SCRIPT`) entra no `<head>`
 do HTML do servidor pelo `useServerInsertedHTML` e aplica o tema antes da
 primeira pintura, para evitar "flash" de tema incorreto. No cliente, um
 efeito de layout reaplica o tema quando a troca de idioma remonta o layout e o
 `<html>` é recriado.
+
+## Marca
+
+O logo não usa letra: é uma grade 2x2 de quadrados (um preenchido, três
+contornados) que remete aos tiles da galeria, na mesma linguagem monocromática
+do site. O SVG mora em `src/components/brand-mark.tsx` (usado no cabeçalho) e
+a mesma geometria aparece no favicon (`src/app/favicon.ico` e
+`src/app/icon.svg`).
 
 ## Deploy
 
