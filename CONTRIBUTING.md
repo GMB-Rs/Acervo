@@ -17,8 +17,9 @@ npm run dev        # http://localhost:3000
 | `npm run build`     | Build de produção                                |
 | `npm run start`     | Sobe o build de produção                         |
 | `npm run lint`      | ESLint                                           |
-| `npm run typecheck` | `tsc --noEmit`                                   |
-| `npm run check`     | `lint` + `typecheck` + `build` (o que o CI roda) |
+| `npm run typecheck` | `next typegen` + `tsc --noEmit`                  |
+| `npm run test`      | Testes da busca e das traduções (`node --test`)  |
+| `npm run check`     | `lint` + `typecheck` + `build` + `test`          |
 | `npm run sync:github` | Atualiza estrelas/downloads no JSON           |
 
 Antes de abrir o pull request:
@@ -32,7 +33,9 @@ npm run check
 1. Edite `src/data/libraries.json` e adicione um objeto no fim da lista
    (mantenha a ordem alfabética por `slug` quando possível).
 2. Coloque a logo em `public/logos/<slug>.svg` (veja [as regras da logo](#3-regras-da-logo)).
-3. Rode `npm run check`.
+3. Traduza a entrada em `src/data/translations/en.json` (veja
+   [as traduções](#7-traduções)) — o teste falha se a tradução faltar.
+4. Rode `npm run check`.
 
 Exemplo completo:
 
@@ -72,8 +75,8 @@ build falhar com o nome da biblioteca.
 | `name`          | sim         | nome como aparece no site                               |
 | `description`   | sim         | 1–2 frases, em português                                 |
 | `highlight`     | sim         | o diferencial da biblioteca                              |
-| `framework`     | sim         | um valor de `FRAMEWORKS`                                |
-| `category`      | sim         | um valor de `CATEGORIES`                                |
+| `framework`     | sim         | um valor de `FRAMEWORKS` (ver `src/types/library.ts`)   |
+| `category`      | sim         | um valor de `CATEGORIES` (ver `src/types/library.ts`)   |
 | `website`       | sim         | site oficial (https)                                    |
 | `color`         | sim         | cor de fundo do tile, em hex (`#RRGGBB`)                |
 | `maintained`    | sim         | `true`/`false` — atualizado pelo sync                  |
@@ -124,8 +127,9 @@ comprimento do nome.
 ## 5. O que o CI checa
 
 - `npm run lint` — ESLint (flat config do Next).
-- `npm run typecheck` — `tsc --noEmit`.
+- `npm run typecheck` — `next typegen` + `tsc --noEmit`.
 - `npm run build` — build de produção (as fichas do catálogo são pré-renderizadas).
+- `npm run test` — testes da busca e das traduções.
 - O schema do JSON é validado no boot do site.
 
 ## 6. Commits e pull requests
@@ -145,3 +149,33 @@ No pull request:
 2. Ligue a issue correspondente (`Closes #12`);
 3. Cole o resultado de `npm run check`;
 4. Se mudou o catálogo, diga quais bibliotecas entraram ou saíram.
+
+## 7. Traduções
+
+O site tem dois idiomas: **português** (padrão) e **inglês**. O português é a
+fonte da verdade — `description` e `highlight` vivem em
+`src/data/libraries.json`. A tradução vive em
+`src/data/translations/en.json`, indexada por `slug`:
+
+```jsonc
+{
+  "shadcn-ui": {
+    "description": "Copy-and-paste components built on top of Radix UI.",
+    "highlight": "You own the code: the components land in your own repo."
+  }
+}
+```
+
+As **tags** têm vocabulário próprio: `src/data/translations/tags.en.json`
+muda tag por tag (`acessibilidade` → `accessibility`), e a tag original que
+não está no mapa continua como está.
+
+Ao adicionar ou renomear uma tag no catálogo, atualize também esse arquivo —
+é o que mantém a busca em inglês funcionando. O teste
+`src/i18n/i18n.test.ts` cobra que **toda** biblioteca do catálogo tem texto
+traduzido.
+
+O texto de interface fica em `src/i18n/dictionaries/pt.ts` e `en.ts`. São
+dicionários de **dados puros** (sem funções), com números em templates
+(`"{n} bibliotecas"`) resolvidos por `formatText` — assim o mesmo dicionário
+serve ao servidor e ao cliente.
