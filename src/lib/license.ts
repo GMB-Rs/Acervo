@@ -10,34 +10,31 @@
 
 export type LicenseFamily = "mit" | "apache" | "bsd" | "comercial" | "outra";
 
-export const LICENSE_FAMILIES: Array<{
-  value: LicenseFamily;
-  label: string;
-}> = [
-  { value: "mit", label: "MIT" },
-  { value: "apache", label: "Apache-2.0" },
-  { value: "bsd", label: "BSD-3-Clause" },
-  { value: "comercial", label: "Comercial" },
-  { value: "outra", label: "Não declarada" },
+/** Famílias de licença, na ordem em que aparecem no filtro. */
+export const LICENSE_FAMILIES: LicenseFamily[] = [
+  "mit",
+  "apache",
+  "bsd",
+  "comercial",
+  "outra",
 ];
 
-/** Rótulo curto de uma família de licença. */
-export function licenseFamilyLabel(family: LicenseFamily): string {
-  return (
-    LICENSE_FAMILIES.find((item) => item.value === family)?.label ?? "Não declarada"
-  );
-}
-
-/** Descrição completa, usada na ficha da biblioteca. */
-export function licenseLabel(license: string): string {
+/**
+ * Descrição completa, usada na ficha da biblioteca. Os rótulos vêm do
+ * dicionário do idioma da tela.
+ */
+export function licenseLabel(
+  license: string,
+  labels: { commercial: string; undeclared: string },
+): string {
   const value = license.trim();
   if (/greensock|comercial|commercial/i.test(value)) {
-    return "Comercial (GreenSock Standard)";
+    return labels.commercial;
   }
   if (/noassertion/i.test(value)) {
-    return "Não declarada";
+    return labels.undeclared;
   }
-  return value || "Não declarada";
+  return value || labels.undeclared;
 }
 
 /** Família de licença a partir do valor cru do catálogo. */

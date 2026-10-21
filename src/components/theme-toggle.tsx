@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useSyncExternalStore } from "react";
+import type { Dictionary } from "@/i18n/dictionaries/types";
 
 type Theme = "light" | "dark";
 
@@ -26,7 +27,7 @@ function subscribe(onChange: () => void) {
   return () => observer.disconnect();
 }
 
-export function ThemeToggle() {
+export function ThemeToggle({ dict }: { dict: Dictionary }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   const toggle = useCallback(() => {
@@ -45,7 +46,7 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      aria-label={isDark ? "Alternar para tema claro" : "Alternar para tema escuro"}
+      aria-label={isDark ? dict.theme.toLight : dict.theme.toDark}
       className="inline-flex size-8 items-center justify-center rounded-md border border-border text-foreground transition hover:border-foreground/40"
     >
       {isDark ? (

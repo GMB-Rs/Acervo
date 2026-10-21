@@ -29,8 +29,8 @@ npm run dev        # http://localhost:3000
 | `npm run build`      | Build de produção                                      |
 | `npm run start`      | Sobe o build de produção                               |
 | `npm run lint`       | ESLint                                                 |
-| `npm run typecheck`  | `tsc --noEmit`                                         |
-| `npm run test`       | Testes da busca (`node --test`)                        |
+| `npm run typecheck`  | `next typegen` + `tsc --noEmit`                        |
+| `npm run test`       | Testes da busca e das traduções (`node --test`)        |
 | `npm run check`      | `lint` + `typecheck` + `build` + `test`                |
 | `npm run sync:github`| Atualiza estrelas/downloads em `src/data/libraries.json`|
 
@@ -45,16 +45,28 @@ adicionar uma biblioteca, as regras da logo e o que o CI checa estão no
 ```
 src/
   app/
-    layout.tsx              # shell, header/footer, tema claro/escuro
-    page.tsx                # home: hero + destaques + galeria
-    libraries/[slug]/page.tsx  # página de detalhe (SSG)
+    [lang]/                 # site inteiro por idioma (/pt, /en)
+      layout.tsx            # shell, header/footer, tema claro/escuro
+      page.tsx              # home: hero + galeria
+      libraries/[slug]/page.tsx  # página de detalhe (SSG)
+    global-not-found.tsx    # 404 para endereços sem rota
     sitemap.ts / robots.ts  # metadados para buscadores
   components/
     library-card.tsx        # card da galeria
     library-explorer.tsx    # busca + filtros (client component)
+    language-select.tsx     # seletor de idioma
+    back-link.tsx           # "voltar para a galeria" da ficha
     site-header.tsx / site-footer.tsx / theme-toggle.tsx
   data/
-    libraries.json          # fonte de verdade dos dados
+    libraries.json          # fonte de verdade dos dados (pt-BR)
+    translations/
+      en.json               # descrição/destaque por slug, em inglês
+      tags.en.json          # vocabulário de tags traduzido
+  i18n/
+    config.ts               # idiomas, rótulos e `html lang`
+    dictionaries/           # dicionário de UI por idioma (pt, en)
+    library-text.ts         # texto das bibliotecas por idioma
+    format.ts               # números e datas por idioma
   lib/
     libraries.ts            # parse/validação e consultas
     search.ts               # busca por termos, relevância e destaque
@@ -65,6 +77,34 @@ scripts/
   sync-github.ts            # sincronização opcional com GitHub/npm
 ```
 
+## Idiomas
+
+O site fala **português (padrão) e inglês**, e o idioma vive na URL: `/pt` e
+`/en`. O seletor de idioma no cabeçalho troca o primeiro segmento da URL
+mantendo os filtros da galeria (`/pt?q=mobile` → `/en?q=mobile`), e a
+escolha fica num cookie — a raiz do site (`/`) abre direto no idioma
+preferido do visitante.
+
+- `src/i18n/config.ts` — lista de idiomas, rótulos e `html lang` (`pt` → `pt-BR`).
+- `src/i18n/dictionaries/pt.ts` e `en.ts` — todo o texto de interface
+  (botões, rótulos, filtros, metadados). Os dicionários são **dados puros**,
+  sem funções, para poderem cruzar a fronteira servidor/cliente.
+- `src/data/translations/en.json` — descrição e destaque de cada biblioteca,
+  indexados por `slug`. O português continua sendo a fonte de verdade em
+  `src/data/libraries.json`; esse arquivo é só a tradução.
+- `src/data/translations/tags.en.json` — o vocabulário de tags traduzido.
+
+Ou seja: **tudo** é traduzido — a interface, as descrições, os destaques e as
+tags. A busca também indexa o texto do idioma: em inglês, procurar
+"accessibility" acha a biblioteca pela descrição e pelas tags traduzidas.
+Os nomes dos grupos (categorias e frameworks) são reconhecidos em qualquer
+idioma, então "forms" filtra o grupo de formulários mesmo na interface em
+português.
+
+Para adicionar um idioma novo: crie o dicionário em `src/i18n/dictionaries/`,
+o arquivo de traduções em `src/data/translations/<idioma>.json` e registre o
+idioma em `src/i18n/config.ts`.
+
 ## Busca
 
 A busca da galeria é por **termos**: a query é dividida em palavras e todas
@@ -74,7 +114,9 @@ repositório, site, framework e categoria), em qualquer ordem — `react form` e
 
 Termos que designam um **grupo do catálogo** viram filtro: `mobile` mostra só
 as libs da categoria Mobile, `react` só as do framework React, `dados` só as
-de Dados & Tabelas. O grupo aparece como etiqueta ao lado do contador.
+de Dados & Tabelas. O grupo aparece como etiqueta ao lado do contador. Os
+rótulos de todos os idiomas contam: `forms` filtra o grupo de formulários
+mesmo na interface em português.
 
 Com busca ativa, a ordenação padrão passa a ser **por relevância**: o nome
 casado vale mais que a tag, que vale mais que a descrição. O trecho casado
@@ -84,11 +126,19 @@ apareceu.
 Atalhos: `/` foca o campo de busca e `Esc` limpa a busca.
 
 A lógica vive em `src/lib/search.ts` (funções puras, sem React) e é coberta
-por `src/lib/search.test.ts`, que roda no runner nativo do Node:
+por `src/lib/search.test.ts` e `src/i18n/i18n.test.ts`, que rodam no runner
+nativo do Node:
 
 ```bash
 npm run test
 ```
+
+## Voltar para a galeria
+
+A galeria mora na URL (`/pt?q=mobile&framework=react`), então a ficha da
+biblioteca carrega a origem no parâmetro `from`. O botão "voltar para a
+galeria" devolve o usuário para **aquela** galeria, com os mesmos filtros — e
+não para a galeria raiz, que perderia o contexto de onde ele veio.
 
 ## Dados
 
@@ -138,8 +188,8 @@ na mão em **Actions → sync:github → Run workflow**.
 ## Temas
 
 Claro e escuro, com persistência em `localStorage` (`diretorio-theme`). O script
-inline no `layout.tsx` aplica o tema antes da primeira pintura para evitar
-"flash" de tema incorreto.
+inline no `app/[lang]/layout.tsx` aplica o tema antes da primeira pintura para
+evitar "flash" de tema incorreto.
 
 ## Deploy
 
