@@ -171,7 +171,7 @@ async function LibraryPageContent({ params }: PageProps) {
         </div>
       </div>
 
-      <dl className="mt-12 grid grid-cols-2 border-t border-border lg:grid-cols-4">
+      <dl className="mt-12 grid grid-cols-2 gap-y-6 border-t border-border lg:grid-cols-4 lg:gap-y-0">
         {facts.map((fact) => (
           <div
             key={fact.label}
@@ -180,7 +180,7 @@ async function LibraryPageContent({ params }: PageProps) {
             <dt className="font-mono text-[11px] text-muted-foreground">
               {fact.label}
             </dt>
-            <dd className="mt-1 truncate text-lg font-semibold tracking-tight">
+            <dd className="mt-2 truncate text-lg font-semibold tracking-tight">
               {fact.value}
             </dd>
           </div>
