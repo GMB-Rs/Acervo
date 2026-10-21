@@ -1,0 +1,147 @@
+# Como contribuir
+
+Obrigado por querer ampliar o [Diretório](README.md)! O catálogo vive em um
+único arquivo — `src/data/libraries.json` — e o site é gerado a partir dele.
+Adicionar uma biblioteca é, em essence, adicionar um objeto ao JSON.
+
+## 1. Rodar o projeto
+
+```bash
+npm install
+npm run dev        # http://localhost:3000
+```
+
+| Script              | O que faz                                        |
+| ------------------- | ------------------------------------------------ |
+| `npm run dev`       | Servidor de desenvolvimento                      |
+| `npm run build`     | Build de produção                                |
+| `npm run start`     | Sobe o build de produção                         |
+| `npm run lint`      | ESLint                                           |
+| `npm run typecheck` | `tsc --noEmit`                                   |
+| `npm run check`     | `lint` + `typecheck` + `build` (o que o CI roda) |
+| `npm run sync:github` | Atualiza estrelas/downloads no JSON           |
+
+Antes de abrir o pull request:
+
+```bash
+npm run check
+```
+
+## 2. Adicionar uma biblioteca
+
+1. Edite `src/data/libraries.json` e adicione um objeto no fim da lista
+   (mantenha a ordem alfabética por `slug` quando possível).
+2. Coloque a logo em `public/logos/<slug>.svg` (veja [as regras da logo](#3-regras-da-logo)).
+3. Rode `npm run check`.
+
+Exemplo completo:
+
+```json
+{
+  "slug": "exemplo",
+  "name": "Exemplo",
+  "description": "Descrição de uma ou duas frases, em português.",
+  "highlight": "Um detalhe ou curiosidade sobre a biblioteca.",
+  "framework": "react",
+  "category": "ui-kit",
+  "website": "https://exemplo.dev",
+  "repo": "owner/exemplo",
+  "docs": "https://exemplo.dev/docs",
+  "license": "MIT",
+  "logo": "exemplo.svg",
+  "color": "#111111",
+  "tags": ["formulários", "acessível"],
+  "stars": 1234,
+  "npmDownloads": 50000,
+  "featured": false,
+  "maintained": true,
+  "since": 2024,
+  "npmPackage": "exemplo"
+}
+```
+
+## 3. Campos do catálogo
+
+O schema está em `src/types/library.ts` e é **validado no boot** por
+`src/lib/libraries.ts` — um `framework`, `category` ou `color` inválido faz o
+build falhar com o nome da biblioteca.
+
+| Campo           | Obrigatório | Observações                                             |
+| --------------- | ----------- | ------------------------------------------------------- |
+| `slug`          | sim         | id único na URL, em `kebab-case`                       |
+| `name`          | sim         | nome como aparece no site                               |
+| `description`   | sim         | 1–2 frases, em português                                 |
+| `highlight`     | sim         | o diferencial da biblioteca                              |
+| `framework`     | sim         | um valor de `FRAMEWORKS`                                |
+| `category`      | sim         | um valor de `CATEGORIES`                                |
+| `website`       | sim         | site oficial (https)                                    |
+| `color`         | sim         | cor de fundo do tile, em hex (`#RRGGBB`)                |
+| `maintained`    | sim         | `true`/`false` — atualizado pelo sync                  |
+| `since`         | sim         | ano do marco inicial do projeto                        |
+| `license`       | sim         | SPDX quando possível (`MIT`, `Apache-2.0`, …)          |
+| `tags`          | sim         | palavras-chave, em minúsculas                           |
+| `repo`          | não         | `owner/repo` — usado pelo sync para buscar as estrelas |
+| `npmPackage`    | não         | nome do pacote no npm — usado pelo sync                |
+| `docs`          | não         | link da documentação                                     |
+| `logo`          | não         | arquivo em `public/logos`                               |
+| `logoKind`      | não         | `mark` (padrão), `wide` ou `text`                       |
+| `stars`         | não         | atualizado pelo sync                                    |
+| `npmDownloads`  | não         | atualizado pelo sync                                    |
+| `featured`      | não         | destaca a biblioteca na home                            |
+| `lastUpdate`    | não         | data do último push no GitHub                           |
+
+`stars`, `npmDownloads` e `lastUpdate` **não precisam ser preenchidos
+manualmente**: o workflow `sync:github` atualiza esses campos toda segunda
+e abre um pull request com as mudanças.
+
+## 4. Regras da logo
+
+- A logo vai em `public/logos/<slug>.svg`, em SVG quadrado com
+  `viewBox="0 0 24 24"`.
+- O preenchimento é **branco** (`#ffffff`): o contraste com a cor de fundo do
+  tile é ajustado em runtime (a logo é invertida quando o fundo é claro).
+- Nada de fundo ou cor na imagem — só a marca.
+
+```svg
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <title>Nome da biblioteca</title>
+  <path fill="#ffffff" d="..." />
+</svg>
+```
+
+E o `logoKind` define como a marca aparece no tile:
+
+| `logoKind` | quando usar                                                      |
+| ---------- | ---------------------------------------------------------------- |
+| `mark`     | símbolo quadrado (padrão) — não precisa declarar                |
+| `wide`     | wordmark horizontal: o SVG tem viewBox largo e ocupa a largura   |
+| `text`     | a marca **é** um texto (AG Grid, Recharts, styled-components)   |
+
+Quando a marca é um texto, **não crie um SVG**: use `logoKind: "text"` e o
+site escreve o nome da biblioteca dentro do tile, com o tamanho adaptado ao
+comprimento do nome.
+
+## 5. O que o CI checa
+
+- `npm run lint` — ESLint (flat config do Next).
+- `npm run typecheck` — `tsc --noEmit`.
+- `npm run build` — build de produção (as 63 fichas são pré-renderizadas).
+- O schema do JSON é validado no boot do site.
+
+## 6. Commits e pull requests
+
+Commits no formato [Conventional Commits](https://www.conventionalcommits.org/pt-br/):
+
+```
+feat(logos): adiciona a logo da biblioteca X
+fix(card): corrige o contraste da logo em fundos claros
+docs: explica as regras da logo no CONTRIBUTING
+chore(deps): atualiza o Next.js
+```
+
+No pull request:
+
+1. Descreva **o que** mudou e **por quê**;
+2. Ligue a issue correspondente (`Closes #12`);
+3. Cole o resultado de `npm run check`;
+4. Se mudou o catálogo, diga quais bibliotecas entraram ou saíram.
