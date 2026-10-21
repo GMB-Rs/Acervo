@@ -10,6 +10,7 @@ import {
 } from "@/lib/libraries";
 import { formatCompact, formatNumber, getContrastColor, isLightColor } from "@/lib/format";
 import { logoBoxClass, isTextMark, textMarkClass } from "@/lib/logo";
+import { licenseLabel } from "@/lib/license";
 import { CATEGORY_LABELS, FRAMEWORK_LABELS } from "@/types/library";
 
 /* eslint-disable @next/next/no-img-element */
@@ -76,7 +77,7 @@ async function LibraryPageContent({ params }: PageProps) {
   const facts = [
     { label: "estrelas", value: formatCompact(library.stars) },
     { label: "downloads/mês", value: formatCompact(library.npmDownloads) },
-    { label: "licença", value: library.license },
+    { label: "licença", value: licenseLabel(library.license) },
     { label: "desde", value: String(library.since) },
   ];
 
