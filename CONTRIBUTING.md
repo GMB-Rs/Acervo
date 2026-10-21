@@ -1,6 +1,6 @@
 # Como contribuir
 
-Obrigado por querer ampliar o [Diretório](README.md)! O catálogo vive em um
+Obrigado por querer ampliar o [Acervo](README.md)! O catálogo vive em um
 único arquivo — `src/data/libraries.json` — e o site é gerado a partir dele.
 Adicionar uma biblioteca é, em essence, adicionar um objeto ao JSON.
 

@@ -56,9 +56,10 @@ export const config = {
   /*
     Tudo entra no proxy, menos os arquivos estáticos: assim qualquer
     endereço sem idioma na frente (incluindo os antigos `/libraries/...`)
-    é redirecionado para a rota certa.
+    é redirecionado para a rota certa. O `favicon.ico` e o `icon.svg` são
+    servidos pelo App Router na raiz e precisam ficar de fora.
   */
   matcher: [
-    "/((?!_next/|logos/|favicon\\.ico|robots\\.txt|sitemap\\.xml).*)",
+    "/((?!_next/|logos/|favicon\\.ico|icon\\.svg|robots\\.txt|sitemap\\.xml).*)",
   ],
 };
