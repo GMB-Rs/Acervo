@@ -16,12 +16,6 @@ export function SiteHeader() {
           Diretório
         </Link>
 
-        <nav className="flex items-center gap-5 text-xs text-muted-foreground">
-          <Link href="/#galeria" className="transition hover:text-foreground">
-            Galeria
-          </Link>
-        </nav>
-
         <div className="ml-auto flex items-center gap-4">
           <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
             {libraries.length} libs
