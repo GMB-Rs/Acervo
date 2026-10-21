@@ -72,6 +72,10 @@ precisam casar em algum campo da biblioteca (nome, tags, descrição, destaque,
 repositório, site, framework e categoria), em qualquer ordem — `react form` e
 `form react` dão o mesmo resultado.
 
+Termos que designam um **grupo do catálogo** viram filtro: `mobile` mostra só
+as libs da categoria Mobile, `react` só as do framework React, `dados` só as
+de Dados & Tabelas. O grupo aparece como etiqueta ao lado do contador.
+
 Com busca ativa, a ordenação padrão passa a ser **por relevância**: o nome
 casado vale mais que a tag, que vale mais que a descrição. O trecho casado
 fica sublinhado no nome do card, para dar para ver por que a biblioteca

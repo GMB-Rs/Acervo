@@ -23,7 +23,7 @@ import {
   licenseFamily,
   type LicenseFamily,
 } from "@/lib/license";
-import { searchLibraries, tokenize } from "@/lib/search";
+import { resolveScope, scopeLabels, searchLibraries, tokenize } from "@/lib/search";
 
 type SortOption = "popular" | "az" | "za" | "recent";
 
@@ -350,6 +350,12 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
     ordem, e os resultados saem ordenados por relevância.
   */
   const tokens = useMemo(() => tokenize(query), [query]);
+  /*
+    Termos que designam uma categoria ou um framework viram filtro:
+    buscar "mobile" mostra só as libs de mobile, buscar "react" só as de React.
+  */
+  const scope = useMemo(() => resolveScope(tokens, SEARCH_LABELS), [tokens]);
+  const scopeNames = useMemo(() => scopeLabels(scope), [scope]);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -575,11 +581,19 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
       </div>
 
       <div className="flex items-center justify-between py-3 text-xs text-muted-foreground">
-        <span className="font-mono">
-          {filteredResults.length} {filteredResults.length === 1 ? "biblioteca" : "bibliotecas"}
-          {byRelevance && (
-            <span className="ml-2 font-sans opacity-70">por relevância</span>
-          )}
+        <span className="flex items-center gap-2">
+          <span className="font-mono">
+            {filteredResults.length} {filteredResults.length === 1 ? "biblioteca" : "bibliotecas"}
+          </span>
+          {byRelevance && <span className="opacity-70">por relevância</span>}
+          {scopeNames.map((name) => (
+            <span
+              key={name}
+              className="rounded border border-border px-1.5 py-0.5 font-sans"
+            >
+              {name}
+            </span>
+          ))}
         </span>
         {hasActiveFilter && (
           <button
