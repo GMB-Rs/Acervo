@@ -20,6 +20,8 @@ export const CATEGORIES = [
   "data",
   "icons",
   "animation",
+  "mobile",
+  "web",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];
@@ -81,4 +83,6 @@ export const CATEGORY_LABELS: Record<Category, string> = {
   data: "Dados & Tabelas",
   icons: "Ícones",
   animation: "Animação",
+  mobile: "Mobile / Universal",
+  web: "Web Components",
 };
