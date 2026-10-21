@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect, useCallback } from "react";
 import { LibraryCard } from "@/components/library-card";
 import {
   CATEGORIES,
@@ -27,30 +27,144 @@ function normalize(value: string): string {
     .toLowerCase();
 }
 
-function Select({ value, onChange, children, className = "" }: React.SelectHTMLAttributes<HTMLSelectElement> & { className?: string }) {
+type DropdownOption = { value: string; label: string };
+
+function Dropdown<T extends string>({
+  value,
+  options,
+  onChange,
+  label,
+  placeholder,
+}: {
+  value: T;
+  options: Array<DropdownOption & { value: T }>;
+  onChange: (value: T) => void;
+  label: string;
+  placeholder?: string;
+}) {
+  const [open, setOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const optionRefs = useRef<(HTMLButtonElement | null)[]>([]);
+
+  const close = useCallback(() => {
+    setOpen(false);
+    setHighlightedIndex(-1);
+  }, []);
+
+  const openDropdown = useCallback(() => {
+    setOpen(true);
+    const idx = options.findIndex((o) => o.value === value);
+    setHighlightedIndex(idx >= 0 ? idx : 0);
+  }, [options, value]);
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (!open) return;
+      if (e.key === "Escape") {
+        close();
+        triggerRef.current?.focus();
+      } else if (e.key === "ArrowDown") {
+        e.preventDefault();
+        setHighlightedIndex((i) => Math.min(i + 1, options.length - 1));
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        setHighlightedIndex((i) => Math.max(i - 1, 0));
+      } else if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        if (highlightedIndex >= 0) {
+          onChange(options[highlightedIndex].value);
+          close();
+        }
+      } else if (e.key === "Tab") {
+        close();
+      }
+    }
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, options, highlightedIndex, onChange, close]);
+
+  useEffect(() => {
+    function onClickOutside(e: MouseEvent) {
+      if (
+        triggerRef.current?.contains(e.target as Node) ||
+        panelRef.current?.contains(e.target as Node)
+      )
+        return;
+      close();
+    }
+    document.addEventListener("mousedown", onClickOutside);
+    return () => document.removeEventListener("mousedown", onClickOutside);
+  }, [close]);
+
+  const selectedOption = options.find((o) => o.value === value);
+
   return (
     <div className="relative">
-      <select
-        value={value}
-        onChange={onChange}
-        className={`appearance-none h-10 rounded-md border border-border bg-background px-3 pr-10 text-sm outline-none transition focus:border-foreground/50 hover:border-border/80 ${className}`}
+      <button
+        ref={triggerRef}
+        type="button"
+        role="combobox"
+        onClick={open ? close : openDropdown}
+        className="flex items-center gap-3 h-10 rounded-md border border-border bg-background px-3 pr-10 text-sm outline-none transition focus:border-foreground/50 hover:border-border/80 w-full sm:w-[140px] md:w-[160px] lg:w-[150px] xl:w-[180px] justify-between"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={`${label.replace(/\s+/g, "-")}-listbox`}
+        aria-label={label}
       >
-        {children}
-      </select>
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center pr-3">
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="size-4 text-muted-foreground"
-          aria-hidden="true"
+        <span className="truncate">{selectedOption?.label ?? placeholder ?? "Selecionar"}</span>
+        <div className="pointer-events-none absolute right-0 top-0 bottom-0 flex items-center pr-3">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className={`size-4 text-muted-foreground transition-transform ${open ? "rotate-180" : ""}`}
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </div>
+      </button>
+
+      {open && (
+        <div
+          ref={panelRef}
+          role="listbox"
+          aria-label={label}
+          id={`${label.replace(/\s+/g, "-")}-listbox`}
+          className="absolute z-50 mt-1.5 min-w-full sm:min-w-[140px] md:min-w-[160px] lg:min-w-[150px] xl:min-w-[180px] max-w-[90vw] sm:max-w-[300px] md:max-w-[320px] lg:max-w-[300px] xl:max-w-[340px] max-h-56 overflow-auto rounded-md border border-border bg-background shadow-lg py-1 scrollbar-hide"
         >
-          <path d="m6 9 6 6 6-6" />
-        </svg>
-      </div>
+          {options.map((option, index) => (
+            <button
+              ref={(el) => {
+                optionRefs.current[index] = el;
+              }}
+              type="button"
+              role="option"
+              aria-selected={option.value === value}
+              key={option.value}
+              onClick={() => {
+                onChange(option.value as T);
+                close();
+              }}
+              onMouseEnter={() => setHighlightedIndex(index)}
+              className={`w-full px-3 py-2 text-sm text-left transition-colors whitespace-normal break-words ${
+                option.value === value
+                  ? "bg-muted font-medium text-foreground"
+                  : index === highlightedIndex
+                  ? "bg-muted/50 text-foreground"
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+              }`}
+            >
+              {option.label}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -167,6 +281,18 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
         : "text-muted-foreground hover:text-foreground"
     }`;
 
+  const categoryOptions = useMemo<Array<DropdownOption & { value: Category | "all" }>>(() => [
+    { value: "all", label: `Todas as categorias (${libraries.length})` },
+    ...CATEGORIES.map((item) => ({
+      value: item,
+      label: `${CATEGORY_LABELS[item]} (${categoryCounts.get(item) ?? 0})`,
+    })),
+  ], [libraries.length, categoryCounts]);
+
+  const sortOptions = useMemo<Array<DropdownOption & { value: SortOption }>>(() =>
+    SORTS.map((item) => ({ value: item.value, label: item.label })),
+  []);
+
   return (
     <section id="galeria" className="scroll-mt-16">
       <div className="border-y border-border">
@@ -180,32 +306,20 @@ export function LibraryExplorer({ libraries }: { libraries: Library[] }) {
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:ml-auto">
-            <Select
+            <Dropdown<Category | "all">
               value={category}
-              onChange={(e) =>
-                setCategory(e.target.value as Category | "all")
-              }
-              aria-label="Filtrar por categoria"
-            >
-              <option value="all">Todas as categorias</option>
-              {CATEGORIES.map((item) => (
-                <option key={item} value={item}>
-                  {CATEGORY_LABELS[item]} ({categoryCounts.get(item) ?? 0})
-                </option>
-              ))}
-            </Select>
+              options={categoryOptions}
+              onChange={setCategory}
+              label="Filtrar por categoria"
+              placeholder="Categoria"
+            />
 
-            <Select
+            <Dropdown<SortOption>
               value={sort}
-              onChange={(e) => setSort(e.target.value as SortOption)}
-              aria-label="Ordenar bibliotecas"
-            >
-              {SORTS.map((item) => (
-                <option key={item.value} value={item.value}>
-                  {item.label}
-                </option>
-              ))}
-            </Select>
+              options={sortOptions}
+              onChange={setSort}
+              label="Ordenar bibliotecas"
+            />
           </div>
         </div>
 
