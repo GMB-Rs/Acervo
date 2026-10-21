@@ -70,6 +70,16 @@ body {
   }
 }
 
+/*
+  O input de busca é type="search": o navegador desenha o próprio "X" de
+  limpar ao lado do botão da casa. Só o da casa fica.
+*/
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
 /* Esconde a barra de scroll mas mantém a rolagem */
 .scrollbar-hide {
   scrollbar-width: none; /* Firefox */
