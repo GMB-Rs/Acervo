@@ -54,7 +54,7 @@ export function SiteFooter({
               <ul className="mt-3 space-y-2 text-sm">
                 <li>
                   <FooterLink href={`/${locale}`}>
-                    {dict.footer.gallery}
+                    {dict.footer.acervo}
                   </FooterLink>
                 </li>
                 <li>
