@@ -4,7 +4,7 @@
 [![sync:github](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml/badge.svg)](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml)
 [![Licença: MIT](https://img.shields.io/badge/Licença-MIT-yellow.svg)](LICENSE)
 [![Estrelas](https://img.shields.io/github/stars/GMB-Rs/Diretorio?style=social)](https://github.com/GMB-Rs/Diretorio)
-[![Site](https://img.shields.io/badge/site-acervo.app-0a0a0a)](https://acervo.app)
+[![Site](https://img.shields.io/badge/site-acervo.app-0a0a0a)](https://acervo-azure.vercel.app/)
 
 Acervo de bibliotecas de componentes para **web**. O site cataloga libs de UI
 kit, headless, design systems, formulários, tabelas, ícones e animações —
