@@ -74,7 +74,7 @@ export function LibraryCard({
       </div>
 
       <div className="mt-2 flex items-baseline justify-between gap-3">
-        <span className="truncate text-[13px] font-medium text-foreground">
+        <span className="min-w-0 truncate text-[13px] font-medium text-foreground">
           {highlightParts(library.name, highlight).map((part, index) =>
             part.match ? (
               <mark
@@ -88,7 +88,7 @@ export function LibraryCard({
             ),
           )}
         </span>
-        <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+        <span className="max-w-[45%] truncate font-mono text-[11px] text-muted-foreground">
           {domainOf(library.website)}
         </span>
       </div>

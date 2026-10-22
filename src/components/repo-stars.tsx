@@ -53,7 +53,7 @@ export function RepoStars({ label }: { label: string }) {
       rel="noreferrer"
       title={formatText(label, { n: stars })}
       aria-label={formatText(label, { n: stars })}
-      className="hidden items-center gap-1.5 font-mono text-[11px] text-muted-foreground transition hover:text-foreground sm:inline-flex"
+      className="inline-flex items-center gap-1.5 font-mono text-[11px] text-muted-foreground transition hover:text-foreground"
     >
       <svg
         viewBox="0 0 16 16"
