@@ -696,7 +696,7 @@ export function LibraryExplorer({
 
           {totalPages > 1 && (
             <nav
-              className="mt-8 flex items-center justify-center gap-1"
+              className="mt-24 flex items-center justify-center gap-1"
               aria-label={dict.pagination.label}
             >
               <button
