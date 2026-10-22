@@ -1,0 +1,49 @@
+name: Sugestão
+description: Ideia de biblioteca, filtro ou melhoria
+title: "[feature] "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Para **adicionar uma biblioteca ao catálogo**, o caminho mais simples é
+        um pull request no `src/data/libraries.json` — as regras estão no
+        [CONTRIBUTING.md](../blob/main/CONTRIBUTING.md). Use esta issue para
+        discutir a ideia antes de escrever o código.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: Qual é a ideia?
+      description: O que você quer ver no Acervo que não existe hoje?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: O que a ideia toca?
+      options:
+        - Catálogo (uma biblioteca nova ou uma ausente)
+        - Busca e filtros
+        - Interface do site
+        - Conteúdo / tradução
+        - Infraestrutura (deploy, SEO, acessibilidade)
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas que você já usou
+      description: Ferramentas parecidas que resolvem o mesmo problema.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: check
+    attributes:
+      label: Antes de enviar
+      options:
+        - label: Verifiquei se a biblioteca já está no catálogo.
+          required: true

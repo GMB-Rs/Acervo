@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Dúvida sobre o catálogo (uma biblioteca específica)
+    url: https://github.com/GMB-Rs/Diretorio/discussions
+    about: Para perguntar se uma biblioteca entra no Acervo, use as discussões.
+  - name: Vulnerabilidade de segurança
+    url: https://github.com/GMB-Rs/Diretorio/security/advisories/new
+    about: Reporte falhas de segurança em privado — não abra issue pública.

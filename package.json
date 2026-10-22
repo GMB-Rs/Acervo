@@ -2,6 +2,28 @@
   "name": "diretorio",
   "version": "0.1.0",
   "private": true,
+  "description": "Acervo — galeria curada de bibliotecas de componentes para web.",
+  "license": "MIT",
+  "homepage": "https://acervo.app",
+  "author": "Gabriel M. Barbosa",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GMB-Rs/Diretorio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/GMB-Rs/Diretorio/issues"
+  },
+  "keywords": [
+    "component-libraries",
+    "design-system",
+    "react",
+    "vue",
+    "svelte",
+    "angular",
+    "web-components",
+    "headless-ui",
+    "tailwindcss"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
