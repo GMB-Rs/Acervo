@@ -34,8 +34,6 @@ export type Dictionary = {
     countMany: string;
     /** "{n} commits". */
     commits: string;
-    /** Aviso de que robôs não contam como pessoas. */
-    botsNote: string;
     empty: string;
     joinTitle: string;
     joinText: string;

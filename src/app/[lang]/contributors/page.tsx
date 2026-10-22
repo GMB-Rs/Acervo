@@ -118,10 +118,6 @@ export default async function ContributorsPage({ params }: PageProps) {
             ))}
           </ul>
         )}
-
-        <p className="mt-6 font-mono text-[11px] text-muted-foreground">
-          {dict.contributors.botsNote}
-        </p>
       </section>
 
       <section className="mt-16 border-t border-border pt-10">

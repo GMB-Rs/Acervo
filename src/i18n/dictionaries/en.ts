@@ -36,11 +36,10 @@ export const en: Dictionary = {
     countOne: "1 person has contributed",
     countMany: "{n} people have contributed",
     commits: "{n} commits",
-    botsNote: "Bots (like Dependabot) do not count as people.",
     empty: "Nobody has been credited yet — that is an open invitation.",
     joinTitle: "Want to join in?",
     joinText:
-      "You do not need to know React, Next.js or advanced Git. One issue, one translation or one fixed typo already moves Acervo forward.",
+      "You do not need to know React, Next.js or advanced Git. One issue, one translation or one small copy fix already moves Acervo forward.",
     steps: [
       {
         title: "Add a library",
