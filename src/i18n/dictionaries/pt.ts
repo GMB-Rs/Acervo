@@ -36,11 +36,10 @@ export const pt: Dictionary = {
     countOne: "1 pessoa já contribuiu",
     countMany: "{n} pessoas já contribuiram",
     commits: "{n} commits",
-    botsNote: "Robôs (como o Dependabot) não contam como pessoas.",
     empty: "Ninguém foi registrado ainda — esse é o convite.",
     joinTitle: "Quer entrar?",
     joinText:
-      "Não precisa saber React, Next.js ou GitHub advanced. Uma issue, uma tradução ou um typo corrigido já muda o acervo.",
+      "Não precisa saber React, Next.js ou GitHub avançado. Uma issue, uma tradução ou um erro de digitação corrigido já muda o acervo.",
     steps: [
       {
         title: "Adicione uma biblioteca",
