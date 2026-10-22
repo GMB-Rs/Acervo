@@ -23,6 +23,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
+  const contributors = LOCALES.map((locale) => ({
+    url: `${BASE_URL}/${locale}/contributors`,
+    changeFrequency: "daily" as const,
+    priority: 0.5,
+    alternates: {
+      languages: Object.fromEntries(
+        LOCALES.map((item) => [item, `${BASE_URL}/${item}/contributors`]),
+      ),
+    },
+  }));
+
   const libraries = LOCALES.flatMap((locale) =>
     slugs.map((slug) => ({
       url: `${BASE_URL}/${locale}/libraries/${slug}`,
@@ -39,5 +50,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...home, ...libraries];
+  return [...home, ...contributors, ...libraries];
 }

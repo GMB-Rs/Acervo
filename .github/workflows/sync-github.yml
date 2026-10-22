@@ -38,12 +38,12 @@ jobs:
       - name: Verifica se houve mudanças
         id: check
         run: |
-          if git diff --quiet -- src/data/libraries.json src/data/repo.json; then
+          if git diff --quiet -- src/data/libraries.json src/data/repo.json src/data/contributors.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
             echo "Nenhuma métrica mudou — nada a fazer."
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
-            git diff --stat -- src/data/libraries.json src/data/repo.json
+            git diff --stat -- src/data/libraries.json src/data/repo.json src/data/contributors.json
           fi
 
       - name: Valida o catálogo
@@ -70,7 +70,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c chore/sync-github
-          git add src/data/libraries.json src/data/repo.json
+          git add src/data/libraries.json src/data/repo.json src/data/contributors.json
           git commit -m "chore(sync): atualiza estrelas e downloads"
           git push --force origin chore/sync-github
 

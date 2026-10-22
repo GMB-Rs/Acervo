@@ -78,7 +78,7 @@ export function LanguageSelect({
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="size-3.5"
+          className="hidden size-3.5 sm:block"
           aria-hidden="true"
         >
           <circle cx="12" cy="12" r="9" />

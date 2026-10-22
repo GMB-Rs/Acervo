@@ -57,6 +57,11 @@ export function SiteFooter({
                     {dict.footer.gallery}
                   </FooterLink>
                 </li>
+                <li>
+                  <FooterLink href={`/${locale}/contributors`}>
+                    {dict.nav.contributors}
+                  </FooterLink>
+                </li>
                 {FRAMEWORKS.map((framework) => (
                   <li key={framework}>
                     <FooterLink href={`/${locale}?framework=${framework}`}>

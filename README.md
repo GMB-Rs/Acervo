@@ -77,6 +77,7 @@ src/
   data/
     libraries.json          # fonte de verdade dos dados (pt-BR)
     repo.json               # métricas deste repositório (estrelas do GitHub)
+    contributors.json       # lista de contribuidores (página /contributors)
     translations/
       en.json               # descrição/destaque por slug, em inglês
       tags.en.json          # vocabulário de tags traduzido
@@ -91,6 +92,7 @@ src/
     format.ts               # formatação de números e datas
     site.ts                 # domínio canônico (metadataBase, sitemap, robots)
     repo.ts                 # dados do repositório (contador de estrelas)
+    contributors.ts         # contribuidores do repositório (API do GitHub + cache)
     theme.ts                # tema (escolha salva ou preferência do sistema)
   types/
     library.ts              # schema, frameworks e categorias
@@ -265,6 +267,15 @@ Para o servidor usar o limite maior da API (5000 requisições por hora em
 vez de 60), defina `GITHUB_TOKEN` no painel da Vercel (Settings →
 Environment Variables) com um token de acesso (fine-grained, só leitura do
 repositório). Sem ele, o valor do sync diário cobre o caso.
+
+## Página de contribuidores
+
+`/pt/contributors` (e `/en/contributors`) lista quem já contribuiu, com o
+avatar e o número de commits de cada pessoa. A lista vem da API de
+contribuidores do GitHub, com cache de uma hora no servidor
+(`src/lib/contributors.ts`), e da reserva `src/data/contributors.json` —
+atualizada pelo mesmo job diário, no caso de a API estar fora do ar. Robôs
+(como o Dependabot) não entram na lista.
 
 ## Licença
 
