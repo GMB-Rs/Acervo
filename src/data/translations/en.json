@@ -35,6 +35,10 @@
     "description": "A component library focused on productivity, with a simple props API and a props-based style system.",
     "highlight": "Great for quickly putting together your own design system, with token-based themes."
   },
+  "heroui": {
+    "description": "A production-ready React component library with light and dark themes, accessibility and direct Tailwind CSS integration.",
+    "highlight": "Born as NextUI and renamed to HeroUI in 2024 — today one of the largest React component communities, with more than 30,000 stars."
+  },
   "semantic-ui-react": {
     "description": "The React port of the popular Semantic UI framework, with strong semantics and coherent naming.",
     "highlight": "A meaning-driven API: just like semantic HTML."
