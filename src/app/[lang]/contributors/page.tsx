@@ -13,6 +13,14 @@ type PageProps = {
 };
 
 /*
+  A rota lê os `params` no topo (o dicionário inteiro depende do idioma) e
+  espera a lista de contribuidores. Sem um limite de Suspense, a navegação
+  para dentro de um idioma bloqueia — `instant = false` assume isso na cara,
+  como nas outras páginas do site.
+*/
+export const instant = false;
+
+/*
   Quem já contribuiu com o Acervo.
 
   A lista vem do servidor (API do GitHub com cache, e o arquivo do sync como
