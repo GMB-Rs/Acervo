@@ -4,6 +4,10 @@ Obrigado por querer ampliar o [Acervo](README.md)! O catálogo vive em um
 único arquivo — `src/data/libraries.json` — e o site é gerado a partir dele.
 Adicionar uma biblioteca é, em essence, adicionar um objeto ao JSON.
 
+Este projeto segue a [MIT](LICENSE) e tem um
+[Código de Conduta](CODE_OF_CONDUCT.md). Problemas de segurança são
+reportados em privado, pelo processo descrito em [SECURITY.md](SECURITY.md).
+
 ## 1. Rodar o projeto
 
 ```bash
@@ -126,6 +130,9 @@ comprimento do nome.
 
 ## 5. O que o CI checa
 
+O workflow `ci` (`.github/workflows/ci.yml`) roda em todo push na `main` e em
+todo pull request:
+
 - `npm run lint` — ESLint (flat config do Next).
 - `npm run typecheck` — `next typegen` + `tsc --noEmit`.
 - `npm run build` — build de produção (as fichas do catálogo são pré-renderizadas).
@@ -149,6 +156,9 @@ No pull request:
 2. Ligue a issue correspondente (`Closes #12`);
 3. Cole o resultado de `npm run check`;
 4. Se mudou o catálogo, diga quais bibliotecas entraram ou saíram.
+
+O modelo em `.github/PULL_REQUEST_TEMPLATE.md` já traz esses campos — é só
+preencher.
 
 ## 7. Traduções
 

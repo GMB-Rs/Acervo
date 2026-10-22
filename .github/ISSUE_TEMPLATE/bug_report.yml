@@ -1,0 +1,69 @@
+name: Bug
+description: Algo no site está errado
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado pelo relato! Se for problema em uma biblioteca específica do
+        catálogo, use a issue dela no repositório de origem.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: O que aconteceu?
+      description: O que você fez, o que esperava e o que aconteceu de verdade.
+      placeholder: Ao abrir a galeria em /pt e clicar em "Mais populares", …
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1. Acesse /pt
+        2. …
+    validations:
+      required: true
+
+  - type: input
+    id: url
+    attributes:
+      label: Endereço da página
+      placeholder: https://acervo.app/pt
+    validations:
+      required: false
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Onde o problema aparece?
+      options:
+        - Galeria (busca, filtros, ordenação)
+        - Paginação
+        - Ficha de uma biblioteca
+        - Cabeçalho / rodapé / idioma / tema
+        - Deploy (domínio, canonical, sitemap)
+        - Outro
+    validations:
+      required: true
+
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador e sistema
+      placeholder: Chrome 141 no Ubuntu 24.04
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: check
+    attributes:
+      label:Antes de enviar
+      options:
+        - label: Procurei por uma issue parecida e não encontrei uma aberta.
+          required: true
+        - label: Rodei `npm run check` localmente (quando o bug é no código).
+          required: false

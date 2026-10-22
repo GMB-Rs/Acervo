@@ -21,6 +21,8 @@ export type Dictionary = {
   nav: {
     /** Contador da navbar: "{n} libs". */
     libs: string;
+    /** Contador de estrelas do repositório: "{n} estrelas no GitHub". */
+    stars: string;
     language: string;
   };
   home: {
