@@ -63,6 +63,7 @@ src/
       page.tsx              # home: hero + galeria
       libraries/[slug]/page.tsx  # página de detalhe (SSG)
     global-not-found.tsx    # 404 para endereços sem rota
+    api/stars/route.ts     # contador de estrelas (com cache no servidor)
     sitemap.ts / robots.ts  # metadados para buscadores
   components/
     library-card.tsx        # card da galeria
@@ -248,12 +249,22 @@ precisa estar em modo *Full (strict)*.
 
 ## Estrelas do repositório
 
-O cabeçalho mostra o número de estrelas do repositório, ao lado do contador
-de bibliotecas. O valor sai de `src/data/repo.json` — atualizado pelo mesmo
-job que sincroniza o catálogo (`scripts/sync-github.ts`) — e o componente
-`src/components/repo-stars.tsx` pergunta à API do GitHub no navegador para
-não ficar defasado entre um sync e outro. Se a API falhar, o número
-estático continua na tela.
+O cabeçalho mostra o número de estrelas do repositório, com link para o
+GitHub. O valor sai de `src/data/repo.json` — atualizado diariamente pelo
+mesmo job que sincroniza o catálogo (`scripts/sync-github.ts`) — e é
+confirmado em tempo real pela rota `src/app/api/stars/route.ts`, que o
+componente `src/components/repo-stars.tsx` consulta no navegador.
+
+A busca é feita pelo servidor, e não direto do navegador na API do GitHub: a
+versão anônima da API responde 403 assim que o IP esgota as 60 requisições
+por hora, e o contador ficaria travado. No servidor a requisição é uma só a
+cada cinco minutos, com cache. Se a API falhar, o número do último sync
+continua na tela.
+
+Para o servidor usar o limite maior da API (5000 requisições por hora em
+vez de 60), defina `GITHUB_TOKEN` no painel da Vercel (Settings →
+Environment Variables) com um token de acesso (fine-grained, só leitura do
+repositório). Sem ele, o valor do sync diário cobre o caso.
 
 ## Licença
 

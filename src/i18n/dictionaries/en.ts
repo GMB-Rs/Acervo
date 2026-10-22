@@ -25,7 +25,7 @@ export const en: Dictionary = {
     ],
   },
   nav: {
-    stars: "{n} stars on GitHub",
+    stars: "GitHub stars: {n}",
     language: "Language",
   },
   home: {

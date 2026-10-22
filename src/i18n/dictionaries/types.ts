@@ -8,8 +8,8 @@ import type { Locale } from "@/i18n/config";
   tradução em `src/data/translations/en.json`.
 
   O dicionário é **só dado** — nenhuma função — para poder atravessar a
-  fronteira servidor/cliente. Números entram por placeholder: "{n} estrelas
-  no GitHub".
+  fronteira servidor/cliente. Números entram por placeholder: "Estrelas no
+  GitHub: {n}".
 */
 
 export type Dictionary = {
@@ -20,7 +20,7 @@ export type Dictionary = {
     keywords: string[];
   };
   nav: {
-    /** Contador de estrelas do repositório: "{n} estrelas no GitHub". */
+    /** Contador de estrelas do repositório: "Estrelas no GitHub: {n}". */
     stars: string;
     language: string;
   };
