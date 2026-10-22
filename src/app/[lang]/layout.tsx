@@ -89,10 +89,10 @@ export default async function LocaleLayout({
           <SiteHeader locale={lang} dict={dict} />
           <main className="flex-1">{children}</main>
           <SiteFooter dict={dict} />
-          <Analytics />
-          <SpeedInsights />
         </body>
       </html>
+      <Analytics />
+      <SpeedInsights />
     </>
   );
 }
