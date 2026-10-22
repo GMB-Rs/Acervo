@@ -27,6 +27,7 @@ type Library = {
 };
 
 const DATA_FILE = path.join(process.cwd(), "src", "data", "libraries.json");
+const REPO_FILE = path.join(process.cwd(), "src", "data", "repo.json");
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const INACTIVE_AFTER_MONTHS = 18;
 const SLEEP_MS = 250;
@@ -42,6 +43,14 @@ type Change = {
   field: string;
   from: string | number | boolean;
   to: string | number | boolean;
+};
+
+type RepoFile = {
+  repo: string;
+  url: string;
+  stars: number;
+  forks: number;
+  updatedAt: string | null;
 };
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -128,6 +137,63 @@ async function syncNpm(library: Library) {
   }
 }
 
+/**
+ * Sincroniza as métricas do próprio repositório do Acervo (estrelas e
+ * forks) em `src/data/repo.json` — é o número que aparece no cabeçalho do
+ * site.
+ */
+async function syncRepo(): Promise<Change[]> {
+  const changes: Change[] = [];
+  const raw = await readFile(REPO_FILE, "utf8");
+  const data = JSON.parse(raw) as RepoFile;
+
+  try {
+    const repo = await fetchJson<{
+      stargazers_count: number;
+      forks_count: number;
+    }>(
+      `https://api.github.com/repos/${data.repo}`,
+      {
+        ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+      },
+      { detectRateLimit: true },
+    );
+
+    if (repo.stargazers_count !== data.stars) {
+      changes.push({
+        slug: data.repo,
+        name: "Acervo (este repositório)",
+        field: "estrelas",
+        from: data.stars,
+        to: repo.stargazers_count,
+      });
+    }
+
+    data.stars = repo.stargazers_count;
+    data.forks = repo.forks_count;
+    data.updatedAt = new Date().toISOString();
+
+    if (!DRY_RUN) {
+      // Sem newline no final: é o formato dos arquivos do repositório.
+      await writeFile(REPO_FILE, JSON.stringify(data, null, 2), "utf8");
+    }
+
+    console.log(
+      `  ✓ ${data.repo}: ${data.stars} estrelas, ${data.forks} forks`,
+    );
+  } catch (error) {
+    // O contador de estrelas do site não é crítico: se a API estiver no
+    // limite (ou o repositório for privado), o valor anterior fica.
+    const message =
+      error instanceof RateLimitError
+        ? "limite da API do GitHub atingido — as estrelas do repositório mantêm o valor anterior"
+        : (error as Error).message;
+    console.warn(`  ! ${data.repo}: ${message}`);
+  }
+
+  return changes;
+}
+
 async function main() {
   const raw = await readFile(DATA_FILE, "utf8");
   const libraries = JSON.parse(raw) as Library[];
@@ -169,6 +235,11 @@ async function main() {
   await Promise.all(libraries.map((library) => syncNpm(library)));
 
   const changes: Change[] = [];
+
+  if (!npmOnly) {
+    console.log("\nSincronizando as métricas deste repositório...");
+    changes.push(...(await syncRepo()));
+  }
   for (const library of libraries) {
     const previous = before.get(library.slug);
     if (!previous) continue;
