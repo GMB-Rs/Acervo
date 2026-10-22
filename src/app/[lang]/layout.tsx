@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-script";
@@ -74,19 +76,23 @@ export default async function LocaleLayout({
   const dict = getDictionary(lang);
 
   return (
-    <html
-      lang={HTML_LANG[lang]}
-      suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <head>
-        <ThemeScript />
-      </head>
-      <body className="flex min-h-full flex-col">
-        <SiteHeader locale={lang} dict={dict} />
-        <main className="flex-1">{children}</main>
-        <SiteFooter dict={dict} />
-      </body>
-    </html>
+    <>
+      <html
+        lang={HTML_LANG[lang]}
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      >
+        <head>
+          <ThemeScript />
+        </head>
+        <body className="flex min-h-full flex-col">
+          <SiteHeader locale={lang} dict={dict} />
+          <main className="flex-1">{children}</main>
+          <SiteFooter dict={dict} />
+        </body>
+      </html>
+      <Analytics />
+      <SpeedInsights />
+    </>
   );
 }
