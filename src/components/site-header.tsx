@@ -3,9 +3,7 @@ import { BrandMark } from "@/components/brand-mark";
 import { LanguageSelect } from "@/components/language-select";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RepoStars } from "@/components/repo-stars";
-import { libraries } from "@/lib/libraries";
 import type { Locale } from "@/i18n/config";
-import { formatText } from "@/i18n/format";
 import type { Dictionary } from "@/i18n/dictionaries/types";
 
 export function SiteHeader({
@@ -27,9 +25,6 @@ export function SiteHeader({
         </Link>
 
         <div className="ml-auto flex items-center gap-4">
-          <span className="hidden font-mono text-[11px] text-muted-foreground sm:inline">
-            {formatText(dict.nav.libs, { n: libraries.length })}
-          </span>
           <RepoStars label={dict.nav.stars} />
           <LanguageSelect locale={locale} label={dict.nav.language} />
           <ThemeToggle dict={dict} />
