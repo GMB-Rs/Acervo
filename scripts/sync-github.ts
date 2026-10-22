@@ -28,6 +28,12 @@ type Library = {
 
 const DATA_FILE = path.join(process.cwd(), "src", "data", "libraries.json");
 const REPO_FILE = path.join(process.cwd(), "src", "data", "repo.json");
+const CONTRIBUTORS_FILE = path.join(
+  process.cwd(),
+  "src",
+  "data",
+  "contributors.json",
+);
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const INACTIVE_AFTER_MONTHS = 18;
 const SLEEP_MS = 250;
@@ -194,6 +200,62 @@ async function syncRepo(): Promise<Change[]> {
   return changes;
 }
 
+/**
+ * Sincroniza a lista de contribuidores do próprio repositório em
+ * `src/data/contributors.json` — é a reserva da página /contributors
+ * (quando a API do GitHub está no limite, a página usa o arquivo).
+ */
+async function syncContributors(): Promise<void> {
+  const raw = await readFile(REPO_FILE, "utf8");
+  const data = JSON.parse(raw) as RepoFile;
+
+  try {
+    const contributors = await fetchJson<
+      Array<{
+        login: string;
+        avatar_url: string;
+        html_url: string;
+        contributions: number;
+        type: string;
+      }>
+    >(
+      `https://api.github.com/repos/${data.repo}/contributors?per_page=100`,
+      {
+        ...(GITHUB_TOKEN ? { Authorization: `Bearer ${GITHUB_TOKEN}` } : {}),
+      },
+      { detectRateLimit: true },
+    );
+
+    // Robôs (Dependabot) não entram: a página é sobre pessoas.
+    const humans = contributors
+      .filter((item) => item.type === "User" || item.type === "Organization")
+      .map((item) => ({
+        login: item.login,
+        avatar: item.avatar_url,
+        url: item.html_url,
+        contributions: item.contributions,
+      }));
+
+    if (!DRY_RUN) {
+      // Sem newline no final: é o formato dos arquivos do repositório.
+      await writeFile(
+        CONTRIBUTORS_FILE,
+        JSON.stringify(
+          { contributors: humans, updatedAt: new Date().toISOString() },
+          null,
+          2,
+        ),
+        "utf8",
+      );
+    }
+
+    console.log(`  ✓ ${humans.length} contribuidor(es) no repositório`);
+  } catch (error) {
+    // A lista é uma cortesia: se a API falhar, o arquivo anterior fica.
+    console.warn(`  ! contribuidores: ${(error as Error).message}`);
+  }
+}
+
 async function main() {
   const raw = await readFile(DATA_FILE, "utf8");
   const libraries = JSON.parse(raw) as Library[];
@@ -239,6 +301,9 @@ async function main() {
   if (!npmOnly) {
     console.log("\nSincronizando as métricas deste repositório...");
     changes.push(...(await syncRepo()));
+
+    console.log("\nSincronizando a lista de contribuidores...");
+    await syncContributors();
   }
   for (const library of libraries) {
     const previous = before.get(library.slug);

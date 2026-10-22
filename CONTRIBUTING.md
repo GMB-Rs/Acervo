@@ -8,6 +8,9 @@ Este projeto segue a [MIT](LICENSE) e tem um
 [Código de Conduta](CODE_OF_CONDUCT.md). Problemas de segurança são
 reportados em privado, pelo processo descrito em [SECURITY.md](SECURITY.md).
 
+Quem já contribuiu aparece na página de contribuidores do site
+(`/pt/contributors`), montada a partir dos commits do repositório.
+
 ## 1. Rodar o projeto
 
 ```bash

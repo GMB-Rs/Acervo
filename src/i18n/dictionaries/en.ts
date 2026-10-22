@@ -27,6 +27,37 @@ export const en: Dictionary = {
   nav: {
     stars: "GitHub stars: {n}",
     language: "Language",
+    contributors: "Contributors",
+  },
+  contributors: {
+    title: "Contributors",
+    intro:
+      "Acervo is open source and made by people. Joining in is easy: adding a library, fixing a description or translating a page all count as a contribution.",
+    countOne: "1 person has contributed",
+    countMany: "{n} people have contributed",
+    commits: "{n} commits",
+    botsNote: "Bots (like Dependabot) do not count as people.",
+    empty: "Nobody has been credited yet — that is an open invitation.",
+    joinTitle: "Want to join in?",
+    joinText:
+      "You do not need to know React, Next.js or advanced Git. One issue, one translation or one fixed typo already moves Acervo forward.",
+    steps: [
+      {
+        title: "Add a library",
+        text: "Open an issue with the library name and repository. We catalog it and the sync takes care of the metrics.",
+      },
+      {
+        title: "Fix what is wrong",
+        text: "Outdated description, swapped license, misaligned logo: every pull request is welcome.",
+      },
+      {
+        title: "Polish the wording",
+        text: "The site is bilingual. Some pages are missing in Portuguese and English — and every new text needs both.",
+      },
+    ],
+    ctaContribute: "Read the contributing guide",
+    ctaIssues: "Open an issue",
+    ctaRepo: "See the repository",
   },
   home: {
     title: "Acervo: web component libraries",

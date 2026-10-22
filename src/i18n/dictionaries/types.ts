@@ -23,6 +23,27 @@ export type Dictionary = {
     /** Contador de estrelas do repositório: "Estrelas no GitHub: {n}". */
     stars: string;
     language: string;
+    /** Link da navbar para a página de contribuidores. */
+    contributors: string;
+  };
+  contributors: {
+    title: string;
+    intro: string;
+    /** "1 pessoa já contribuiu" / "{n} pessoas já contribuiram". */
+    countOne: string;
+    countMany: string;
+    /** "{n} commits". */
+    commits: string;
+    /** Aviso de que robôs não contam como pessoas. */
+    botsNote: string;
+    empty: string;
+    joinTitle: string;
+    joinText: string;
+    /** Passos para contribuir (título + texto). */
+    steps: Array<{ title: string; text: string }>;
+    ctaContribute: string;
+    ctaIssues: string;
+    ctaRepo: string;
   };
   home: {
     title: string;

@@ -15,7 +15,7 @@ export function SiteHeader({
 }) {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-3 px-4 sm:gap-6">
+      <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-2 px-4 sm:gap-6">
         <Link
           href={`/${locale}`}
           className="flex items-center gap-2 text-sm font-semibold tracking-tight"
@@ -23,6 +23,15 @@ export function SiteHeader({
           <BrandMark className="size-5 shrink-0" />
           Acervo
         </Link>
+
+        <nav className="flex items-center">
+          <Link
+            href={`/${locale}/contributors`}
+            className="text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs"
+          >
+            {dict.nav.contributors}
+          </Link>
+        </nav>
 
         <div className="ml-auto flex items-center gap-2 sm:gap-4">
           <RepoStars label={dict.nav.stars} />
