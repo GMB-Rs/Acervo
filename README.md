@@ -80,22 +80,6 @@ GITHUB_TOKEN=ghp_xxx npm run sync:github
 
 Busca estrelas, último push, status de manutenção no GitHub e downloads no npm, reescrevendo o JSON. Sem token: 60 req/h da API anônima. Com o workflow `sync:github` roda sozinho toda segunda-feira e abre PR se algo mudou.
 
-## Deploy
-
-Conectar o repositório na Vercel.
-
-O domínio canônico vive em `src/lib/site.ts` (`acervo.app`) e é usado no `metadataBase`, `sitemap.xml` e `robots.txt`. Para trocar sem mexer no código, defina `NEXT_PUBLIC_SITE_URL` no painel da Vercel (a variável tem prioridade e precisa existir no build).
-
-DNS customizado apontando para a Vercel:
-
-| Tipo | Nome | Valor |
-|------|------|-------|
-| `A` | `@` | `76.76.21.21` |
-| `AAAA` | `@` | `2606:4700:4700::1111` |
-| `CNAME` | `www` | `cname.vercel-dns.com` |
-
-Se atrás de proxy Cloudflare: SSL em modo *Full (strict)*.
-
 ## Estrelas do repositório
 
 O cabeçalho mostra o número de estrelas. O valor sai de `src/data/repo.json` (sync diário) e é confirmado em tempo real pela rota `/api/stars`, que o componente consulta no navegador. A busca é no servidor (cache de 5 min) para evitar o 403 da API anônima do GitHub. Para o limite maior (5000/h), defina `GITHUB_TOKEN` na Vercel.
