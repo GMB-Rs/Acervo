@@ -1,6 +1,8 @@
 version: 2
 
 updates:
+  # O React e o react-dom andam juntos: um bump de um sem o outro quebra o
+  # `npm ci` (o react-dom exige o react da mesma versão).
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -8,6 +10,24 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - "chore(deps)"
+    groups:
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+      types:
+        patterns:
+          - "@types/*"
+    ignore:
+      # Mudanças major são revisadas à mão, nunca automáticas.
+      - dependency-name: "next"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
