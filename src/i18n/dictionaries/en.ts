@@ -75,7 +75,7 @@ export const en: Dictionary = {
     stars: "{count} stars",
   },
   detail: {
-    back: "Back to the gallery",
+    back: "Back to Acervo",
     framework: "framework",
     category: "category",
     status: "status",
@@ -98,11 +98,18 @@ export const en: Dictionary = {
     code: "error 404",
     title: "This library does not exist",
     text: "The address may be broken or the library has not been catalogued yet.",
-    cta: "Back to the gallery",
+    cta: "Back to Acervo",
   },
   footer: {
     about: "Acervo, a curated collection of web component libraries maintained by the community.",
     metrics: "stars and downloads synced from GitHub and npm",
+    explore: "Explore",
+    project: "Project",
+    gallery: "Gallery",
+    contribute: "How to contribute",
+    license: "License",
+    issues: "Report an issue",
+    rights: "Code under the MIT license, built by the community.",
   },
   theme: {
     toLight: "Switch to light theme",
