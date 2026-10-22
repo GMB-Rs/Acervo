@@ -235,6 +235,32 @@
     "lastUpdate": "2026-10-17T21:51:23Z"
   },
   {
+    "slug": "heroui",
+    "name": "HeroUI",
+    "description": "Biblioteca de componentes React pronta para produção, com temas claro e escuro, acessibilidade e integração direta com o Tailwind CSS.",
+    "highlight": "Nasceu como NextUI e virou HeroUI em 2024 — hoje está entre as maiores comunidades de componentes React, com mais de 30 mil estrelas.",
+    "framework": "react",
+    "category": "ui-kit",
+    "website": "https://heroui.com",
+    "repo": "heroui-inc/heroui",
+    "docs": "https://heroui.com/docs",
+    "license": "Apache-2.0",
+    "logo": "heroui.svg",
+    "color": "#000000",
+    "tags": [
+      "tailwind",
+      "temas",
+      "acessibilidade",
+      "componentes"
+    ],
+    "stars": 30977,
+    "npmDownloads": 2804854,
+    "maintained": true,
+    "since": 2021,
+    "npmPackage": "@heroui/react",
+    "lastUpdate": "2026-10-22T03:00:56Z"
+  },
+  {
     "slug": "semantic-ui-react",
     "name": "Semantic UI React",
     "description": "Porta React do popular framework Semantic UI, com semanticidade forte e Naming coerente.",
