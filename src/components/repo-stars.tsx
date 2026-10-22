@@ -1,36 +1,40 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { repo, repoApiUrl } from "@/lib/repo";
+import { repo } from "@/lib/repo";
 import { formatText } from "@/i18n/format";
 
 /*
   Contador de estrelas do repositório do Acervo.
 
   O número do servidor (`src/data/repo.json`) entra na primeira pintura, sem
-  layout shift. Depois, no navegador, o componente pergunta à API do GitHub
-  e atualiza o valor — assim o contador não fica preso ao sync semanal.
+  layout shift. Depois, no navegador, o componente pergunta à API do site
+  (`/api/stars`) e atualiza o valor — assim o contador não fica preso ao
+  sync semanal.
 
-  Se a API falhar (repo privado, limite de requisições, offline), o valor
-  estático continua na tela: falhar de leve é melhor do que quebrar a página.
+  A busca é pelo site, e não direto na API do GitHub: a versão anônima da
+  API responde 403 assim que o IP esgota as 60 requisições por hora, e o
+  contador ficaria travado no valor antigo. No servidor a requisição é uma
+  só a cada cinco minutos, com cache.
+
+  Se a API falhar (offline, site fora do ar), o valor estático continua na
+  tela: falhar de leve é melhor do que quebrar a página.
 */
 
 export function RepoStars({ label }: { label: string }) {
   // O servidor renderiza o último valor sincronizado; o navegador troca pelo
-  // número atual assim que a API responde. Se a API falhar (repositório
-  // privado, limite de requisições, offline), o valor antigo fica na tela.
+  // número atual assim que a API responde. Se a API falhar (site fora do ar,
+  // offline), o valor antigo fica na tela.
   const [stars, setStars] = useState(repo.stars);
 
   useEffect(() => {
     let cancelled = false;
 
-    fetch(repoApiUrl, {
-      headers: { Accept: "application/vnd.github+json" },
-    })
+    fetch("/api/stars", { headers: { Accept: "application/json" } })
       .then((response) => (response.ok ? response.json() : null))
-      .then((data: { stargazers_count?: number } | null) => {
+      .then((data: { stars?: number } | null) => {
         if (cancelled) return;
-        const count = data?.stargazers_count;
+        const count = data?.stars;
         if (typeof count === "number") setStars(count);
       })
       .catch(() => {

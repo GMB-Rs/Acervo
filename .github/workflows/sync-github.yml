@@ -2,8 +2,9 @@ name: sync:github
 
 on:
   schedule:
-    # Segunda-feira, 04:17 UTC — fora do horário de pico da API.
-    - cron: "17 4 * * 1"
+    # Todo dia, 04:17 UTC — fora do horário de pico da API. Diário para o
+    # contador de estrelas do site não ficar defasado.
+    - cron: "17 4 * * *"
   workflow_dispatch:
 
 permissions:
