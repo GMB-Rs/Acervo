@@ -99,6 +99,15 @@ export type Dictionary = {
   footer: {
     about: string;
     metrics: string;
+    /** Título da coluna de links do rodapé. */
+    explore: string;
+    /** Título da coluna de links do projeto. */
+    project: string;
+    gallery: string;
+    contribute: string;
+    license: string;
+    issues: string;
+    rights: string;
   };
   theme: {
     toLight: string;

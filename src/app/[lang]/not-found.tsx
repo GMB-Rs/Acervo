@@ -18,7 +18,7 @@ export default function NotFound() {
         href="/"
         className="mt-8 inline-flex h-9 items-center rounded-md bg-accent px-4 text-xs font-semibold text-accent-foreground transition hover:opacity-80"
       >
-        Voltar para a galeria
+        Voltar para o acervo
       </Link>
     </div>
   );

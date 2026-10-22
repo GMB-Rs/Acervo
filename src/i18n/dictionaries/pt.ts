@@ -75,7 +75,7 @@ export const pt: Dictionary = {
     stars: "{count} estrelas",
   },
   detail: {
-    back: "Voltar para a galeria",
+    back: "Voltar para o acervo",
     framework: "framework",
     category: "categoria",
     status: "status",
@@ -98,11 +98,18 @@ export const pt: Dictionary = {
     code: "erro 404",
     title: "Essa biblioteca não existe",
     text: "O endereço pode estar quebrado ou a biblioteca ainda não foi catalogada.",
-    cta: "Voltar para a galeria",
+    cta: "Voltar para o acervo",
   },
   footer: {
     about: "Acervo de bibliotecas de componentes web, mantido pela comunidade.",
     metrics: "estrelas e downloads sincronizados com GitHub e npm",
+    explore: "Explorar",
+    project: "Projeto",
+    gallery: "Galeria",
+    contribute: "Como contribuir",
+    license: "Licença",
+    issues: "Reportar um problema",
+    rights: "Código sob licença MIT, feito pela comunidade.",
   },
   theme: {
     toLight: "Alternar para tema claro",
