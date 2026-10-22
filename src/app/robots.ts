@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getBaseUrl } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -6,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://diretorio.dev/sitemap.xml",
+    sitemap: `${getBaseUrl()}/sitemap.xml`,
   };
 }

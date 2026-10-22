@@ -8,6 +8,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeScript } from "@/components/theme-script";
 import { HTML_LANG, LOCALES, isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
+import { getBaseUrlObject } from "@/lib/site";
 import "../globals.css";
 
 /*
@@ -42,7 +43,7 @@ export async function generateMetadata({
   const dict = getDictionary(locale);
 
   return {
-    metadataBase: new URL("https://diretorio.dev"),
+    metadataBase: getBaseUrlObject(),
     title: {
       default: dict.meta.title,
       template: dict.meta.template,

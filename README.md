@@ -208,6 +208,23 @@ a mesma geometria aparece no favicon (`src/app/favicon.ico` e
 
 ## Deploy
 
-Basta conectar o repositório na Vercel. O `metadataBase` e as URLs do
-`sitemap.ts` / `robots.ts` apontam para `https://diretorio.dev` — ajuste para o
-domínio real antes de publicar.
+Basta conectar o repositório na Vercel.
+
+O domínio canônico vive em `src/lib/site.ts` (`acervo.app` por padrão) e é
+usado no `metadataBase`, no `sitemap.xml` e no `robots.txt` — os três precisam
+apontar para o mesmo lugar, senão o Google indexa URLs diferentes do mesmo
+conteúdo. Para trocar o domínio sem mexer no código, defina
+`NEXT_PUBLIC_SITE_URL` no painel da Vercel (Settings → Environment Variables);
+a variável tem prioridade sobre o padrão e precisa existir no momento do
+build, porque `sitemap.xml` e `robots.txt` são gerados estaticamente.
+
+O DNS do domínio customizado precisa apontar para a Vercel:
+
+| Tipo | Nome | Valor |
+| --- | --- | --- |
+| `A` | `@` | `76.76.21.21` |
+| `AAAA` | `@` | `2606:4700:4700::1111` |
+| `CNAME` | `www` | `cname.vercel-dns.com` |
+
+Se o domínio estiver atrás do proxy da Cloudflare, o SSL da Cloudflare
+precisa estar em modo *Full (strict)*.

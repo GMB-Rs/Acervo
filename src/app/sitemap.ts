@@ -1,8 +1,9 @@
 import type { MetadataRoute } from "next";
 import { getAllSlugs } from "@/lib/libraries";
+import { getBaseUrl } from "@/lib/site";
 import { LOCALES } from "@/i18n/config";
 
-const BASE_URL = "https://diretorio.dev";
+const BASE_URL = getBaseUrl();
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const slugs = getAllSlugs();
@@ -12,7 +13,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "daily" as const,
     priority: 1,
     alternates: {
-      languages: Object.fromEntries(LOCALES.map((item) => [item, `/${item}`])),
+      /*
+        O `hreflang` precisa de URL absoluta — o Google não resolve
+        caminho relativo dentro do sitemap.
+      */
+      languages: Object.fromEntries(
+        LOCALES.map((item) => [item, `${BASE_URL}/${item}`]),
+      ),
     },
   }));
 
@@ -23,7 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.7,
       alternates: {
         languages: Object.fromEntries(
-          LOCALES.map((item) => [item, `/${item}/libraries/${slug}`]),
+          LOCALES.map((item) => [
+            item,
+            `${BASE_URL}/${item}/libraries/${slug}`,
+          ]),
         ),
       },
     }))
