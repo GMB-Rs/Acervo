@@ -160,6 +160,25 @@ No pull request:
 O modelo em `.github/PULL_REQUEST_TEMPLATE.md` já traz esses campos — é só
 preencher.
 
+### A `main` é protegida
+
+A branch `main` tem proteção de branch no GitHub, e vale saber o que isso
+significa na prática:
+
+- **Nada entra por push direto.** Toda mudança passa por pull request — o
+  mesmo fluxo que o repositório usa. Nenhuma aprovação de outra pessoa é
+  exigida: o merge acontece assim que o CI passa.
+- **O CI precisa passar.** O merge só acontece com o check
+  `Lint, tipos, build e testes` verde — o mesmo que roda no PR.
+- **Sem force push e sem deletar a branch.** Se algo precisar ser
+  desfeito, o caminho é um novo PR revertendo o commit.
+- **Conversas resolvidas.** Todo comentário do review precisa ser marcado
+  como resolvido antes do merge.
+
+Se o CI quebrar por um motivo alheio à mudança, avise nos comentários do
+pull request — a proteção pode ser desligada temporariamente em
+*Settings → Branches*, e religada em seguida.
+
 ## 7. Traduções
 
 O site tem dois idiomas: **português** (padrão) e **inglês**. O português é a
