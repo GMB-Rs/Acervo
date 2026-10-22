@@ -122,7 +122,7 @@ export type Dictionary = {
     explore: string;
     /** Título da coluna de links do projeto. */
     project: string;
-    gallery: string;
+    acervo: string;
     contribute: string;
     license: string;
     issues: string;

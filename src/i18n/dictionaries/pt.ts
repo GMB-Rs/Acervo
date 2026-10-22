@@ -135,7 +135,7 @@ export const pt: Dictionary = {
     metrics: "estrelas e downloads sincronizados com GitHub e npm",
     explore: "Explorar",
     project: "Projeto",
-    gallery: "Galeria",
+    acervo: "Acervo",
     contribute: "Como contribuir",
     license: "Licença",
     issues: "Reportar um problema",
