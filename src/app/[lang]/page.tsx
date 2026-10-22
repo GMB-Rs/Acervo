@@ -64,7 +64,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         </div>
       </section>
 
-      <div className="mx-auto w-full max-w-6xl px-4 pb-16">
+      <div className="mx-auto w-full max-w-6xl px-4">
         <Suspense fallback={<ExplorerFallback />}>
           <LibraryExplorer
             libraries={localizedLibraries}

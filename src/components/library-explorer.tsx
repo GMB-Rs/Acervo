@@ -694,65 +694,69 @@ export function LibraryExplorer({
             ))}
           </div>
 
-          {totalPages > 1 && (
-            <nav
-              className="mt-24 flex items-center justify-center gap-1"
-              aria-label={dict.pagination.label}
-            >
-              <button
-                type="button"
-                onClick={() =>
-                  pushParams({ [PARAM.page]: String(Math.max(1, page - 1)) })
-                }
-                disabled={page === 1}
-                className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
-                aria-label={dict.pagination.previous}
+          <div className={totalPages > 1 ? "mt-24 mb-8" : "mb-8"}>
+            {totalPages > 1 && (
+              <nav
+                className="flex items-center justify-center gap-1"
+                aria-label={dict.pagination.label}
               >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
-                  <path d="m15 18-6-6 6-6" />
-                </svg>
-              </button>
-
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
                 <button
-                  key={p}
                   type="button"
-                  onClick={() => pushParams({ [PARAM.page]: String(p) })}
-                  className={`h-10 w-10 rounded-md text-sm font-mono transition ${
-                    p === page
-                      ? "bg-foreground text-background"
-                      : "bg-background text-muted-foreground hover:bg-muted hover:text-foreground border border-border"
-                  }`}
-                  aria-label={formatText(dict.pagination.page, { page: p })}
-                  aria-current={p === page ? "page" : undefined}
+                  onClick={() =>
+                    pushParams({ [PARAM.page]: String(Math.max(1, page - 1)) })
+                  }
+                  disabled={page === 1}
+                  className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
+                  aria-label={dict.pagination.previous}
                 >
-                  {p}
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
+                    <path d="m15 18-6-6 6-6" />
+                  </svg>
                 </button>
-              ))}
 
-              <button
-                type="button"
-                onClick={() =>
-                  pushParams({ [PARAM.page]: String(Math.min(totalPages, page + 1)) })
-                }
-                disabled={page === totalPages}
-                className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
-                aria-label={dict.pagination.next}
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
-                  <path d="m9 6 6 6-6 6" />
-                </svg>
-              </button>
-            </nav>
-          )}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+                  <button
+                    key={p}
+                    type="button"
+                    onClick={() => pushParams({ [PARAM.page]: String(p) })}
+                    className={`h-10 w-10 rounded-md text-sm font-mono transition ${
+                      p === page
+                        ? "bg-foreground text-background"
+                        : "bg-background text-muted-foreground hover:bg-muted hover:text-foreground border border-border"
+                    }`}
+                    aria-label={formatText(dict.pagination.page, { page: p })}
+                    aria-current={p === page ? "page" : undefined}
+                  >
+                    {p}
+                  </button>
+                ))}
 
-          <p className="mt-4 text-xs text-muted-foreground text-center font-mono">
-            {formatText(dict.results.showing, {
-              from: (page - 1) * itemsPerPage + 1,
-              to: Math.min(page * itemsPerPage, filteredResults.length),
-              total: filteredResults.length,
-            })}
-          </p>
+                <button
+                  type="button"
+                  onClick={() =>
+                    pushParams({
+                      [PARAM.page]: String(Math.min(totalPages, page + 1)),
+                    })
+                  }
+                  disabled={page === totalPages}
+                  className="h-10 px-3 rounded-md border border-border bg-background text-sm font-mono transition disabled:opacity-40 disabled:cursor-not-allowed hover:border-foreground/50"
+                  aria-label={dict.pagination.next}
+                >
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="size-4">
+                    <path d="m9 6 6 6-6 6" />
+                  </svg>
+                </button>
+              </nav>
+            )}
+
+            <p className="mt-4 text-xs text-muted-foreground text-center font-mono">
+              {formatText(dict.results.showing, {
+                from: (page - 1) * itemsPerPage + 1,
+                to: Math.min(page * itemsPerPage, filteredResults.length),
+                total: filteredResults.length,
+              })}
+            </p>
+          </div>
         </>
       )}
     </section>
