@@ -8,11 +8,12 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Acervo - Web component libraries",
+    title: "Acervo - Libraries for the web",
     template: "%s | Acervo",
     description:
-      "Acervo: a curated gallery of web component libraries — React, Vue, Svelte, Angular, Solid, Qwik and Web Components. Compare them, filter by stack and pick the right one.",
+      "Acervo: a curated catalog of libraries for the web — UI kits, forms, tables, charts, icons, editors and utilities. Filter by framework, category and license.",
     keywords: [
+      "web libraries",
       "component libraries",
       "design system",
       "react",
@@ -42,9 +43,9 @@ export const en: Dictionary = {
     ctaRepo: "See the repository",
   },
   home: {
-    title: "Acervo: web component libraries",
+    title: "The right libraries for your next project",
     intro:
-      "Acervo gathers {n} libraries that already exist: UI kits, headless, design systems, forms, tables, icons and animations. Filter by framework or category and open each one's page.",
+      "A curated collection of {n} libraries for the web, from UI kits to validators, charts and date utilities. Filter by framework, category and license.",
   },
   search: {
     placeholder: "Search by name, tag or description",
@@ -114,7 +115,7 @@ export const en: Dictionary = {
     cta: "Back to Acervo",
   },
   footer: {
-    about: "Acervo, a curated collection of web component libraries maintained by the community.",
+    about: "Acervo, a community-maintained collection of libraries for the web.",
     metrics: "stars and downloads synced from GitHub and npm",
     explore: "Explore",
     project: "Project",

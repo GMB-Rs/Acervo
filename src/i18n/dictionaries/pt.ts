@@ -8,11 +8,12 @@ import type { Dictionary } from "./types";
 
 export const pt: Dictionary = {
   meta: {
-    title: "Acervo - Bibliotecas de componentes web",
+    title: "Acervo - Bibliotecas para web",
     template: "%s | Acervo",
     description:
-      "Acervo: galeria curada de bibliotecas de componentes para web — React, Vue, Svelte, Angular, Solid, Qwik e Web Components. Compare, filtre e escolha a stack certa.",
+      "Acervo: catálogo curado de bibliotecas para web — UI kits, formulários, tabelas, gráficos, ícones, editores e utilitários. Filtre por framework, categoria e licença.",
     keywords: [
+      "bibliotecas para web",
       "bibliotecas de componentes",
       "design system",
       "react",
@@ -42,9 +43,9 @@ export const pt: Dictionary = {
     ctaRepo: "Ver o repositório",
   },
   home: {
-    title: "Acervo: bibliotecas de componentes web",
+    title: "As bibliotecas certas para o seu próximo projeto",
     intro:
-      "O Acervo reúne {n} bibliotecas que já existem: UI kits, headless, design systems, formulários, tabelas, ícones e animações. Filtre por framework ou categoria e abra a ficha de cada uma.",
+      "Um acervo curado de {n} bibliotecas para web, de UI kits a validadores, gráficos e utilitários de data. Filtre por framework, categoria e licença.",
   },
   search: {
     placeholder: "Buscar nome, tag ou descrição",
@@ -114,7 +115,7 @@ export const pt: Dictionary = {
     cta: "Voltar para o acervo",
   },
   footer: {
-    about: "Acervo de bibliotecas de componentes web, mantido pela comunidade.",
+    about: "Acervo de bibliotecas para web, mantido pela comunidade.",
     metrics: "estrelas e downloads sincronizados com GitHub e npm",
     explore: "Explorar",
     project: "Projeto",

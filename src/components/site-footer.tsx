@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrandMark } from "@/components/brand-mark";
 import { RepoStars } from "@/components/repo-stars";
 import { repo } from "@/lib/repo";
 import { FRAMEWORKS } from "@/types/library";
@@ -30,9 +29,8 @@ export function SiteFooter({
           <div className="max-w-sm">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-2 text-sm font-semibold tracking-tight"
+              className="text-sm font-semibold tracking-tight"
             >
-              <BrandMark className="size-5 shrink-0" />
               Acervo
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
