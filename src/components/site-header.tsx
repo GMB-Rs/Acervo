@@ -22,10 +22,22 @@ export function SiteHeader({
           Acervo
         </Link>
 
-        <nav className="flex items-center">
+        <nav className="flex items-center gap-3 sm:gap-4">
+          <Link
+            href={`/${locale}/stack`}
+            className="text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs"
+          >
+            {dict.nav.stack}
+          </Link>
+          <Link
+            href={`/${locale}/ia`}
+            className="text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs"
+          >
+            {dict.nav.ai}
+          </Link>
           <Link
             href={`/${locale}/contributors`}
-            className="text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs"
+            className="hidden text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:inline sm:text-xs"
           >
             {dict.nav.contributors}
           </Link>

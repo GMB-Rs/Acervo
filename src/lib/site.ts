@@ -6,17 +6,18 @@
   `sitemap.xml` e `robots.txt` — senão o Google indexa URLs diferentes
   para o mesmo conteúdo.
 
-  Hoje o domínio é `acervo.app` (domínio próprio apontando para a Vercel).
-  Para trocar, ou para usar um fork em outro domínio, defina a variável
-  `NEXT_PUBLIC_SITE_URL` no painel da Vercel (Settings → Environment
-  Variables) — ela tem prioridade sobre o valor padrão abaixo.
+  O domínio próprio `acervo.app` ainda não resolve. Enquanto isso, o padrão
+  aponta para o deploy estável da Vercel, para que sitemap, canonical, API e
+  `llms.txt` não publiquem URLs quebradas. Quando o domínio próprio estiver
+  configurado, defina `NEXT_PUBLIC_SITE_URL` no painel da Vercel (Settings →
+  Environment Variables) — ela tem prioridade sobre o valor padrão abaixo.
 
   A variável precisa existir no momento do build: as rotas `sitemap.xml` e
   `robots.txt` são geradas estaticamente, então o valor é congelado no
   HTML do deploy.
 */
 
-const DEFAULT_SITE_URL = "https://acervo.app";
+const DEFAULT_SITE_URL = "https://acervo-azure.vercel.app";
 
 function withProtocol(host: string): string {
   return host.startsWith("http://") || host.startsWith("https://")

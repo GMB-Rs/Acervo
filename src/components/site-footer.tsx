@@ -56,6 +56,16 @@ export function SiteFooter({
                   </FooterLink>
                 </li>
                 <li>
+                  <FooterLink href={`/${locale}/stack`}>
+                    {dict.nav.stack}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={`/${locale}/ia`}>
+                    {dict.nav.ai}
+                  </FooterLink>
+                </li>
+                <li>
                   <FooterLink href={`/${locale}/contributors`}>
                     {dict.nav.contributors}
                   </FooterLink>

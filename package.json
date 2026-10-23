@@ -4,7 +4,7 @@
   "private": true,
   "description": "Acervo — galeria curada de bibliotecas de componentes para web.",
   "license": "MIT",
-  "homepage": "https://acervo.app",
+  "homepage": "https://acervo-azure.vercel.app",
   "author": "Gabriel M. Barbosa",
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test 'src/**/*.test.ts'",
     "check": "npm run lint && npm run typecheck && npm run build && npm run test",
+    "mcp": "tsx mcp/server.ts",
     "sync:github": "node scripts/sync-github.ts"
   },
   "dependencies": {
@@ -49,6 +50,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

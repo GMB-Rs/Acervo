@@ -61,6 +61,6 @@ export const config = {
     vale para a API (`/api/...`), que não tem idioma.
   */
   matcher: [
-    "/((?!_next/|logos/|api/|favicon\\.ico|icon\\.svg|robots\\.txt|sitemap\\.xml).*)",
+    "/((?!_next/|logos/|api/|favicon\\.ico|icon\\.svg|llms\\.txt|llms-full\\.txt|robots\\.txt|sitemap\\.xml).*)",
   ],
 };

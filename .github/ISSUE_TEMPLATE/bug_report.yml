@@ -32,7 +32,7 @@ body:
     id: url
     attributes:
       label: Endereço da página
-      placeholder: https://acervo.app/pt
+      placeholder: https://acervo-azure.vercel.app/pt
     validations:
       required: false
 
