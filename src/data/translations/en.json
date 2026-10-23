@@ -103,6 +103,10 @@
     "description": "Adds transition animations to any component with a single line of code.",
     "highlight": "Zero configuration: it detects DOM changes and animates on its own."
   },
+  "dotlottie-web": {
+    "description": "The official LottieFiles player for Lottie (.json) and dotLottie (.lottie) animations, with a Rust + WASM core and Canvas, WebGL2 and WebGPU rendering.",
+    "highlight": "One player for every stack — React, Vue, Svelte, Solid and Web Components — with themes, state machines and audio from the dotLottie v2 format."
+  },
   "tailwindcss": {
     "description": "A utility CSS framework for building responsive designs without leaving your HTML.",
     "highlight": "The styling base of most of today's component kits."
@@ -254,6 +258,10 @@
   "radix-icons": {
     "description": "A 15x15 icon set from the Radix team, designed for UI density and clarity.",
     "highlight": "A single size optimised for buttons and inputs, with packages for React and Web Components."
+  },
+  "iconsax": {
+    "description": "Icon library with over 1,200 free icons across six styles, from Linear to Two Tone.",
+    "highlight": "The official package is a native web component: it works in React, Vue, Svelte or plain HTML, with free and Pro icon sets."
   },
   "number-flow": {
     "description": "An animated number component: the digits transition to the new value whenever it changes.",

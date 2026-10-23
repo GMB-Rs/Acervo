@@ -667,6 +667,32 @@
     "lastUpdate": "2026-07-10T16:08:00Z"
   },
   {
+    "slug": "dotlottie-web",
+    "name": "dotLottie Web",
+    "description": "Player oficial da LottieFiles para animações Lottie (.json) e dotLottie (.lottie), com núcleo em Rust + WASM e renderização em Canvas, WebGL2 e WebGPU.",
+    "highlight": "Um único player para todas as stacks — React, Vue, Svelte, Solid e Web Components — com temas, state machines e áudio do formato dotLottie v2.",
+    "framework": "web-components",
+    "category": "animation",
+    "website": "https://lottiefiles.com/dotlottie",
+    "repo": "LottieFiles/dotlottie-web",
+    "docs": "https://developers.lottiefiles.com/docs/dotlottie-player/dotlottie-web/",
+    "license": "MIT",
+    "logo": "dotlottie-web.svg",
+    "color": "#00DDB3",
+    "tags": [
+      "animação",
+      "lottie",
+      "wasm",
+      "multi-framework"
+    ],
+    "stars": 924,
+    "npmDownloads": 6745353,
+    "maintained": true,
+    "since": 2023,
+    "npmPackage": "@lottiefiles/dotlottie-web",
+    "lastUpdate": "2026-10-22T14:04:09Z"
+  },
+  {
     "slug": "tailwindcss",
     "name": "Tailwind CSS",
     "description": "Framework de CSS utilitário para construir designs responsivos sem sair do HTML.",
@@ -1620,6 +1646,31 @@
     "since": 2021,
     "npmPackage": "@radix-ui/react-icons",
     "lastUpdate": "2026-10-20T12:00:00Z"
+  },
+  {
+    "slug": "iconsax",
+    "name": "Iconsax",
+    "description": "Biblioteca de ícones com mais de 1.200 ícones gratuitos em seis estilos, do Linear ao Two Tone.",
+    "highlight": "O pacote oficial é um web component nativo: funciona em React, Vue, Svelte ou HTML puro, com versões gratuita e Pro.",
+    "framework": "web-components",
+    "category": "icons",
+    "website": "https://iconsax.io",
+    "repo": "lusaxweb/iconsax",
+    "license": "MIT",
+    "logoKind": "text",
+    "color": "#16A5F3",
+    "tags": [
+      "ícones",
+      "svg",
+      "multi-framework",
+      "web components"
+    ],
+    "stars": 393,
+    "npmDownloads": 10820,
+    "maintained": false,
+    "since": 2021,
+    "npmPackage": "iconsax",
+    "lastUpdate": "2023-06-10T19:24:16Z"
   },
   {
     "slug": "number-flow",
