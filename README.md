@@ -4,11 +4,11 @@
 [![sync:github](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml/badge.svg)](https://github.com/GMB-Rs/Diretorio/actions/workflows/sync-github.yml)
 [![Licença: MIT](https://img.shields.io/badge/Licença-MIT-yellow.svg)](LICENSE)
 [![Estrelas](https://img.shields.io/github/stars/GMB-Rs/Diretorio?style=social)](https://github.com/GMB-Rs/Diretorio)
-[![Site](https://img.shields.io/badge/site-acervo.app-0a0a0a)](https://acervo-azure.vercel.app/)
+[![Site](https://img.shields.io/badge/site-online-0a0a0a)](https://acervo-azure.vercel.app/)
 
 Acervo de bibliotecas para **web**. O site cataloga libs de UI kit, headless, design systems, formulários, tabelas, gráficos, ícones, editores, animações e utilitários — organizadas por framework e categoria, com busca e filtros.
 
-> Escopo atual: **Web UI**. Mobile (React Native, Flutter) entra em uma próxima fase, reaproveitando o mesmo schema de dados.
+> Cobertura: UI kits, headless, design systems, formulários, tabelas, gráficos, ícones, animação, mobile/universal e utilitários de data.
 
 O site é bilíngue: **português** (`/pt`) e **inglês** (`/en`). O código, os dados e a documentação deste repositório estão em português.
 
@@ -35,6 +35,7 @@ npm run dev        # http://localhost:3000
 | `npm run typecheck` | `next typegen` + `tsc --noEmit` |
 | `npm run test` | Testes da busca e das traduções (`node --test`) |
 | `npm run check` | `lint` + `typecheck` + `build` + `test` |
+| `npm run mcp` | Servidor MCP local (stdio) para agentes |
 | `npm run sync:github` | Atualiza estrelas/downloads em `src/data/libraries.json` |
 
 ## Contribuindo
@@ -51,7 +52,12 @@ O catálogo é um arquivo só (`src/data/libraries.json`). O passo a passo para 
 src/
   app/
     [lang]/                 # site inteiro por idioma (/pt, /en)
+    [lang]/stack/           # recomendador de stack
+    [lang]/ia/              # documentação de IA/API/MCP
+    api/libraries/          # API JSON pública do catálogo
     api/stars/route.ts      # contador de estrelas (cache no servidor)
+    llms.txt/               # índice para LLMs
+    llms-full.txt/          # fichas completas para LLMs
     sitemap.ts / robots.ts  # metadados para buscadores
   components/               # UI components
   data/
@@ -60,17 +66,43 @@ src/
     contributors.json       # lista de contribuidores (/contributors)
     translations/           # descrições e tags em inglês
   i18n/                     # config e dicionários de idiomas
-  lib/                      # lógica de negócio (busca, tema, site, repo, contributors)
+  lib/                      # lógica de negócio (busca, stack, catálogo, tema, site)
   types/                    # schema das bibliotecas
+mcp/
+  server.ts                 # servidor MCP local (stdio)
 scripts/
   sync-github.ts            # sincronização com GitHub/npm
 ```
 
 ## Busca
 
-A busca é por **termos** (`react form` e `form react` dão o mesmo resultado). Termos que designam um grupo do catálogo viram filtro: `mobile`, `react`, `dados`. A ordenação padrão passa a ser por relevância. Atalhos: `/` foca o campo, `Esc` limpa.
+A busca entende **linguagem natural** sem chave e sem chamada externa:
 
-Lógica em `src/lib/search.ts` (funções puras, sem React), coberta por testes (`npm run test`).
+- remove palavras vazias (`preciso de uma...`);
+- reconhece sinônimos e frases (`tabela`/`table`, `react native`, `data grid`);
+- trata framework, categoria e licença como filtros (`react`, `mobile`, `MIT`);
+- usa correspondência de palavra inteira e tolera erro de digitação (`tailwnd`);
+- se a busca estrita não achar nada, relaxa os termos descritivos e avisa que os resultados são aproximados.
+
+Atalhos: `/` foca o campo, `Esc` limpa. Essa é a camada semântica local do projeto: ela não baixa modelo de embedding e roda inteira no navegador. Lógica em `src/lib/search.ts` (funções puras, sem React), coberta por testes (`npm run test`).
+
+## IA sem chave
+
+O catálogo também é uma superfície para agentes. Tudo é determinístico e não
+exige chave de API, cadastro ou LLM pago:
+
+- [`/llms.txt`](https://acervo-azure.vercel.app/llms.txt) e
+  [`/llms-full.txt`](https://acervo-azure.vercel.app/llms-full.txt) — índice e
+  fichas completas em texto;
+- `/api/libraries` e `/api/libraries/[slug]` — catálogo em JSON com busca por
+  intenção, filtros e paginação;
+- JSON-LD (`WebSite`, `ItemList` e `SoftwareApplication`) nas páginas;
+- `/pt/stack` e `/en/stack` — recomendador determinístico de stack;
+- `npm run mcp` — servidor MCP local (stdio) com `search_libraries`,
+  `get_library` e `recommend_stack`.
+
+A página `/pt/ia` (ou `/en/ia`) documenta as superfícies e mostra a
+configuração do MCP. O guia do servidor está em [mcp/README.md](mcp/README.md).
 
 ## Sincronização automática (opcional)
 

@@ -9,7 +9,7 @@ import type { Dictionary } from "./types";
 export const pt: Dictionary = {
   meta: {
     title: "Acervo - Bibliotecas para web",
-    template: "%s | Acervo",
+    template: "%s - Acervo",
     description:
       "Acervo: catálogo curado de bibliotecas para web — UI kits, formulários, tabelas, gráficos, ícones, editores e utilitários. Filtre por framework, categoria e licença.",
     keywords: [
@@ -29,6 +29,8 @@ export const pt: Dictionary = {
     stars: "Estrelas no GitHub: {n}",
     language: "Idioma",
     contributors: "Contribuidores",
+    stack: "Montar stack",
+    ai: "IA",
   },
   contributors: {
     title: "Contribuidores",
@@ -47,8 +49,115 @@ export const pt: Dictionary = {
     intro:
       "Um acervo curado de {n} bibliotecas para web, de UI kits a validadores, gráficos e utilitários de data. Filtre por framework, categoria e licença.",
   },
+  stack: {
+    metaTitle: "Montar stack",
+    metaDescription:
+      "Monte uma stack de bibliotecas para web por tipo de projeto, framework e necessidades. Escolhas determinísticas, sem chave de API.",
+    title: "Monte a stack do seu próximo projeto",
+    intro:
+      "Escolha o tipo de projeto, o framework e o que você precisa. O Acervo cruza categorias, tags, licença e compatibilidade para sugerir uma biblioteca por necessidade — sem IA generativa e sem chave.",
+    form: {
+      goal: "Tipo de projeto",
+      framework: "Framework",
+      needs: "Necessidades",
+      needsHint: "Marque tudo o que o projeto precisa.",
+      license: "Licença",
+      openSource: "Somente licença aberta",
+      openSourceHint:
+        "Remove opções comerciais, como Handsontable e GSAP.",
+      anyFramework: "Tanto faz",
+      reset: "Limpar seleção",
+    },
+    goals: {
+      dashboard: "Dashboard / painel interno",
+      site: "Site institucional / landing page",
+      ecommerce: "Loja / e-commerce",
+      forms: "Aplicação com muitos formulários",
+      docs: "Documentação / conteúdo",
+      app: "App mobile / universal",
+    },
+    needs: {
+      ui: "UI kit",
+      forms: "Formulários",
+      tables: "Tabelas",
+      charts: "Gráficos",
+      icons: "Ícones",
+      animation: "Animação",
+      editor: "Editor de texto",
+      dates: "Datas",
+      validation: "Validação",
+      drag: "Arrastar e soltar",
+      i18n: "Internacionalização",
+      accessibility: "Acessibilidade",
+    },
+    results: {
+      title: "Stack sugerida",
+      intro:
+        "Uma escolha por necessidade, com alternativas. A ordem e as notas são determinísticas.",
+      countOne: "1 escolha",
+      countMany: "{n} escolhas",
+      empty: "Nenhuma escolha para esses filtros",
+      emptyHint:
+        "Marque menos necessidades, troque o framework ou desmarque “somente licença aberta”.",
+      alternatives: "Alternativas",
+      view: "Ver ficha",
+      reasonCategory: "categoria {category}",
+      reasonTags: "tags {tags}",
+      reasonUniversal: "funciona em qualquer stack",
+      reasonFeatured: "destaque do catálogo",
+      copy: "Copiar stack em Markdown",
+      copied: "copiado",
+      noteMissing: "Não encontramos uma opção para {need} com esses filtros.",
+      noteLicense:
+        "As opções de {need} são comerciais. Desmarque “somente licença aberta” para vê-las.",
+    },
+  },
+  ai: {
+    metaTitle: "IA sem chave",
+    metaDescription:
+      "Catálogo, API JSON, llms.txt, JSON-LD, busca por intenção, recomendador de stack e servidor MCP. Tudo sem chave de API.",
+    title: "IA sem chave",
+    intro:
+      "O Acervo foi feito para ser lido por pessoas e por agentes. As superfícies abaixo são determinísticas e funcionam sem chave, sem cadastro e sem LLM pago.",
+    catalogTitle: "Catálogo para agentes",
+    catalogText:
+      "Texto e JSON no mesmo contrato do site. Use o índice enxuto para descoberta e o catálogo completo para fichas.",
+    llms: "Índice enxuto: título, resumo, links e uma linha por biblioteca.",
+    llmsFull:
+      "Fichas completas: descrição, destaque, tags, licença, links e métricas.",
+    api: "API JSON pública. Busca por intenção, filtros e paginação.",
+    apiDetail: "Ficha individual por slug, com o mesmo formato.",
+    apiExample:
+      "Exemplo: /api/libraries?q=tabela%20edit%C3%A1vel&framework=react&license=mit&limit=5",
+    jsonLd:
+      "As páginas trazem JSON-LD (WebSite, ItemList e SoftwareApplication) para buscadores e agentes.",
+    searchTitle: "Busca por intenção",
+    searchText:
+      "A busca remove palavras vazias, entende sinônimos e frases, trata framework, categoria e licença como filtros e tolera erro de digitação. Tudo no navegador, sem chamada externa.",
+    stackTitle: "Recomendador de stack",
+    stackText:
+      "Escolha o tipo de projeto, o framework e as necessidades. O Acervo devolve uma biblioteca por necessidade, com alternativas e justificativa determinística.",
+    stackCta: "Montar uma stack",
+    mcpTitle: "Servidor MCP local",
+    mcpText:
+      "Conecte o catálogo ao Claude Desktop, Cursor ou VS Code. O servidor roda via stdio no seu computador, lê o JSON do repositório e não envia nada para fora.",
+    mcpCommand: "No repositório, rode:",
+    mcpConfig: "Configuração (Claude Desktop / Cursor):",
+    mcpTools: "Ferramentas:",
+    mcpToolSearch: "busca por intenção com filtros.",
+    mcpToolLibrary: "ficha completa por slug.",
+    mcpToolStack: "stack determinística por objetivo.",
+    mcpResources:
+      "Recursos: acervo://libraries/pt, acervo://libraries/en, acervo://llms/pt e acervo://llms/en.",
+    privacyTitle: "Privacidade e limites",
+    privacyText:
+      "Nenhuma superfície exige chave ou envia sua consulta para um LLM. O catálogo é curado; as métricas podem estar defasadas e a recomendação é uma sugestão, não um benchmark.",
+    limitsTitle: "O que não é",
+    limitsText:
+      "Não é um chatbot, não gera descrições e não inventa bibliotecas. Se algo não está no catálogo, a resposta honesta é que não está.",
+  },
   search: {
-    placeholder: "Buscar nome, tag ou descrição",
+    placeholder: "Buscar por nome, tag ou necessidade",
     label: "Buscar bibliotecas",
     clear: "Limpar busca",
   },
@@ -72,12 +181,17 @@ export const pt: Dictionary = {
     countOne: "1 biblioteca",
     countMany: "{n} bibliotecas",
     byRelevance: "por relevância",
+    smart: "busca por intenção",
+    approximate: "aproximados",
+    approximateHint:
+      "A busca não encontrou todos os termos; estes resultados casam com parte da consulta.",
     showing: "Mostrando {from}–{to} de {total} bibliotecas",
     empty: "Nenhuma biblioteca encontrada",
     emptyWithQuery: "Nenhuma biblioteca encontrada para “{query}”",
     emptyHintMulti:
-      "A busca exige todos os termos: cada palavra precisa aparecer em algum campo.",
-    emptyHintSingle: "Tente outro termo ou limpe os filtros aplicados.",
+      "A busca não encontrou todos os termos. Tente remover uma palavra ou descrever o que precisa de forma mais curta.",
+    emptyHintSingle:
+      "Tente outro termo, uma descrição mais curta ou limpe os filtros aplicados.",
   },
   pagination: {
     label: "Paginação",

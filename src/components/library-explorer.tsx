@@ -22,7 +22,11 @@ import {
   licenseFamily,
   type LicenseFamily,
 } from "@/lib/license";
-import { resolveScope, scopeLabels, searchLibraries, tokenize } from "@/lib/search";
+import {
+  buildSearchQuery,
+  queryFacetLabels,
+  searchCatalog,
+} from "@/lib/search";
 import type { SearchLabels } from "@/lib/search";
 import { HTML_LANG, type Locale } from "@/i18n/config";
 import { formatText } from "@/i18n/format";
@@ -262,23 +266,21 @@ export function LibraryExplorer({
   libraries,
   locale,
   dict,
-  scopeLabelSets,
 }: {
   libraries: Library[];
   locale: Locale;
   dict: Dictionary;
-  /** Rótulos de todos os idiomas: a busca entende "forms" e "data" sempre. */
-  scopeLabelSets: SearchLabels[];
 }) {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  /* Rótulos do idioma da tela: framework e categoria também são pesquisáveis. */
+  /* Rótulos do idioma da tela: framework, categoria e licença são pesquisáveis. */
   const searchLabels = useMemo<SearchLabels>(
     () => ({
       framework: dict.frameworkLabels,
       category: dict.categoryLabels,
+      license: dict.license.families,
     }),
     [dict],
   );
@@ -360,19 +362,17 @@ export function LibraryExplorer({
   const itemsPerPage = 20;
 
   /*
-    A busca é por termos: "react form" exige os dois termos, em qualquer
-    ordem, e os resultados saem ordenados por relevância.
+    A busca entende linguagem natural: remove palavras vazias, reconhece
+    sinônimos e frases ("react native", "data grid") e trata framework,
+    categoria e licença como filtros. Se a busca estrita não achar nada,
+    relaxa os termos descritivos e avisa na interface.
   */
-  const tokens = useMemo(() => tokenize(query), [query]);
-  /*
-    Termos que designam uma categoria ou um framework viram filtro:
-    buscar "mobile" mostra só as libs de mobile, buscar "react" só as de React.
-  */
-  const scope = useMemo(
-    () => resolveScope(tokens, scopeLabelSets, searchLabels),
-    [tokens, scopeLabelSets, searchLabels],
+  const searchQuery = useMemo(() => buildSearchQuery(query), [query]);
+  const tokens = searchQuery.highlightTokens;
+  const scopeNames = useMemo(
+    () => queryFacetLabels(searchQuery, searchLabels),
+    [searchQuery, searchLabels],
   );
-  const scopeNames = useMemo(() => scopeLabels(scope), [scope]);
 
   const searchRef = useRef<HTMLInputElement>(null);
 
@@ -422,7 +422,7 @@ export function LibraryExplorer({
     return counts;
   }, [libraries]);
 
-  const filteredResults = useMemo(() => {
+  const searchResult = useMemo(() => {
     const filtered = libraries.filter((item) => {
       if (framework !== "all" && item.framework !== framework) return false;
       if (category !== "all" && item.category !== category) return false;
@@ -432,13 +432,12 @@ export function LibraryExplorer({
       return true;
     });
 
-    // Só entram as libs que casam com todos os termos, com a nota de relevância.
-    const scored = searchLibraries(filtered, tokens, searchLabels, scopeLabelSets);
+    const result = searchCatalog(filtered, query, searchLabels);
+    const sorted = [...result.results];
 
-    const sorted = [...scored];
     sorted.sort((a, b) => {
       // Com busca ativa, a ordenação padrão vira "por relevância".
-      if (tokens.length > 0 && sort === "popular") {
+      if (query.trim() && sort === "popular") {
         return (
           b.score - a.score ||
           (b.library.stars ?? 0) - (a.library.stars ?? 0) ||
@@ -461,8 +460,14 @@ export function LibraryExplorer({
       }
     });
 
-    return sorted.map((item) => item.library);
-  }, [libraries, tokens, searchLabels, scopeLabelSets, framework, category, license, sort, locale]);
+    return {
+      libraries: sorted.map((item) => item.library),
+      relaxed: result.relaxed,
+      smart: result.query.smart,
+    };
+  }, [libraries, query, searchLabels, framework, category, license, sort, locale]);
+
+  const filteredResults = searchResult.libraries;
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
   // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
@@ -629,6 +634,19 @@ export function LibraryExplorer({
           </span>
           {byRelevance && (
             <span className="opacity-70">{dict.results.byRelevance}</span>
+          )}
+          {searchResult.smart && (
+            <span className="rounded border border-border px-1.5 py-0.5 font-sans">
+              {dict.results.smart}
+            </span>
+          )}
+          {searchResult.relaxed && (
+            <span
+              className="rounded border border-border px-1.5 py-0.5 font-sans"
+              title={dict.results.approximateHint}
+            >
+              {dict.results.approximate}
+            </span>
           )}
           {scopeNames.map((name) => (
             <span

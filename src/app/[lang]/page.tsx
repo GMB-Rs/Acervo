@@ -1,7 +1,9 @@
 import { Suspense } from "react";
+import { JsonLd } from "@/components/json-ld";
 import { LibraryExplorer } from "@/components/library-explorer";
+import { websiteJsonLd } from "@/lib/structured-data";
 import { libraries } from "@/lib/libraries";
-import { LOCALES, isLocale } from "@/i18n/config";
+import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { formatText } from "@/i18n/format";
 import { localizeLibrary } from "@/i18n/library-text";
@@ -39,20 +41,9 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
     localizeLibrary(locale, library),
   );
 
-  /*
-    Os rótulos de todos os idiomas entram na busca: assim "forms" ou "data"
-    filtram o grupo certo mesmo na interface em português.
-  */
-  const scopeLabelSets = LOCALES.map((item) => {
-    const labels = getDictionary(item);
-    return {
-      framework: labels.frameworkLabels,
-      category: labels.categoryLabels,
-    };
-  });
-
   return (
     <>
+      <JsonLd data={websiteJsonLd(locale, dict.meta.description)} />
       <section className="border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-4 py-12">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -70,7 +61,6 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             libraries={localizedLibraries}
             locale={locale}
             dict={dict}
-            scopeLabelSets={scopeLabelSets}
           />
         </Suspense>
       </div>

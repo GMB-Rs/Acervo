@@ -1,5 +1,6 @@
 import type { Category, Framework } from "@/types/library";
 import type { LicenseFamily } from "@/lib/license";
+import type { StackGoal, StackNeed } from "@/lib/stack";
 import type { Locale } from "@/i18n/config";
 
 /*
@@ -25,6 +26,10 @@ export type Dictionary = {
     language: string;
     /** Link da navbar para a página de contribuidores. */
     contributors: string;
+    /** Link da navbar para o recomendador de stack. */
+    stack: string;
+    /** Link da navbar para a página de IA/MCP. */
+    ai: string;
   };
   contributors: {
     title: string;
@@ -43,6 +48,75 @@ export type Dictionary = {
     title: string;
     /** Intro: "Galeria de {n} bibliotecas que já existem: ...". */
     intro: string;
+  };
+  stack: {
+    metaTitle: string;
+    metaDescription: string;
+    title: string;
+    intro: string;
+    form: {
+      goal: string;
+      framework: string;
+      needs: string;
+      needsHint: string;
+      license: string;
+      openSource: string;
+      openSourceHint: string;
+      anyFramework: string;
+      reset: string;
+    };
+    goals: Record<StackGoal, string>;
+    needs: Record<StackNeed, string>;
+    results: {
+      title: string;
+      intro: string;
+      countOne: string;
+      countMany: string;
+      empty: string;
+      emptyHint: string;
+      alternatives: string;
+      view: string;
+      reasonCategory: string;
+      reasonTags: string;
+      reasonUniversal: string;
+      reasonFeatured: string;
+      copy: string;
+      copied: string;
+      noteMissing: string;
+      noteLicense: string;
+    };
+  };
+  ai: {
+    metaTitle: string;
+    metaDescription: string;
+    title: string;
+    intro: string;
+    catalogTitle: string;
+    catalogText: string;
+    llms: string;
+    llmsFull: string;
+    api: string;
+    apiDetail: string;
+    apiExample: string;
+    jsonLd: string;
+    searchTitle: string;
+    searchText: string;
+    stackTitle: string;
+    stackText: string;
+    stackCta: string;
+    mcpTitle: string;
+    mcpText: string;
+    mcpCommand: string;
+    mcpConfig: string;
+    mcpTools: string;
+    mcpToolSearch: string;
+    mcpToolLibrary: string;
+    mcpToolStack: string;
+    mcpResources: string;
+    privacyTitle: string;
+    privacyText: string;
+    limitsTitle: string;
+    limitsText: string;
   };
   search: {
     placeholder: string;
@@ -71,6 +145,11 @@ export type Dictionary = {
     countMany: string;
     byRelevance: string;
     showing: string;
+    /** A consulta foi interpretada por intenção (sinônimos, frases, etc.). */
+    smart: string;
+    /** A busca estrita não bastou e os resultados são aproximados. */
+    approximate: string;
+    approximateHint: string;
     empty: string;
     emptyWithQuery: string;
     emptyHintMulti: string;
