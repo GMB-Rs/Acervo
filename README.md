@@ -6,7 +6,7 @@
 [![Estrelas](https://img.shields.io/github/stars/GMB-Rs/Diretorio?style=social)](https://github.com/GMB-Rs/Diretorio)
 [![Site](https://img.shields.io/badge/site-acervo.app-0a0a0a)](https://acervo-azure.vercel.app/)
 
-Acervo de bibliotecas de componentes para **web**. O site cataloga libs de UI kit, headless, design systems, formulários, tabelas, ícones e animações — organizadas por framework e categoria, com busca e filtros.
+Acervo de bibliotecas para **web**. O site cataloga libs de UI kit, headless, design systems, formulários, tabelas, gráficos, ícones, editores, animações e utilitários — organizadas por framework e categoria, com busca e filtros.
 
 > Escopo atual: **Web UI**. Mobile (React Native, Flutter) entra em uma próxima fase, reaproveitando o mesmo schema de dados.
 

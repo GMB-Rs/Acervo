@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { BrandMark } from "@/components/brand-mark";
 import { LanguageSelect } from "@/components/language-select";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { RepoStars } from "@/components/repo-stars";
@@ -18,9 +17,8 @@ export function SiteHeader({
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-2 px-4 sm:gap-6">
         <Link
           href={`/${locale}`}
-          className="flex items-center gap-2 text-sm font-semibold tracking-tight"
+          className="text-base font-semibold tracking-tight"
         >
-          <BrandMark className="size-5 shrink-0" />
           Acervo
         </Link>
 
