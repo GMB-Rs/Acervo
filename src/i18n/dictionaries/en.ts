@@ -8,7 +8,7 @@ import type { Dictionary } from "./types";
 
 export const en: Dictionary = {
   meta: {
-    title: "Acervo — Web component libraries",
+    title: "Acervo - Web component libraries",
     template: "%s | Acervo",
     description:
       "Acervo: a curated gallery of web component libraries — React, Vue, Svelte, Angular, Solid, Qwik and Web Components. Compare them, filter by stack and pick the right one.",
