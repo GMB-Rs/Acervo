@@ -37,23 +37,6 @@ export const pt: Dictionary = {
     countMany: "{n} pessoas já contribuiram",
     commits: "{n} commits",
     empty: "Ninguém foi registrado ainda — esse é o convite.",
-    joinTitle: "Quer entrar?",
-    joinText:
-      "Não precisa saber React, Next.js ou GitHub avançado. Uma issue, uma tradução ou um erro de digitação corrigido já muda o acervo.",
-    steps: [
-      {
-        title: "Adicione uma biblioteca",
-        text: "Abra uma issue com o nome e o repositório da biblioteca. A gente cataloga e o sync cuida das métricas.",
-      },
-      {
-        title: "Corrija o que estiver errado",
-        text: "Descrição desatualizada, licença trocada, logo desalinhada: todo pull request é bem-vindo.",
-      },
-      {
-        title: "Ajuste o texto",
-        text: "O site é bilíngue. Faltam páginas em português e inglês — e cada texto novo precisa dos dois.",
-      },
-    ],
     ctaContribute: "Ver o guia de contribuição",
     ctaIssues: "Abrir uma issue",
     ctaRepo: "Ver o repositório",
