@@ -7,10 +7,10 @@
   para o mesmo conteúdo.
 
   O domínio próprio `acervo.app` ainda não resolve. Enquanto isso, o padrão
-  aponta para o deploy estável da Vercel, para que sitemap, canonical, API e
-  `llms.txt` não publiquem URLs quebradas. Quando o domínio próprio estiver
-  configurado, defina `NEXT_PUBLIC_SITE_URL` no painel da Vercel (Settings →
-  Environment Variables) — ela tem prioridade sobre o valor padrão abaixo.
+  aponta para o deploy estável da Vercel, para que sitemap, canonical e robots
+  não publiquem URLs quebradas. Quando o domínio próprio estiver configurado,
+  defina `NEXT_PUBLIC_SITE_URL` no painel da Vercel (Settings → Environment
+  Variables) — ela tem prioridade sobre o valor padrão abaixo.
 
   A variável precisa existir no momento do build: as rotas `sitemap.xml` e
   `robots.txt` são geradas estaticamente, então o valor é congelado no

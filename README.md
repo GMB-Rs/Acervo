@@ -35,7 +35,6 @@ npm run dev        # http://localhost:3000
 | `npm run typecheck` | `next typegen` + `tsc --noEmit` |
 | `npm run test` | Testes da busca e das traduções (`node --test`) |
 | `npm run check` | `lint` + `typecheck` + `build` + `test` |
-| `npm run mcp` | Servidor MCP local (stdio) para agentes |
 | `npm run sync:github` | Atualiza estrelas/downloads em `src/data/libraries.json` |
 
 ## Contribuindo
@@ -52,12 +51,7 @@ O catálogo é um arquivo só (`src/data/libraries.json`). O passo a passo para 
 src/
   app/
     [lang]/                 # site inteiro por idioma (/pt, /en)
-    [lang]/stack/           # recomendador de stack
-    [lang]/ia/              # documentação de IA/API/MCP
-    api/libraries/          # API JSON pública do catálogo
     api/stars/route.ts      # contador de estrelas (cache no servidor)
-    llms.txt/               # índice para LLMs
-    llms-full.txt/          # fichas completas para LLMs
     sitemap.ts / robots.ts  # metadados para buscadores
   components/               # UI components
   data/
@@ -66,10 +60,8 @@ src/
     contributors.json       # lista de contribuidores (/contributors)
     translations/           # descrições e tags em inglês
   i18n/                     # config e dicionários de idiomas
-  lib/                      # lógica de negócio (busca, stack, catálogo, tema, site)
+  lib/                      # lógica de negócio (busca, catálogo, tema, site)
   types/                    # schema das bibliotecas
-mcp/
-  server.ts                 # servidor MCP local (stdio)
 scripts/
   sync-github.ts            # sincronização com GitHub/npm
 ```
@@ -85,24 +77,6 @@ A busca entende **linguagem natural** sem chave e sem chamada externa:
 - se a busca estrita não achar nada, relaxa os termos descritivos e avisa que os resultados são aproximados.
 
 Atalhos: `/` foca o campo, `Esc` limpa. Essa é a camada semântica local do projeto: ela não baixa modelo de embedding e roda inteira no navegador. Lógica em `src/lib/search.ts` (funções puras, sem React), coberta por testes (`npm run test`).
-
-## IA sem chave
-
-O catálogo também é uma superfície para agentes. Tudo é determinístico e não
-exige chave de API, cadastro ou LLM pago:
-
-- [`/llms.txt`](https://acervo-azure.vercel.app/llms.txt) e
-  [`/llms-full.txt`](https://acervo-azure.vercel.app/llms-full.txt) — índice e
-  fichas completas em texto;
-- `/api/libraries` e `/api/libraries/[slug]` — catálogo em JSON com busca por
-  intenção, filtros e paginação;
-- JSON-LD (`WebSite`, `ItemList` e `SoftwareApplication`) nas páginas;
-- `/pt/stack` e `/en/stack` — recomendador determinístico de stack;
-- `npm run mcp` — servidor MCP local (stdio) com `search_libraries`,
-  `get_library` e `recommend_stack`.
-
-A página `/pt/ia` (ou `/en/ia`) documenta as superfícies e mostra a
-configuração do MCP. O guia do servidor está em [mcp/README.md](mcp/README.md).
 
 ## Sincronização automática (opcional)
 

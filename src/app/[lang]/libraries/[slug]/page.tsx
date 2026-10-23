@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { BackLink } from "@/components/back-link";
-import { JsonLd } from "@/components/json-ld";
 import { LibraryCard, domainOf } from "@/components/library-card";
-import { libraryJsonLd } from "@/lib/structured-data";
 import {
   getAllSlugs,
   getLibraryBySlug,
@@ -105,7 +103,6 @@ export default async function LibraryPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
-      <JsonLd data={libraryJsonLd(locale, library)} />
       <Suspense fallback={<BackLinkFallback />}>
         <BackLink locale={locale} label={dict.detail.back} />
       </Suspense>

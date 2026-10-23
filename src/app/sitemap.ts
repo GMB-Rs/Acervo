@@ -34,28 +34,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
-  const stack = LOCALES.map((locale) => ({
-    url: `${BASE_URL}/${locale}/stack`,
-    changeFrequency: "weekly" as const,
-    priority: 0.8,
-    alternates: {
-      languages: Object.fromEntries(
-        LOCALES.map((item) => [item, `${BASE_URL}/${item}/stack`]),
-      ),
-    },
-  }));
-
-  const ai = LOCALES.map((locale) => ({
-    url: `${BASE_URL}/${locale}/ia`,
-    changeFrequency: "monthly" as const,
-    priority: 0.6,
-    alternates: {
-      languages: Object.fromEntries(
-        LOCALES.map((item) => [item, `${BASE_URL}/${item}/ia`]),
-      ),
-    },
-  }));
-
   const libraries = LOCALES.flatMap((locale) =>
     slugs.map((slug) => ({
       url: `${BASE_URL}/${locale}/libraries/${slug}`,
@@ -72,5 +50,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...home, ...stack, ...ai, ...contributors, ...libraries];
+  return [...home, ...contributors, ...libraries];
 }

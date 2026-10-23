@@ -85,19 +85,6 @@ export default async function LocaleLayout({
       >
         <head>
           <ThemeScript />
-          {/* Descoberta por agentes: índice em texto e catálogo em JSON. */}
-          <link
-            rel="alternate"
-            type="text/markdown"
-            href="/llms.txt"
-            title="Acervo para LLMs"
-          />
-          <link
-            rel="alternate"
-            type="application/json"
-            href="/api/libraries"
-            title="Catálogo Acervo em JSON"
-          />
         </head>
         <body className="flex min-h-full flex-col">
           <SiteHeader locale={lang} dict={dict} />
