@@ -318,5 +318,25 @@
   "fullcalendar": {
     "description": "Event calendar with month, week and day views, drag and drop and Google Calendar integration.",
     "highlight": "Has official connectors for React, Vue and Angular, plus a vanilla JavaScript core."
+  },
+  "nativewind": {
+    "description": "Tailwind CSS for React Native: use utility classes to style iOS and Android apps with the same syntax as the web.",
+    "highlight": "Brings Tailwind's utility-first workflow to React Native, with dark mode and support for Expo and React Native Web."
+  },
+  "gluestack-ui": {
+    "description": "Copy-paste React and React Native components styled with Tailwind CSS for web and mobile.",
+    "highlight": "A copy-paste model with accessible components for React, React Native and Expo, powered by NativeWind."
+  },
+  "ui-kitten": {
+    "description": "React Native component library built on the Eva Design System, with 30+ components and light and dark themes.",
+    "highlight": "Eva and Material themes with runtime switching, RTL support and on-demand style compilation."
+  },
+  "react-native-elements": {
+    "description": "Cross-platform React Native UI toolkit with ready-made components, themes and built-in icons.",
+    "highlight": "One of the ecosystem's most established kits, with a themed package and components for iOS, Android and web."
+  },
+  "react-native-reusables": {
+    "description": "Copy-paste React Native components styled with Tailwind CSS, in the style of shadcn/ui and ready for Expo.",
+    "highlight": "Brings the shadcn/ui model to mobile: open code, no component package, with support for NativeWind and Uniwind."
   }
 }
