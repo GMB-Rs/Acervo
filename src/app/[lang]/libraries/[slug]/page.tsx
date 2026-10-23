@@ -57,7 +57,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     },
     openGraph: {
-      title: `${library.name} — Acervo`,
+      title: `${library.name} - Acervo`,
       description: text.description,
       type: "article",
     },

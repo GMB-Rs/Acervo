@@ -43,7 +43,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     },
     openGraph: {
-      title: `${dict.contributors.title} — Acervo`,
+      title: `${dict.contributors.title} - Acervo`,
       description: dict.contributors.intro,
     },
   };

@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Página não encontrada — Acervo",
+  title: "Página não encontrada - Acervo",
 };
 
 export default function GlobalNotFound() {
