@@ -63,10 +63,7 @@ export default async function ContributorsPage({ params }: PageProps) {
 
   return (
     <div className="mx-auto w-full max-w-5xl px-4 py-10">
-      <p className="font-mono text-xs uppercase tracking-wide text-muted-foreground">
-        {dict.nav.contributors}
-      </p>
-      <h1 className="mt-3 text-3xl font-semibold tracking-tight">
+      <h1 className="text-3xl font-semibold tracking-tight">
         {dict.contributors.title}
       </h1>
       <p className="mt-3 max-w-prose text-sm leading-relaxed text-muted-foreground">
@@ -121,30 +118,7 @@ export default async function ContributorsPage({ params }: PageProps) {
       </section>
 
       <section className="mt-16 border-t border-border pt-10">
-        <h2 className="text-xl font-semibold tracking-tight">
-          {dict.contributors.joinTitle}
-        </h2>
-        <p className="mt-2 max-w-prose text-sm leading-relaxed text-muted-foreground">
-          {dict.contributors.joinText}
-        </p>
-
-        <ol className="mt-8 grid gap-6 sm:grid-cols-3">
-          {dict.contributors.steps.map((step, index) => (
-            <li key={step.title}>
-              <span className="font-mono text-[11px] text-muted-foreground">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-2 text-sm font-semibold tracking-tight">
-                {step.title}
-              </h3>
-              <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                {step.text}
-              </p>
-            </li>
-          ))}
-        </ol>
-
-        <div className="mt-8 flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2">
           <a
             href={`${repo.url}/blob/main/CONTRIBUTING.md`}
             target="_blank"

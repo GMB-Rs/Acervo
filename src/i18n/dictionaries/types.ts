@@ -35,10 +35,6 @@ export type Dictionary = {
     /** "{n} commits". */
     commits: string;
     empty: string;
-    joinTitle: string;
-    joinText: string;
-    /** Passos para contribuir (título + texto). */
-    steps: Array<{ title: string; text: string }>;
     ctaContribute: string;
     ctaIssues: string;
     ctaRepo: string;

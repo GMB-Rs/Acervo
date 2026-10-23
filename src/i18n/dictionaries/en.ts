@@ -37,23 +37,6 @@ export const en: Dictionary = {
     countMany: "{n} people have contributed",
     commits: "{n} commits",
     empty: "Nobody has been credited yet — that is an open invitation.",
-    joinTitle: "Want to join in?",
-    joinText:
-      "You do not need to know React, Next.js or advanced Git. One issue, one translation or one small copy fix already moves Acervo forward.",
-    steps: [
-      {
-        title: "Add a library",
-        text: "Open an issue with the library name and repository. We catalog it and the sync takes care of the metrics.",
-      },
-      {
-        title: "Fix what is wrong",
-        text: "Outdated description, swapped license, misaligned logo: every pull request is welcome.",
-      },
-      {
-        title: "Polish the wording",
-        text: "The site is bilingual. Some pages are missing in Portuguese and English — and every new text needs both.",
-      },
-    ],
     ctaContribute: "Read the contributing guide",
     ctaIssues: "Open an issue",
     ctaRepo: "See the repository",
