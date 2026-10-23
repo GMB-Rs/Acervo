@@ -136,7 +136,7 @@ export const en: Dictionary = {
       comercial: "Commercial",
       outra: "Undeclared",
     },
-    commercial: "Commercial (GreenSock Standard)",
+    commercial: "Commercial",
     undeclared: "Undeclared",
   },
   frameworkLabels: {

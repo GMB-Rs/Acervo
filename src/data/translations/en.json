@@ -266,5 +266,57 @@
   "number-flow": {
     "description": "An animated number component: the digits transition to the new value whenever it changes.",
     "highlight": "No dependencies, accessible and styleable through CSS parts — works in React, Vue, Svelte and plain JS."
+  },
+  "chartjs": {
+    "description": "Canvas charting library with eight built-in chart types, smooth animations and simple configuration.",
+    "highlight": "Lightweight and dependency-free, it renders responsive charts through a declarative dataset API."
+  },
+  "echarts": {
+    "description": "Data visualization library with interactive charts, maps and canvas or SVG rendering.",
+    "highlight": "Ships dozens of chart types and advanced features such as zoom, brushing and animations in a modular package."
+  },
+  "datatables": {
+    "description": "jQuery plugin for tables with search, sorting, pagination and Ajax data loading.",
+    "highlight": "One of the web's oldest table setups, with hundreds of extensions and integration with any backend."
+  },
+  "handsontable": {
+    "description": "Spreadsheet-like data grid with cell editing, formulas and support for React, Vue and Angular.",
+    "highlight": "Built for enterprise applications: validation, frozen columns and millions of cells with virtualization."
+  },
+  "tiptap": {
+    "description": "Headless rich text editor framework with extensions for formatting, collaboration and mentions.",
+    "highlight": "Provides the editor behavior without imposing a look; the interface is built with your stack's components."
+  },
+  "lexical": {
+    "description": "Meta's extensible text editor framework, focused on accessibility and performance.",
+    "highlight": "Uses its own state model and efficient reconciliation, with support for collaboration and plugins."
+  },
+  "slate": {
+    "description": "Framework for building rich text editors with a fully customizable document model.",
+    "highlight": "It imposes neither schema nor UI: you define the elements, transformations and rendering."
+  },
+  "zod": {
+    "description": "Schema validation library with TypeScript type inference, built code-first.",
+    "highlight": "Schemas are the source of truth: TypeScript infers the static type and runtime validation comes from the same object."
+  },
+  "yup": {
+    "description": "Joi-inspired schema validator with a declarative chain and easy-to-customize error messages.",
+    "highlight": "Popular in React forms for integrating with libraries such as Formik and React Hook Form."
+  },
+  "valibot": {
+    "description": "Modular schema validation library with a functional API and a tiny bundle.",
+    "highlight": "Each validation is an independent function, so tree-shaking leaves only what the project uses."
+  },
+  "date-fns": {
+    "description": "Immutable, modular date library with functions to format, compare and manipulate dates.",
+    "highlight": "Each function is imported separately, keeping the bundle lean and avoiding global dependencies."
+  },
+  "dayjs": {
+    "description": "Minimalist Moment.js alternative with an immutable API, optional plugins and just 2 kB.",
+    "highlight": "Keeps Moment's familiar API, but with a plugin tree and a much smaller footprint."
+  },
+  "fullcalendar": {
+    "description": "Event calendar with month, week and day views, drag and drop and Google Calendar integration.",
+    "highlight": "Has official connectors for React, Vue and Angular, plus a vanilla JavaScript core."
   }
 }
