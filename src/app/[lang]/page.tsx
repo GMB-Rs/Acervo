@@ -1,7 +1,5 @@
 import { Suspense } from "react";
-import { JsonLd } from "@/components/json-ld";
 import { LibraryExplorer } from "@/components/library-explorer";
-import { websiteJsonLd } from "@/lib/structured-data";
 import { libraries } from "@/lib/libraries";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -43,7 +41,6 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
 
   return (
     <>
-      <JsonLd data={websiteJsonLd(locale, dict.meta.description)} />
       <section className="border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-4 py-12">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
