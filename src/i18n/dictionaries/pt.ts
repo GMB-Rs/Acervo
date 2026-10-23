@@ -136,7 +136,7 @@ export const pt: Dictionary = {
       comercial: "Comercial",
       outra: "Não declarada",
     },
-    commercial: "Comercial (GreenSock Standard)",
+    commercial: "Comercial",
     undeclared: "Não declarada",
   },
   frameworkLabels: {

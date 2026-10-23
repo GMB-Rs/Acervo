@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="59.629" height="40.705" viewBox="0 0 15.777 10.77">
+   <defs>
+      <style>
+         :root {
+         --icon-color: #1A1A1A;
+         }
+
+         @media (prefers-color-scheme: dark) {
+         :root {
+         --icon-color: #FFFFFF;
+         }
+         }
+      </style>
+   </defs>
+   <path d="M15.776 3.446q0 1.78-.975 2.687-.963.896-2.697.896h-1.959V0h2.166q1.064 0 1.84.394.778.394 1.202 1.161.423.757.423 1.89m-.935.029q0-1.408-.7-2.057-.687-.66-1.958-.66h-1.152V6.27h.955q2.855 0 2.855-2.796" style="font-size:9.84377px;font-family:&quot;Noto Sans&quot;;-inkscape-font-specification:&quot;Noto Sans&quot;;letter-spacing:-.373062px;fill:#ffffff;stroke-width:.246095"/>
+   <path d="M3.174 3.362h5.821V4.42h-5.82z" style="fill:#ffffff;fill-opacity:1;stroke-width:.243381"/>
+   <path d="M1.202 4.949H6.35v1.058H1.202z" style="fill:#ffffff;fill-opacity:1;stroke-width:.291735"/>
+   <path d="M6.878 4.949h2.117v1.058H6.878zM2.115 6.537h2.117v1.058H2.115zm2.646 0h4.233v1.058H4.761z" style="fill:#ffffff;fill-opacity:1;stroke-width:.264583"/>
+   <path d="M0 8.124h7.937v1.058H0Z" style="fill:#ffffff;fill-opacity:1;stroke-width:.308966"/>
+   <path d="M8.465 8.124h3.175v1.058H8.465Z" style="fill:#ffffff;fill-opacity:1;stroke-width:.264583"/>
+   <rect width="3.175" height="1.058" x="12.17" y="8.124" ry="0" style="fill:#ffffff;stroke-width:.289834"/>
+   <path d="M2.115 9.712h4.233v1.058H2.115z" style="fill:#ffffff;stroke-width:.264583"/>
+   <path d="M6.878 9.712h3.704v1.058H6.878Z" style="fill:#ffffff;stroke-width:.23334"/>
+   <path d="M11.111 9.712h3.175v1.058h-3.175z" style="fill:#ffffff;stroke-width:.289836"/>
+</svg>
