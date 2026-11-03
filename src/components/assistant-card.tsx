@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { domainOf } from "@/components/library-card";
 import { getContrastColor, isLightColor } from "@/lib/format";
 import { isTextMark, logoBoxClass, textMarkClass } from "@/lib/logo";
@@ -15,22 +16,23 @@ import type { Assistant } from "@/types/assistant";
 export function AssistantCard({
   assistant,
   locale,
+  from,
 }: {
   assistant: Assistant;
   locale: Locale;
+  from?: string;
 }) {
   const lightBg = isLightColor(assistant.color);
   const contrastColor = getContrastColor(assistant.color);
   const logoStyle = lightBg ? { filter: "invert(1)" as const } : {};
   const tags = translateTags(locale, assistant.tags);
 
+  const href = from
+    ? `/${locale}/assistants/${assistant.slug}?from=${encodeURIComponent(from)}`
+    : `/${locale}/assistants/${assistant.slug}`;
+
   return (
-    <a
-      href={assistant.website}
-      target="_blank"
-      rel="noreferrer"
-      className="group block"
-    >
+    <Link href={href} className="group block">
       <div
         className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border px-3 transition-colors duration-200 group-hover:border-foreground/40"
         style={{ backgroundColor: assistant.color }}
@@ -67,6 +69,6 @@ export function AssistantCard({
       <p className="mt-0.5 truncate font-mono text-[11px] text-muted-foreground">
         {tags.join(" · ")}
       </p>
-    </a>
+    </Link>
   );
 }
