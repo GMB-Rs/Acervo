@@ -338,5 +338,41 @@
   "react-native-reusables": {
     "description": "Copy-paste React Native components styled with Tailwind CSS, in the style of shadcn/ui and ready for Expo.",
     "highlight": "Brings the shadcn/ui model to mobile: open code, no component package, with support for NativeWind and Uniwind."
+  },
+  "shadcn-io": {
+    "description": "An independent registry of shadcn/ui-style components, page blocks and templates, with the code copied into your project for React, Vue, Svelte or Solid.",
+    "highlight": "Over 6,000 ready-made page blocks (hero, pricing, login) plus an MCP server that installs components straight from your AI agent."
+  },
+  "vercel-ai-sdk": {
+    "description": "TypeScript SDK for text streaming, structured generation and tool calling with the main LLM providers.",
+    "highlight": "One API to switch between OpenAI, Anthropic, Google and other providers without rewriting your code."
+  },
+  "langchain-js": {
+    "description": "Framework for chaining LLMs, tools and memory in JavaScript and TypeScript applications.",
+    "highlight": "Popularised the chains and agents pattern; integrates dozens of models, vector stores and data sources."
+  },
+  "openai-node": {
+    "description": "Official OpenAI SDK for Node.js, fully typed for chat, embeddings, images and audio.",
+    "highlight": "A reference for many LLM SDKs: typed streaming, automatic retries and tool calling helpers."
+  },
+  "copilotkit": {
+    "description": "React components and infrastructure to bring copilots and AI agents into your application.",
+    "highlight": "The copilot talks to your app's real state: the agent reads and performs actions in the interface."
+  },
+  "assistant-ui": {
+    "description": "React components for LLM chat interfaces, ready for streaming and customisation.",
+    "highlight": "Accessible, composable chat primitives in the shadcn/ui style, with integration for several backends."
+  },
+  "mastra": {
+    "description": "TypeScript framework for building agents, workflows and RAG with models and tools.",
+    "highlight": "Brings agents, memory, evaluation and deploy together, with support for several providers."
+  },
+  "transformers-js": {
+    "description": "Run Hugging Face models in the browser and on Node.js with ONNX, no server required.",
+    "highlight": "Local inference on the client: embeddings, classification and transcription without sending data out."
+  },
+  "mcp-typescript-sdk": {
+    "description": "Official TypeScript SDK for building Model Context Protocol servers and clients.",
+    "highlight": "It is the foundation of MCP, the protocol that connects AI agents to tools and data sources."
   }
 }

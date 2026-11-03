@@ -23,6 +23,8 @@ export type Dictionary = {
     /** Contador de estrelas do repositório: "Estrelas no GitHub: {n}". */
     stars: string;
     language: string;
+    /** Link da navbar para a página de ferramentas de IA. */
+    ai: string;
     /** Link da navbar para a página de contribuidores. */
     contributors: string;
   };
@@ -43,6 +45,30 @@ export type Dictionary = {
     title: string;
     /** Intro: "Galeria de {n} bibliotecas que já existem: ...". */
     intro: string;
+  };
+  ai: {
+    metaTitle: string;
+    metaDescription: string;
+    /** Sobretítulo da página: "seção do acervo". */
+    eyebrow: string;
+    title: string;
+    /** Intro da página: "{n} ferramentas para construir com LLMs...". */
+    intro: string;
+    /**
+     * Rótulos dos resultados na página de IA. A galeria padrão fala em
+     * "bibliotecas"; aqui a mesma galeria fala em "ferramentas".
+     */
+    results: {
+      countOne: string;
+      countMany: string;
+      showing: string;
+      empty: string;
+      emptyWithQuery: string;
+    };
+    /** Título da seção de chats, depois da galeria de ferramentas. */
+    assistantsTitle: string;
+    /** Intro da seção de chats. */
+    assistantsIntro: string;
   };
   search: {
     placeholder: string;

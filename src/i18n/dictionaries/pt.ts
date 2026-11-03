@@ -28,6 +28,7 @@ export const pt: Dictionary = {
   nav: {
     stars: "Estrelas no GitHub: {n}",
     language: "Idioma",
+    ai: "IA",
     contributors: "Contribuidores",
   },
   contributors: {
@@ -45,7 +46,26 @@ export const pt: Dictionary = {
   home: {
     title: "As bibliotecas certas para o seu próximo projeto",
     intro:
-      "Um acervo curado de {n} bibliotecas para web, de UI kits a validadores, gráficos e utilitários de data. Filtre por framework, categoria e licença.",
+      "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA. Filtre por framework, categoria e licença.",
+  },
+  ai: {
+    metaTitle: "Ferramentas de IA",
+    metaDescription:
+      "Catálogo de SDKs, frameworks de agentes, componentes de chat e utilidades de IA para JavaScript e TypeScript.",
+    eyebrow: "seção do acervo",
+    title: "Ferramentas de IA",
+    intro:
+      "{n} ferramentas para construir com LLMs: SDKs de provedores, frameworks de agentes, componentes de chat e protocolos.",
+    results: {
+      countOne: "1 ferramenta",
+      countMany: "{n} ferramentas",
+      showing: "Mostrando {from}–{to} de {total} ferramentas",
+      empty: "Nenhuma ferramenta encontrada",
+      emptyWithQuery: "Nenhuma ferramenta encontrada para “{query}”",
+    },
+    assistantsTitle: "Assistentes de IA",
+    assistantsIntro:
+      "Os principais chats para conversar, pesquisar, escrever e programar — com link direto para o site oficial.",
   },
   search: {
     placeholder: "Buscar por nome, tag ou necessidade",
@@ -166,6 +186,7 @@ export const pt: Dictionary = {
     animation: "Animação",
     mobile: "Mobile / Universal",
     web: "Web Components",
+    ia: "IA / LLMs",
   },
   languages: {
     pt: "Português",
