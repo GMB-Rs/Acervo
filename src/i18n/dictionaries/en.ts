@@ -63,6 +63,9 @@ export const en: Dictionary = {
       empty: "No tools found",
       emptyWithQuery: "No tools found for “{query}”",
     },
+    assistantsTitle: "AI assistants",
+    assistantsIntro:
+      "The main chats for talking, researching, writing and coding — each with a direct link to the official site.",
   },
   search: {
     placeholder: "Search by name, tag or need",

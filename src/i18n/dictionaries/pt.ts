@@ -63,6 +63,9 @@ export const pt: Dictionary = {
       empty: "Nenhuma ferramenta encontrada",
       emptyWithQuery: "Nenhuma ferramenta encontrada para “{query}”",
     },
+    assistantsTitle: "Assistentes de IA",
+    assistantsIntro:
+      "Os principais chats para conversar, pesquisar, escrever e programar — com link direto para o site oficial.",
   },
   search: {
     placeholder: "Buscar por nome, tag ou necessidade",

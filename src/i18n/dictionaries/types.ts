@@ -65,6 +65,10 @@ export type Dictionary = {
       empty: string;
       emptyWithQuery: string;
     };
+    /** Título da seção de chats, depois da galeria de ferramentas. */
+    assistantsTitle: string;
+    /** Intro da seção de chats. */
+    assistantsIntro: string;
   };
   search: {
     placeholder: string;
