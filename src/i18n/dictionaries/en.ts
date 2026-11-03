@@ -28,6 +28,7 @@ export const en: Dictionary = {
   nav: {
     stars: "GitHub stars: {n}",
     language: "Language",
+    ai: "AI",
     contributors: "Contributors",
   },
   contributors: {
@@ -45,7 +46,23 @@ export const en: Dictionary = {
   home: {
     title: "The right libraries for your next project",
     intro:
-      "A curated collection of {n} libraries for the web, from UI kits to validators, charts and date utilities. Filter by framework, category and license.",
+      "A curated collection of {n} libraries and tools for the web, from UI kits to validators, charts, date utilities and AI. Filter by framework, category and license.",
+  },
+  ai: {
+    metaTitle: "AI tools",
+    metaDescription:
+      "A catalogue of AI SDKs, agent frameworks, chat components and utilities for JavaScript and TypeScript.",
+    eyebrow: "acervo section",
+    title: "AI tools",
+    intro:
+      "{n} tools for building with LLMs: provider SDKs, agent frameworks, chat components and protocols.",
+    results: {
+      countOne: "1 tool",
+      countMany: "{n} tools",
+      showing: "Showing {from}–{to} of {total} tools",
+      empty: "No tools found",
+      emptyWithQuery: "No tools found for “{query}”",
+    },
   },
   search: {
     placeholder: "Search by name, tag or need",
@@ -166,6 +183,7 @@ export const en: Dictionary = {
     animation: "Animation",
     mobile: "Mobile / Universal",
     web: "Web Components",
+    ia: "AI / LLMs",
   },
   languages: {
     pt: "Português",

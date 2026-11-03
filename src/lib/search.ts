@@ -863,6 +863,16 @@ const PHRASES: PhraseDefinition[] = [
     alternatives: ["angular js", "angular.js", "angularjs", "angular"],
     facets: [{ kind: "framework", value: "angular" }],
   },
+  {
+    id: "phrase-inteligencia-artificial",
+    phrase: "inteligencia artificial",
+    alternatives: [
+      "inteligencia artificial",
+      "inteligência artificial",
+      "artificial intelligence",
+    ],
+    facets: [{ kind: "category", value: "ia" }],
+  },
 ];
 
 const FACET_BY_ALIAS = new Map<string, SearchFacet[]>();
@@ -902,6 +912,7 @@ addFacetAliases("category", ["data", "dados"], "data");
 addFacetAliases("category", ["icons", "icon", "ícone", "icone", "ícones", "icones"], "icons");
 addFacetAliases("category", ["animation", "animations", "animação", "animacao", "animações", "animacoes"], "animation");
 addFacetAliases("category", ["mobile", "ios", "android"], "mobile");
+addFacetAliases("category", ["ia", "ai", "llm", "llms", "agente", "agentes", "agent", "agents"], "ia");
 
 addFacetAliases("license", ["mit"], "mit");
 addFacetAliases("license", ["apache", "apache2"], "apache");

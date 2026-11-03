@@ -22,6 +22,7 @@ export const CATEGORIES = [
   "animation",
   "mobile",
   "web",
+  "ia",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];

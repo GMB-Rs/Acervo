@@ -136,3 +136,19 @@ test("css é uma faceta de utilitários na busca por intenção", () => {
   assert.ok(names("css").includes("Tailwind CSS"));
   assert.ok(names("css").includes("styled-components"));
 });
+
+test("llm e inteligência artificial filtram a categoria de IA", () => {
+  const byAlias = buildSearchQuery("llm");
+  assert.deepEqual(byAlias.terms[0]?.facets, [
+    { kind: "category", value: "ia" },
+  ]);
+
+  const byPhrase = buildSearchQuery("inteligência artificial");
+  assert.equal(byPhrase.terms[0]?.id, "phrase-inteligencia-artificial");
+  assert.deepEqual(byPhrase.terms[0]?.facets, [
+    { kind: "category", value: "ia" },
+  ]);
+
+  assert.ok(names("llm").includes("Vercel AI SDK"));
+  assert.ok(names("inteligência artificial").includes("Mastra"));
+});
