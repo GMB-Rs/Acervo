@@ -1,8 +1,8 @@
 /*
   Assistentes de IA são produtos, não bibliotecas: não têm framework,
   categoria nem licença de código. Por isso vivem em um dataset próprio
-  (`src/data/assistants.json`) e aparecem em uma seção separada da página
-  de IA, em vez de entrarem na galeria do catálogo.
+  (`src/data/assistants.json`), mas compartilham a galeria unificada da página
+  de IA com as bibliotecas e ferramentas.
 */
 
 export type Assistant = {

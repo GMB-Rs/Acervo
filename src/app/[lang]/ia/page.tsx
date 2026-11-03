@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AssistantCard } from "@/components/assistant-card";
 import { ExplorerFallback } from "@/components/explorer-fallback";
 import { LibraryExplorer } from "@/components/library-explorer";
 import { assistants, localizeAssistant } from "@/lib/assistants";
@@ -60,6 +59,7 @@ export default async function AiPage({ params }: PageProps) {
   const aiAssistants = assistants.map((assistant) =>
     localizeAssistant(locale, assistant),
   );
+  const aiItems = aiLibraries.length + aiAssistants.length;
 
   return (
     <>
@@ -69,7 +69,7 @@ export default async function AiPage({ params }: PageProps) {
             {dict.ai.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {formatText(dict.ai.intro, { n: aiLibraries.length })}
+            {formatText(dict.ai.intro, { n: aiItems })}
           </p>
         </div>
       </section>
@@ -78,36 +78,13 @@ export default async function AiPage({ params }: PageProps) {
         <Suspense fallback={<ExplorerFallback />}>
           <LibraryExplorer
             libraries={aiLibraries}
+            assistants={aiAssistants}
             locale={locale}
             dict={dict}
             variant="tools"
           />
         </Suspense>
       </div>
-
-      <section className="mt-14 border-t border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-12">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            {dict.ai.eyebrow}
-          </p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">
-            {dict.ai.assistantsTitle}
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {dict.ai.assistantsIntro}
-          </p>
-
-          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {aiAssistants.map((assistant) => (
-              <AssistantCard
-                key={assistant.slug}
-                assistant={assistant}
-                locale={locale}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

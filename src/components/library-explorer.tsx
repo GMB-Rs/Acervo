@@ -9,7 +9,9 @@ import {
   type RefObject,
 } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { AssistantCard } from "@/components/assistant-card";
 import { LibraryCard } from "@/components/library-card";
+import type { Assistant } from "@/types/assistant";
 import {
   CATEGORIES,
   FRAMEWORKS,
@@ -24,8 +26,11 @@ import {
 } from "@/lib/license";
 import {
   buildSearchQuery,
+  matchesTerm,
+  normalize,
   queryFacetLabels,
   searchCatalog,
+  tokenize,
 } from "@/lib/search";
 import type { SearchLabels } from "@/lib/search";
 import { HTML_LANG, type Locale } from "@/i18n/config";
@@ -33,6 +38,9 @@ import { formatText } from "@/i18n/format";
 import type { Dictionary } from "@/i18n/dictionaries/types";
 
 type SortOption = "popular" | "az" | "za" | "recent";
+type GalleryItem =
+  | { kind: "library"; item: Library }
+  | { kind: "assistant"; item: Assistant };
 
 const SORT_VALUES: SortOption[] = ["popular", "az", "za", "recent"];
 
@@ -264,11 +272,13 @@ function SearchInput({
 
 export function LibraryExplorer({
   libraries,
+  assistants = [],
   locale,
   dict,
   variant = "default",
 }: {
   libraries: Library[];
+  assistants?: Assistant[];
   locale: Locale;
   dict: Dictionary;
   /**
@@ -371,7 +381,7 @@ export function LibraryExplorer({
     return () => clearTimeout(timer);
   }, [query, urlQuery, pushParams]);
 
-  const itemsPerPage = 20;
+  const itemsPerPage = variant === "tools" ? 24 : 20;
 
   /*
     A busca entende linguagem natural: remove palavras vazias, reconhece
@@ -486,14 +496,66 @@ export function LibraryExplorer({
     };
   }, [libraries, query, searchLabels, framework, category, license, sort, locale]);
 
-  const filteredResults = searchResult.libraries;
+  const assistantTokens = tokenize(query);
+  const matchingAssistants =
+    variant === "tools" && framework === "all" && license === "all"
+      ? assistants.filter((assistant) => {
+          if (assistantTokens.length === 0) return true;
+          const searchableText = normalize(
+            [
+              assistant.name,
+              assistant.website,
+              assistant.description,
+              assistant.highlight,
+              ...assistant.tags,
+            ].join(" "),
+          );
+          return assistantTokens.every((token) =>
+            matchesTerm(searchableText, token),
+          );
+        })
+      : [];
+
+  const filteredResults: GalleryItem[] = [
+    ...searchResult.libraries.map((item) => ({
+      kind: "library" as const,
+      item,
+    })),
+    ...matchingAssistants.map((item) => ({
+      kind: "assistant" as const,
+      item,
+    })),
+  ];
+
+  if (sort === "az" || sort === "za") {
+    filteredResults.sort((a, b) =>
+      sort === "az"
+        ? a.item.name.localeCompare(b.item.name, HTML_LANG[locale])
+        : b.item.name.localeCompare(a.item.name, HTML_LANG[locale]),
+    );
+  } else if (sort === "recent") {
+    filteredResults.sort(
+      (a, b) =>
+        b.item.since - a.item.since ||
+        a.item.name.localeCompare(b.item.name, HTML_LANG[locale]),
+    );
+  } else if (!query.trim()) {
+    filteredResults.sort((a, b) => {
+      const starsA = a.kind === "library" ? a.item.stars ?? 0 : 0;
+      const starsB = b.kind === "library" ? b.item.stars ?? 0 : 0;
+      return (
+        starsB - starsA ||
+        a.item.name.localeCompare(b.item.name, HTML_LANG[locale])
+      );
+    });
+  }
 
   const totalPages = Math.ceil(filteredResults.length / itemsPerPage);
   // Uma página fora do intervalo (link antigo, filtro alterado) é ajustada.
   const page = Math.min(requestedPage, Math.max(totalPages, 1));
   const paginatedResults = filteredResults.slice(
     (page - 1) * itemsPerPage,
-    page * itemsPerPage
+    page * itemsPerPage,
   );
 
   // Com busca ativa, a ordenação padrão vira "por relevância".
@@ -623,7 +685,7 @@ export function LibraryExplorer({
               {dict.filters.all}
             </span>
             <span className="ml-1.5 font-mono text-[11px] opacity-60">
-              {libraries.length}
+              {libraries.length + assistants.length}
             </span>
           </button>
           {frameworkFilters.map((item) => (
@@ -721,16 +783,24 @@ export function LibraryExplorer({
       ) : (
         <>
           <div className="grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {paginatedResults.map((library) => (
-              <LibraryCard
-                key={library.slug}
-                library={library}
-                highlight={tokens}
-                locale={locale}
-                dict={dict}
-                from={galleryHref}
-              />
-            ))}
+            {paginatedResults.map((entry) =>
+              entry.kind === "library" ? (
+                <LibraryCard
+                  key={`library-${entry.item.slug}`}
+                  library={entry.item}
+                  highlight={tokens}
+                  locale={locale}
+                  dict={dict}
+                  from={galleryHref}
+                />
+              ) : (
+                <AssistantCard
+                  key={`assistant-${entry.item.slug}`}
+                  assistant={entry.item}
+                  locale={locale}
+                />
+              ),
+            )}
           </div>
 
           <div className={totalPages > 1 ? "mt-24 mb-8" : "mb-8"}>
