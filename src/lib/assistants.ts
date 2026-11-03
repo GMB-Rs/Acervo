@@ -1,9 +1,10 @@
 /*
   Dataset dos assistentes de IA (ChatGPT, Claude, Gemini…).
 
-  Eles são produtos, não bibliotecas: não entram em `libraries.json` nem na
-  galeria. O texto em português vive em `src/data/assistants.json` e a
-  tradução em `src/data/translations/assistants.en.json`, pelo slug.
+  Eles são produtos, não bibliotecas: não entram em `libraries.json`, mas
+  aparecem na galeria unificada de IA. O texto em português vive em
+  `src/data/assistants.json` e a tradução em
+  `src/data/translations/assistants.en.json`, pelo slug.
 
   Os imports são relativos de propósito: é o que deixa o módulo rodável no
   runner nativo do Node (`npm run test`), sem alias.
@@ -56,6 +57,14 @@ function parseAssistants(raw: RawAssistant[]): Assistant[] {
 export const assistants: Assistant[] = parseAssistants(
   assistantsJson as unknown as RawAssistant[],
 );
+
+export function getAllAssistantSlugs(): string[] {
+  return assistants.map((assistant) => assistant.slug);
+}
+
+export function getAssistantBySlug(slug: string): Assistant | undefined {
+  return assistants.find((assistant) => assistant.slug === slug);
+}
 
 /** Texto do assistente no idioma pedido, com o português como reserva. */
 export function assistantText(
