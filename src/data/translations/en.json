@@ -338,5 +338,9 @@
   "react-native-reusables": {
     "description": "Copy-paste React Native components styled with Tailwind CSS, in the style of shadcn/ui and ready for Expo.",
     "highlight": "Brings the shadcn/ui model to mobile: open code, no component package, with support for NativeWind and Uniwind."
+  },
+  "shadcn-io": {
+    "description": "An independent registry of shadcn/ui-style components, page blocks and templates, with the code copied into your project for React, Vue, Svelte or Solid.",
+    "highlight": "Over 6,000 ready-made page blocks (hero, pricing, login) plus an MCP server that installs components straight from your AI agent."
   }
 }

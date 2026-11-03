@@ -2162,5 +2162,27 @@
     "since": 2023,
     "npmPackage": "@react-native-reusables/cli",
     "lastUpdate": "2026-09-27T19:04:57Z"
+  },
+  {
+    "slug": "shadcn-io",
+    "name": "shadcn.io",
+    "description": "Registro independente de componentes, blocos de página e templates no estilo shadcn/ui, com o código copiado para o seu projeto em React, Vue, Svelte ou Solid.",
+    "highlight": "Reúne mais de 6 mil blocos de página prontos (hero, pricing, login) e um servidor MCP que instala os componentes direto pelo agente de IA.",
+    "framework": "react",
+    "category": "ui-kit",
+    "website": "https://www.shadcn.io",
+    "license": "comercial",
+    "logo": "shadcn-io.svg",
+    "color": "#000000",
+    "tags": [
+      "shadcn",
+      "tailwind",
+      "blocos",
+      "templates",
+      "mcp",
+      "acessível"
+    ],
+    "maintained": true,
+    "since": 2025
   }
 ]
