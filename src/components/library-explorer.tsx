@@ -798,6 +798,7 @@ export function LibraryExplorer({
                   key={`assistant-${entry.item.slug}`}
                   assistant={entry.item}
                   locale={locale}
+                  from={galleryHref}
                 />
               ),
             )}
