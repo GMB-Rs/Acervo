@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AssistantCard } from "@/components/assistant-card";
 import { ExplorerFallback } from "@/components/explorer-fallback";
 import { LibraryExplorer } from "@/components/library-explorer";
-import { assistants, localizeAssistant } from "@/lib/assistants";
 import { libraries } from "@/lib/libraries";
 import { isLocale } from "@/i18n/config";
 import { formatText } from "@/i18n/format";
@@ -57,9 +55,6 @@ export default async function AiPage({ params }: PageProps) {
   const aiLibraries = libraries
     .filter((library) => library.category === "ia")
     .map((library) => localizeLibrary(locale, library));
-  const aiAssistants = assistants.map((assistant) =>
-    localizeAssistant(locale, assistant),
-  );
 
   return (
     <>
@@ -84,30 +79,6 @@ export default async function AiPage({ params }: PageProps) {
           />
         </Suspense>
       </div>
-
-      <section className="mt-14 border-t border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-12">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            {dict.ai.eyebrow}
-          </p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">
-            {dict.ai.assistantsTitle}
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {dict.ai.assistantsIntro}
-          </p>
-
-          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {aiAssistants.map((assistant) => (
-              <AssistantCard
-                key={assistant.slug}
-                assistant={assistant}
-                locale={locale}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }
