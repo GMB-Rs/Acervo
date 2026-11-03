@@ -266,10 +266,17 @@ export function LibraryExplorer({
   libraries,
   locale,
   dict,
+  variant = "default",
 }: {
   libraries: Library[];
   locale: Locale;
   dict: Dictionary;
+  /**
+   * "tools" é a galeria da página de IA: fala em "ferramentas", esconde o
+   * filtro de categoria (a página já é uma categoria só) e mostra apenas os
+   * frameworks presentes no recorte.
+   */
+  variant?: "default" | "tools";
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -298,11 +305,16 @@ export function LibraryExplorer({
     ? (rawFramework as Framework)
     : "all";
   const rawCategory = searchParams.get(PARAM.category) ?? "all";
-  const category: Category | "all" = CATEGORIES.includes(
-    rawCategory as Category,
-  )
-    ? (rawCategory as Category)
-    : "all";
+  /*
+    Na galeria de ferramentas a categoria é fixa: um `?categoria=` antigo na
+    URL não pode esvaziar a página que já é um recorte só.
+  */
+  const category: Category | "all" =
+    variant === "tools"
+      ? "all"
+      : CATEGORIES.includes(rawCategory as Category)
+        ? (rawCategory as Category)
+        : "all";
   const rawSort = searchParams.get(PARAM.sort) ?? "popular";
   const sort: SortOption = isSortOption(rawSort) ? rawSort : "popular";
   const rawLicense = searchParams.get(PARAM.license) ?? "all";
@@ -404,6 +416,13 @@ export function LibraryExplorer({
     }
     return counts;
   }, [libraries]);
+
+  /* Na página de IA a galeria fala em "ferramentas" e só lista frameworks usados. */
+  const resultLabels = variant === "tools" ? dict.ai.results : dict.results;
+  const frameworkFilters =
+    variant === "tools"
+      ? FRAMEWORKS.filter((item) => (frameworkCounts.get(item) ?? 0) > 0)
+      : FRAMEWORKS;
 
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
@@ -553,19 +572,21 @@ export function LibraryExplorer({
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:ml-auto">
-            <Dropdown<Category | "all">
-              value={category}
-              options={categoryOptions}
-              onChange={(value) =>
-                pushParams({
-                  [PARAM.category]: value,
-                  [PARAM.page]: null,
-                })
-              }
-              label={dict.filters.category}
-              placeholder={dict.filters.select}
-              className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
-            />
+            {variant !== "tools" && (
+              <Dropdown<Category | "all">
+                value={category}
+                options={categoryOptions}
+                onChange={(value) =>
+                  pushParams({
+                    [PARAM.category]: value,
+                    [PARAM.page]: null,
+                  })
+                }
+                label={dict.filters.category}
+                placeholder={dict.filters.select}
+                className="w-full sm:w-[180px] md:w-[200px] lg:w-[200px] xl:w-[220px]"
+              />
+            )}
 
             <Dropdown<LicenseFamily | "all">
               value={license}
@@ -605,7 +626,7 @@ export function LibraryExplorer({
               {libraries.length}
             </span>
           </button>
-          {FRAMEWORKS.map((item) => (
+          {frameworkFilters.map((item) => (
             <button
               key={item}
               type="button"
@@ -629,8 +650,8 @@ export function LibraryExplorer({
         <span className="flex items-center gap-2">
           <span className="font-mono">
             {filteredResults.length === 1
-              ? dict.results.countOne
-              : formatText(dict.results.countMany, { n: filteredResults.length })}
+              ? resultLabels.countOne
+              : formatText(resultLabels.countMany, { n: filteredResults.length })}
           </span>
           {byRelevance && (
             <span className="opacity-70">{dict.results.byRelevance}</span>
@@ -683,12 +704,12 @@ export function LibraryExplorer({
           <p className="text-sm font-medium">
             {query.trim() ? (
               <>
-                {formatText(dict.results.emptyWithQuery, {
+                {formatText(resultLabels.emptyWithQuery, {
                   query: query.trim(),
                 })}
               </>
             ) : (
-              dict.results.empty
+              resultLabels.empty
             )}
           </p>
           <p className="mt-1 text-sm text-muted-foreground">
@@ -768,7 +789,7 @@ export function LibraryExplorer({
             )}
 
             <p className="mt-4 text-xs text-muted-foreground text-center font-mono">
-              {formatText(dict.results.showing, {
+              {formatText(resultLabels.showing, {
                 from: (page - 1) * itemsPerPage + 1,
                 to: Math.min(page * itemsPerPage, filteredResults.length),
                 total: filteredResults.length,

@@ -6,9 +6,9 @@
 [![Estrelas](https://img.shields.io/github/stars/GMB-Rs/Diretorio?style=social)](https://github.com/GMB-Rs/Diretorio)
 [![Site](https://img.shields.io/badge/site-online-0a0a0a)](https://acervo-azure.vercel.app/)
 
-Acervo de bibliotecas para **web**. O site cataloga libs de UI kit, headless, design systems, formulários, tabelas, gráficos, ícones, editores, animações e utilitários — organizadas por framework e categoria, com busca e filtros.
+Acervo de bibliotecas para **web**. O site cataloga libs de UI kit, headless, design systems, formulários, tabelas, gráficos, ícones, editores, animações, utilitários e ferramentas de IA — organizadas por framework e categoria, com busca e filtros.
 
-> Cobertura: UI kits, headless, design systems, formulários, tabelas, gráficos, ícones, animação, mobile/universal e utilitários de data.
+> Cobertura: UI kits, headless, design systems, formulários, tabelas, gráficos, ícones, animação, mobile/universal, utilitários de data e ferramentas de IA (`/pt/ia`, `/en/ia`).
 
 O site é bilíngue: **português** (`/pt`) e **inglês** (`/en`). O código, os dados e a documentação deste repositório estão em português.
 
@@ -51,6 +51,7 @@ O catálogo é um arquivo só (`src/data/libraries.json`). O passo a passo para 
 src/
   app/
     [lang]/                 # site inteiro por idioma (/pt, /en)
+    [lang]/ia/              # recorte do catálogo só com ferramentas de IA
     api/stars/route.ts      # contador de estrelas (cache no servidor)
     sitemap.ts / robots.ts  # metadados para buscadores
   components/               # UI components

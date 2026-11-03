@@ -1,5 +1,3 @@
-import type { Library } from "@/types/library";
-
 /*
   Três modos de exibição da marca no tile:
 
@@ -9,8 +7,11 @@ import type { Library } from "@/types/library";
   - text: sem imagem — o nome da biblioteca é escrito no tile.
 */
 
+/** Só o que os helpers precisam saber da marca — vale para Library e Assistant. */
+type LogoEntry = { logoKind?: "mark" | "wide" | "text" };
+
 /** Classe do <img> da logo, conforme o modo de exibição. */
-export function logoBoxClass(library: Library, size: "sm" | "lg"): string {
+export function logoBoxClass(library: LogoEntry, size: "sm" | "lg"): string {
   if (library.logoKind === "wide") {
     return size === "sm"
       ? "h-10 w-full max-w-[13rem] object-contain"
@@ -20,7 +21,7 @@ export function logoBoxClass(library: Library, size: "sm" | "lg"): string {
 }
 
 /** A logo é exibida como texto (sem imagem)? */
-export function isTextMark(library: Library): boolean {
+export function isTextMark(library: LogoEntry): boolean {
   return library.logoKind === "text";
 }
 

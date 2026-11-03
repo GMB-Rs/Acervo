@@ -1,0 +1,210 @@
+[
+  {
+    "slug": "chatgpt",
+    "name": "ChatGPT",
+    "description": "Assistente conversacional da OpenAI para texto, imagem, voz e código, no navegador e nos apps.",
+    "highlight": "É o padrão de mercado dos chats de IA: memória, GPTs personalizados, análise de arquivos e modo voz.",
+    "website": "https://chatgpt.com",
+    "logo": "chatgpt.svg",
+    "color": "#10A37F",
+    "tags": [
+      "chat",
+      "assistente",
+      "multimodal",
+      "código"
+    ],
+    "since": 2022
+  },
+  {
+    "slug": "claude",
+    "name": "Claude",
+    "description": "Assistente da Anthropic focado em conversas longas, escrita, análise de documentos e código.",
+    "highlight": "Contexto longo e respostas cuidadosas; o Claude Code leva o modelo direto para o terminal.",
+    "website": "https://claude.ai",
+    "logo": "claude.svg",
+    "color": "#D97757",
+    "tags": [
+      "chat",
+      "assistente",
+      "documentos",
+      "código"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "gemini",
+    "name": "Gemini",
+    "description": "Chat da Google com os modelos Gemini, integrado à busca, ao Gmail e ao Workspace.",
+    "highlight": "Multimodal de nascença e integrado aos produtos Google; também aparece como assistente no Android.",
+    "website": "https://gemini.google.com",
+    "logo": "gemini.svg",
+    "color": "#4285F4",
+    "tags": [
+      "chat",
+      "assistente",
+      "multimodal",
+      "google"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "deepseek",
+    "name": "DeepSeek",
+    "description": "Chat da DeepSeek com modelos abertos, forte em raciocínio e programação, com versão web gratuita.",
+    "highlight": "Popularizou modelos de raciocínio de baixo custo; o código e os pesos são abertos.",
+    "website": "https://chat.deepseek.com",
+    "logo": "deepseek.svg",
+    "color": "#4D6BFE",
+    "tags": [
+      "chat",
+      "assistente",
+      "raciocínio",
+      "código"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "microsoft-copilot",
+    "name": "Microsoft Copilot",
+    "description": "Assistente da Microsoft com GPT no Windows, no Edge e no Microsoft 365.",
+    "highlight": "Vem embutido no sistema e nos apps do Office, com acesso à web e ao contexto do trabalho.",
+    "website": "https://copilot.microsoft.com",
+    "logoKind": "text",
+    "color": "#0078D4",
+    "tags": [
+      "chat",
+      "assistente",
+      "microsoft",
+      "produtividade"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "perplexity",
+    "name": "Perplexity",
+    "description": "Mecanismo de respostas com busca na web e citações para cada afirmação.",
+    "highlight": "Cada resposta vem com fontes; é o chat para pesquisar em vez de só conversar.",
+    "website": "https://www.perplexity.ai",
+    "logo": "perplexity.svg",
+    "color": "#20808D",
+    "tags": [
+      "chat",
+      "pesquisa",
+      "fontes",
+      "web"
+    ],
+    "since": 2022
+  },
+  {
+    "slug": "grok",
+    "name": "Grok",
+    "description": "Assistente da xAI integrado ao X (Twitter), com acesso a posts em tempo real.",
+    "highlight": "Responde no ritmo da timeline e tem modos de raciocínio e geração de imagens.",
+    "website": "https://grok.com",
+    "logoKind": "text",
+    "color": "#000000",
+    "tags": [
+      "chat",
+      "assistente",
+      "tempo real",
+      "x"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "le-chat",
+    "name": "Le Chat",
+    "description": "Chat da Mistral AI com modelos europeus, respostas rápidas e foco em privacidade.",
+    "highlight": "Alternativa europeia aos chats dos EUA, com versão gratuita e planos para empresas.",
+    "website": "https://chat.mistral.ai",
+    "logo": "le-chat.svg",
+    "color": "#FA520F",
+    "tags": [
+      "chat",
+      "assistente",
+      "europa",
+      "privacidade"
+    ],
+    "since": 2024
+  },
+  {
+    "slug": "meta-ai",
+    "name": "Meta AI",
+    "description": "Assistente da Meta disponível no WhatsApp, Instagram, Messenger e na web.",
+    "highlight": "Alcança bilhões de pessoas dentro dos apps da Meta, com geração de imagens e respostas rápidas.",
+    "website": "https://www.meta.ai",
+    "logo": "meta-ai.svg",
+    "color": "#0064E0",
+    "tags": [
+      "chat",
+      "assistente",
+      "meta",
+      "multimodal"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "qwen-chat",
+    "name": "Qwen Chat",
+    "description": "Chat da Alibaba com a família Qwen, incluindo modelos abertos e geração de imagens e vídeo.",
+    "highlight": "Modelos abertos competitivos e uma interface com ferramentas de código, imagem e pesquisa.",
+    "website": "https://chat.qwen.ai",
+    "logo": "qwen-chat.svg",
+    "color": "#615CED",
+    "tags": [
+      "chat",
+      "assistente",
+      "alibaba",
+      "open source"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "kimi",
+    "name": "Kimi",
+    "description": "Assistente da Moonshot AI conhecido por lidar com documentos e contextos muito longos.",
+    "highlight": "Ficou conhecido pelo contexto gigante: dá para enviar livros e relatórios inteiros na conversa.",
+    "website": "https://www.kimi.com",
+    "logo": "kimi.svg",
+    "color": "#1A1A1A",
+    "tags": [
+      "chat",
+      "assistente",
+      "documentos",
+      "contexto longo"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "poe",
+    "name": "Poe",
+    "description": "Plataforma da Quora que reúne vários modelos e bots de IA em uma assinatura só.",
+    "highlight": "Um chat para experimentar GPT, Claude, Gemini e bots da comunidade sem trocar de site.",
+    "website": "https://poe.com",
+    "logo": "poe.svg",
+    "color": "#5D3FD3",
+    "tags": [
+      "chat",
+      "agregador",
+      "bots",
+      "modelos"
+    ],
+    "since": 2023
+  },
+  {
+    "slug": "huggingchat",
+    "name": "HuggingChat",
+    "description": "Chat open source do Hugging Face com modelos abertos e opção de rodar a interface por conta própria.",
+    "highlight": "Código aberto de ponta a ponta: dá para usar o serviço ou hospedar a sua instância.",
+    "website": "https://huggingface.co/chat",
+    "logo": "huggingchat.svg",
+    "color": "#FFD21E",
+    "tags": [
+      "chat",
+      "open source",
+      "hugging face",
+      "modelos abertos"
+    ],
+    "since": 2023
+  }
+]

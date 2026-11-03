@@ -1,0 +1,54 @@
+{
+  "chatgpt": {
+    "description": "OpenAI's conversational assistant for text, images, voice and code, in the browser and in the apps.",
+    "highlight": "The market benchmark for AI chats: memory, custom GPTs, file analysis and voice mode."
+  },
+  "claude": {
+    "description": "Anthropic's assistant focused on long conversations, writing, document analysis and code.",
+    "highlight": "Long context and careful answers; Claude Code brings the model straight into the terminal."
+  },
+  "gemini": {
+    "description": "Google's chat powered by the Gemini models, integrated with Search, Gmail and Workspace.",
+    "highlight": "Multimodal from the start and integrated into Google products; it also shows up as the Android assistant."
+  },
+  "deepseek": {
+    "description": "DeepSeek's chat with open models, strong at reasoning and programming, with a free web version.",
+    "highlight": "It popularised low-cost reasoning models; the code and the weights are open."
+  },
+  "microsoft-copilot": {
+    "description": "Microsoft's assistant with GPT inside Windows, Edge and Microsoft 365.",
+    "highlight": "Built into the system and the Office apps, with access to the web and work context."
+  },
+  "perplexity": {
+    "description": "Answer engine with web search and citations for every claim.",
+    "highlight": "Every answer comes with sources; it is the chat for researching instead of just talking."
+  },
+  "grok": {
+    "description": "xAI's assistant integrated with X (Twitter), with access to posts in real time.",
+    "highlight": "It answers at the pace of the timeline and has reasoning modes and image generation."
+  },
+  "le-chat": {
+    "description": "Mistral AI's chat with European models, fast answers and a focus on privacy.",
+    "highlight": "A European alternative to US chats, with a free version and plans for companies."
+  },
+  "meta-ai": {
+    "description": "Meta's assistant available on WhatsApp, Instagram, Messenger and the web.",
+    "highlight": "It reaches billions of people inside Meta's apps, with image generation and quick answers."
+  },
+  "qwen-chat": {
+    "description": "Alibaba's chat with the Qwen family, including open models and image and video generation.",
+    "highlight": "Competitive open models and an interface with coding, image and research tools."
+  },
+  "kimi": {
+    "description": "Moonshot AI's assistant known for handling documents and very long contexts.",
+    "highlight": "It became known for its huge context: you can send whole books and reports into the conversation."
+  },
+  "poe": {
+    "description": "Quora's platform that gathers several models and AI bots under a single subscription.",
+    "highlight": "One chat to try GPT, Claude, Gemini and community bots without switching sites."
+  },
+  "huggingchat": {
+    "description": "Hugging Face's open source chat with open models and the option to run the interface yourself.",
+    "highlight": "Open source end to end: you can use the service or host your own instance."
+  }
+}
