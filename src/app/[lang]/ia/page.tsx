@@ -65,10 +65,7 @@ export default async function AiPage({ params }: PageProps) {
     <>
       <section className="border-b border-border">
         <div className="mx-auto w-full max-w-6xl px-4 py-12">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            {dict.ai.eyebrow}
-          </p>
-          <h1 className="mt-2 text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
             {dict.ai.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
@@ -100,7 +97,7 @@ export default async function AiPage({ params }: PageProps) {
             {dict.ai.assistantsIntro}
           </p>
 
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-8 grid grid-cols-2 gap-x-4 gap-y-7 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
             {aiAssistants.map((assistant) => (
               <AssistantCard
                 key={assistant.slug}
