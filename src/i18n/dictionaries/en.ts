@@ -49,19 +49,19 @@ export const en: Dictionary = {
       "A curated collection of {n} libraries and tools for the web, from UI kits to validators, charts, date utilities and AI. Filter by framework, category and license.",
   },
   ai: {
-    metaTitle: "AI tools",
+    metaTitle: "AI tools and assistants",
     metaDescription:
-      "A catalogue of AI SDKs, agent frameworks, chat components and utilities for JavaScript and TypeScript.",
+      "A unified catalogue of AI tools and assistants: SDKs, frameworks, chat components, protocols and chat services for research, writing and coding.",
     eyebrow: "acervo section",
-    title: "AI tools",
+    title: "AI tools and assistants",
     intro:
-      "{n} tools for building with LLMs: provider SDKs, agent frameworks, chat components and protocols.",
+      "{n} AI resources in one gallery: provider SDKs, agent frameworks, chat components, protocols and assistants.",
     results: {
-      countOne: "1 tool",
-      countMany: "{n} tools",
-      showing: "Showing {from}–{to} of {total} tools",
-      empty: "No tools found",
-      emptyWithQuery: "No tools found for “{query}”",
+      countOne: "1 AI resource",
+      countMany: "{n} AI resources",
+      showing: "Showing {from}–{to} of {total} AI resources",
+      empty: "No AI resources found",
+      emptyWithQuery: "No AI resources found for “{query}”",
     },
     assistantsTitle: "AI assistants",
     assistantsIntro:

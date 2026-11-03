@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Suspense } from "react";
 import { ExplorerFallback } from "@/components/explorer-fallback";
 import { LibraryExplorer } from "@/components/library-explorer";
+import { assistants, localizeAssistant } from "@/lib/assistants";
 import { libraries } from "@/lib/libraries";
 import { isLocale } from "@/i18n/config";
 import { formatText } from "@/i18n/format";
@@ -55,6 +56,10 @@ export default async function AiPage({ params }: PageProps) {
   const aiLibraries = libraries
     .filter((library) => library.category === "ia")
     .map((library) => localizeLibrary(locale, library));
+  const aiAssistants = assistants.map((assistant) =>
+    localizeAssistant(locale, assistant),
+  );
+  const aiItems = aiLibraries.length + aiAssistants.length;
 
   return (
     <>
@@ -64,7 +69,7 @@ export default async function AiPage({ params }: PageProps) {
             {dict.ai.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {formatText(dict.ai.intro, { n: aiLibraries.length })}
+            {formatText(dict.ai.intro, { n: aiItems })}
           </p>
         </div>
       </section>
@@ -73,6 +78,7 @@ export default async function AiPage({ params }: PageProps) {
         <Suspense fallback={<ExplorerFallback />}>
           <LibraryExplorer
             libraries={aiLibraries}
+            assistants={aiAssistants}
             locale={locale}
             dict={dict}
             variant="tools"

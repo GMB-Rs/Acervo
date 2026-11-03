@@ -49,19 +49,19 @@ export const pt: Dictionary = {
       "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA. Filtre por framework, categoria e licença.",
   },
   ai: {
-    metaTitle: "Ferramentas de IA",
+    metaTitle: "IA: ferramentas e assistentes",
     metaDescription:
-      "Catálogo de SDKs, frameworks de agentes, componentes de chat e utilidades de IA para JavaScript e TypeScript.",
+      "Catálogo unificado de ferramentas e assistentes de IA: SDKs, frameworks, componentes de chat, protocolos e chats para conversar, pesquisar e programar.",
     eyebrow: "seção do acervo",
-    title: "Ferramentas de IA",
+    title: "IA: ferramentas e assistentes",
     intro:
-      "{n} ferramentas para construir com LLMs: SDKs de provedores, frameworks de agentes, componentes de chat e protocolos.",
+      "{n} recursos de IA em uma única galeria: SDKs de provedores, frameworks de agentes, componentes de chat, protocolos e assistentes.",
     results: {
-      countOne: "1 ferramenta",
-      countMany: "{n} ferramentas",
-      showing: "Mostrando {from}–{to} de {total} ferramentas",
-      empty: "Nenhuma ferramenta encontrada",
-      emptyWithQuery: "Nenhuma ferramenta encontrada para “{query}”",
+      countOne: "1 recurso de IA",
+      countMany: "{n} recursos de IA",
+      showing: "Mostrando {from}–{to} de {total} recursos de IA",
+      empty: "Nenhum recurso de IA encontrado",
+      emptyWithQuery: "Nenhum recurso de IA encontrado para “{query}”",
     },
     assistantsTitle: "Assistentes de IA",
     assistantsIntro:
