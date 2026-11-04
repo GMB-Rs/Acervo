@@ -23,6 +23,22 @@ export const CATEGORIES = [
   "mobile",
   "web",
   "ia",
+  "state",
+  "testing",
+  "auth",
+  "database",
+  "i18n",
+  "build",
+  "quality",
+  "observability",
+  "security",
+  "payments",
+  "email",
+  "cms",
+  "backend",
+  "docs",
+  "deploy",
+  "analytics",
 ] as const;
 
 export type Category = (typeof CATEGORIES)[number];

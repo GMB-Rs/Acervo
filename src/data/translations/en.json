@@ -374,5 +374,197 @@
   "mcp-typescript-sdk": {
     "description": "Official TypeScript SDK for building Model Context Protocol servers and clients.",
     "highlight": "It is the foundation of MCP, the protocol that connects AI agents to tools and data sources."
+  },
+  "zustand": {
+    "description": "Minimal React store built on hooks, with no providers and almost no boilerplate.",
+    "highlight": "A lean alternative to Redux: a global store in a few lines, with selectors and persistence."
+  },
+  "redux-toolkit": {
+    "description": "The official, opinionated way to write Redux, with slices, Immer and devtools already set up.",
+    "highlight": "Removes classic Redux boilerplate without giving up the predictable action and reducer model."
+  },
+  "jotai": {
+    "description": "Atomic global state for React: each piece of state is an independent atom.",
+    "highlight": "Avoids unnecessary re-renders because each component subscribes only to the atoms it uses."
+  },
+  "vitest": {
+    "description": "Unit test runner compatible with the Jest API and integrated with Vite.",
+    "highlight": "Runs in seconds, understands TypeScript and ESM out of the box and reuses the Vite pipeline."
+  },
+  "playwright": {
+    "description": "Browser automation for end-to-end tests in Chromium, Firefox and WebKit.",
+    "highlight": "One test, three engines: auto-waiting, trace viewer and real parallelism."
+  },
+  "testing-library": {
+    "description": "Testing utilities that query the DOM the way a user would, by text and role.",
+    "highlight": "Pushes tests towards visible, accessible behaviour instead of implementation details."
+  },
+  "authjs": {
+    "description": "Authentication for Next.js and other frameworks, with dozens of OAuth providers and sessions.",
+    "highlight": "Formerly NextAuth: handles social login, credentials and sessions without your own database in most cases."
+  },
+  "clerk": {
+    "description": "Ready-made authentication with login components, user management and organisations.",
+    "highlight": "Ships the login screen, profile and access control out of the box — less code, more product."
+  },
+  "better-auth": {
+    "description": "Framework-agnostic TypeScript authentication library with plugins.",
+    "highlight": "One API for email/password, OAuth, passkeys and organisations, with end-to-end typing."
+  },
+  "prisma": {
+    "description": "TypeScript ORM with a declarative schema, migrations and a typed SQL client.",
+    "highlight": "The schema is the source of truth: types, migrations and queries all come from it."
+  },
+  "drizzle-orm": {
+    "description": "Lightweight SQL-first ORM with schema-inferred types and SQL-like queries.",
+    "highlight": "No magic runtime: the generated SQL is predictable and the bundle stays small."
+  },
+  "supabase": {
+    "description": "Open source backend on top of Postgres, with auth, storage, realtime and edge functions.",
+    "highlight": "Firebase for the SQL world: real Postgres with REST and realtime APIs out of the box."
+  },
+  "next-intl": {
+    "description": "Internationalisation for Next.js with typed messages, locale routes and formatting.",
+    "highlight": "Integrates with the App Router and keeps messages out of the client bundle."
+  },
+  "react-i18next": {
+    "description": "i18next integration for React, with hooks, components and translation loading.",
+    "highlight": "The React i18n standard: works with SSR, suspense and any message backend."
+  },
+  "lingui": {
+    "description": "i18n framework that compiles messages at build time and ships an extraction CLI.",
+    "highlight": "Small compiled messages at runtime, with a translation workflow built for teams."
+  },
+  "vite": {
+    "description": "Build tool with an instant dev server, native ESM and an optimised Rollup build.",
+    "highlight": "The dev server doesn't bundle: the browser requests modules and HMR responds instantly."
+  },
+  "esbuild": {
+    "description": "Bundler and minifier written in Go, built for extreme speed.",
+    "highlight": "Powers several modern tools: transforms and bundles in milliseconds."
+  },
+  "turborepo": {
+    "description": "Build system for monorepos, with remote caching and parallel task execution.",
+    "highlight": "Only reruns what changed: local/remote cache and a dependency graph across packages."
+  },
+  "biome": {
+    "description": "Rust linter and formatter that replaces ESLint and Prettier in a single binary.",
+    "highlight": "Fast and plugin-free: lint, formatting and import sorting in one pass."
+  },
+  "eslint": {
+    "description": "Configurable linter for JavaScript and TypeScript, with rules and plugins for everything.",
+    "highlight": "The ecosystem standard: shared configs, autofix and editor integration."
+  },
+  "prettier": {
+    "description": "Opinionated formatter that rewrites code in a consistent style.",
+    "highlight": "Ends style debates: save, format and everyone writes the same way."
+  },
+  "sentry": {
+    "description": "Error and performance monitoring with stack traces, releases and alerts.",
+    "highlight": "Shows errors with real context: release, user, breadcrumbs and transaction."
+  },
+  "opentelemetry": {
+    "description": "Open standard for traces, metrics and logs, with SDKs for several languages.",
+    "highlight": "Instrument once and export to any backend: no vendor lock-in."
+  },
+  "pino": {
+    "description": "Low-overhead JSON logger for Node.js, with transports and redaction.",
+    "highlight": "Fast, structured logs ready to be consumed by any aggregator."
+  },
+  "dompurify": {
+    "description": "HTML and SVG sanitiser that removes dangerous content before it reaches the DOM.",
+    "highlight": "The default defence against XSS when you need to render third-party HTML."
+  },
+  "helmet": {
+    "description": "Security headers middleware for Express and other Node.js servers.",
+    "highlight": "Sets CSP, HSTS and friends in one line, with safe defaults."
+  },
+  "stripe": {
+    "description": "Payments infrastructure with checkout, subscriptions, invoices and web SDKs.",
+    "highlight": "The market benchmark: Elements, hosted Checkout and well-documented webhooks."
+  },
+  "lemonsqueezy": {
+    "description": "Payments and licensing platform for digital products and SaaS.",
+    "highlight": "Handles checkout, taxes and licences — useful to sell software without building finance."
+  },
+  "polar": {
+    "description": "Payments and subscription platform built for open source projects.",
+    "highlight": "Checkout, licences and benefits for maintainers, with a typed API and SDKs."
+  },
+  "resend": {
+    "description": "Transactional email API with SDKs, React templates and delivery logs.",
+    "highlight": "Built for developers: one key, one fetch and the email is out; React Email handles the template."
+  },
+  "react-email": {
+    "description": "React components for building HTML emails compatible with major clients.",
+    "highlight": "Write email as components, with local preview and rendering to final HTML."
+  },
+  "nodemailer": {
+    "description": "Email sending library for Node.js, with SMTP, attachments and templates.",
+    "highlight": "The Node classic: works with any SMTP and handles the hard cases of attachments and encoding."
+  },
+  "sanity": {
+    "description": "Headless CMS with structured content, a customisable Studio and realtime.",
+    "highlight": "Content is typed data: the Studio is React and the API serves JSON ready for any front end."
+  },
+  "payload": {
+    "description": "TypeScript headless CMS that installs inside your Next.js app, with admin and API.",
+    "highlight": "No separate service: the CMS runs in the same app, with generated types and direct database access."
+  },
+  "strapi": {
+    "description": "Open source headless CMS with visual modelling, REST and GraphQL.",
+    "highlight": "Ready-made admin panel and an API generated from your content types."
+  },
+  "firebase": {
+    "description": "Google's backend platform with auth, Firestore, storage and functions.",
+    "highlight": "From prototype to app: auth, realtime database and hosting without running a server."
+  },
+  "appwrite": {
+    "description": "Self-hosted open source backend with auth, database, storage and functions.",
+    "highlight": "The self-hosted Firebase alternative: runs on your server and ships SDKs for several platforms."
+  },
+  "convex": {
+    "description": "Reactive backend with a database, functions and realtime sync.",
+    "highlight": "Queries are reactive by default: when data changes, the front end updates itself."
+  },
+  "storybook": {
+    "description": "A workshop for UI components: document, test and review states outside the app.",
+    "highlight": "Each component gets a living page, with controls, interaction tests and accessibility checks."
+  },
+  "docusaurus": {
+    "description": "React documentation site generator with Markdown, versioning and i18n.",
+    "highlight": "Docs with search, versions and translation without building a site from scratch."
+  },
+  "fumadocs": {
+    "description": "Documentation framework for Next.js with MDX, search and UI components.",
+    "highlight": "Built for the App Router: fast, typed docs that look like your product."
+  },
+  "vercel": {
+    "description": "Deploy and hosting platform with per-branch previews and edge functions.",
+    "highlight": "Every push becomes a preview URL; production deploy is just the next step."
+  },
+  "netlify": {
+    "description": "Hosting and deploy for modern sites, with builds, previews and functions.",
+    "highlight": "A pioneer of the Git-to-deploy flow: connect the repo and the site is live."
+  },
+  "cloudflare-pages": {
+    "description": "Static and full-stack site hosting on Cloudflare's edge network.",
+    "highlight": "Builds on Cloudflare and serves from the edge: fast near the user, with workers in the same place."
+  },
+  "posthog": {
+    "description": "Open source product analytics with events, funnels, sessions and feature flags.",
+    "highlight": "Brings analytics, replays and experiments together — and you can self-host it."
+  },
+  "plausible": {
+    "description": "Lightweight, cookie-free analytics focused on privacy and a simple dashboard.",
+    "highlight": "One script tag and clear metrics, with no cookie banner and no personal data."
+  },
+  "umami": {
+    "description": "Open source, self-hostable analytics with simple, cookie-free metrics.",
+    "highlight": "Runs on your database and server: analytics data without handing everything to a third party."
+  },
+  "jose": {
+    "description": "JavaScript implementation of JWT, JWS, JWE and JWK, built on Web Crypto and Node.",
+    "highlight": "Handles token signing and encryption with the standard Web Crypto API, with no dependencies."
   }
 }
