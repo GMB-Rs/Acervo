@@ -12,7 +12,9 @@
 import assistantsJson from "../data/assistants.json" with { type: "json" };
 import assistantTranslations from "../data/translations/assistants.en.json" with { type: "json" };
 import { DEFAULT_LOCALE, type Locale } from "../i18n/config.ts";
+import { translateTags } from "../i18n/library-text.ts";
 import type { Assistant } from "../types/assistant.ts";
+import type { Library } from "../types/library.ts";
 
 const LOGO_KINDS = new Set(["mark", "wide", "text"]);
 
@@ -81,5 +83,34 @@ export function localizeAssistant(
     ...assistant,
     description: text.description,
     highlight: text.highlight,
+  };
+}
+
+/*
+  Adapta um assistente ao formato da galeria. `framework` e `license` são
+  apenas o mínimo que o explorador exige — a interface os esconde nos cards
+  de assistente e o filtro da página de IA é por tipo, não por framework.
+*/
+export function assistantToLibrary(
+  locale: Locale,
+  assistant: Assistant,
+): Library {
+  const localized = localizeAssistant(locale, assistant);
+  return {
+    slug: localized.slug,
+    name: localized.name,
+    description: localized.description,
+    highlight: localized.highlight,
+    framework: "vanilla",
+    category: "ia",
+    website: localized.website,
+    license: "comercial",
+    logo: localized.logo,
+    logoKind: localized.logoKind,
+    color: localized.color,
+    tags: translateTags(locale, localized.tags),
+    maintained: true,
+    since: localized.since,
+    kind: "assistant",
   };
 }

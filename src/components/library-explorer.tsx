@@ -42,9 +42,16 @@ const PARAM = {
   framework: "framework",
   category: "categoria",
   license: "licenca",
+  kind: "tipo",
   sort: "ordem",
   page: "pagina",
 } as const;
+
+type EntryKind = "tool" | "assistant";
+
+function entryKind(item: Library): EntryKind {
+  return item.kind === "assistant" ? "assistant" : "tool";
+}
 
 function isSortOption(value: string): value is SortOption {
   return SORT_VALUES.includes(value as SortOption);
@@ -272,11 +279,12 @@ export function LibraryExplorer({
   locale: Locale;
   dict: Dictionary;
   /**
-   * "tools" é a galeria da página de IA: fala em "ferramentas", esconde o
-   * filtro de categoria (a página já é uma categoria só) e mostra apenas os
-   * frameworks presentes no recorte.
+   * "tools" é a galeria de uma categoria só: fala em "ferramentas", esconde
+   * o filtro de categoria e mostra apenas os frameworks presentes no recorte.
+   * "ai" é a página de IA com tudo junto (ferramentas + assistentes): fala em
+   * "IAs" e troca o filtro de framework por um filtro de tipo.
    */
-  variant?: "default" | "tools";
+  variant?: "default" | "tools" | "ai";
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -310,12 +318,16 @@ export function LibraryExplorer({
     URL não pode esvaziar a página que já é um recorte só.
   */
   const category: Category | "all" =
-    variant === "tools"
+    variant === "tools" || variant === "ai"
       ? "all"
       : CATEGORIES.includes(rawCategory as Category)
         ? (rawCategory as Category)
         : "all";
-  const rawSort = searchParams.get(PARAM.sort) ?? "popular";
+  const rawKind = searchParams.get(PARAM.kind) ?? "all";
+  const kind: EntryKind | "all" =
+    rawKind === "tool" || rawKind === "assistant" ? rawKind : "all";
+  const rawSort =
+    searchParams.get(PARAM.sort) ?? (variant === "ai" ? "az" : "popular");
   const sort: SortOption = isSortOption(rawSort) ? rawSort : "popular";
   const rawLicense = searchParams.get(PARAM.license) ?? "all";
   const license: LicenseFamily | "all" = LICENSE_FAMILIES.includes(
@@ -417,12 +429,21 @@ export function LibraryExplorer({
     return counts;
   }, [libraries]);
 
-  /* Na página de IA a galeria fala em "ferramentas" e só lista frameworks usados. */
-  const resultLabels = variant === "tools" ? dict.ai.results : dict.results;
+  /* Na página de IA a galeria fala em "IAs" e só lista frameworks usados. */
+  const resultLabels = variant === "default" ? dict.results : dict.ai.results;
   const frameworkFilters =
     variant === "tools"
       ? FRAMEWORKS.filter((item) => (frameworkCounts.get(item) ?? 0) > 0)
       : FRAMEWORKS;
+
+  const kindCounts = useMemo(() => {
+    const counts = new Map<EntryKind, number>();
+    for (const item of libraries) {
+      const value = entryKind(item);
+      counts.set(value, (counts.get(value) ?? 0) + 1);
+    }
+    return counts;
+  }, [libraries]);
 
   const categoryCounts = useMemo(() => {
     const counts = new Map<string, number>();
@@ -446,6 +467,9 @@ export function LibraryExplorer({
       if (framework !== "all" && item.framework !== framework) return false;
       if (category !== "all" && item.category !== category) return false;
       if (license !== "all" && licenseFamily(item.license) !== license) {
+        return false;
+      }
+      if (variant === "ai" && kind !== "all" && entryKind(item) !== kind) {
         return false;
       }
       return true;
@@ -484,7 +508,18 @@ export function LibraryExplorer({
       relaxed: result.relaxed,
       smart: result.query.smart,
     };
-  }, [libraries, query, searchLabels, framework, category, license, sort, locale]);
+  }, [
+    libraries,
+    query,
+    searchLabels,
+    framework,
+    category,
+    license,
+    kind,
+    variant,
+    sort,
+    locale,
+  ]);
 
   const filteredResults = searchResult.libraries;
 
@@ -504,7 +539,8 @@ export function LibraryExplorer({
     query.trim() !== "" ||
     framework !== "all" ||
     category !== "all" ||
-    license !== "all";
+    license !== "all" ||
+    (variant === "ai" && kind !== "all");
 
   /*
     Endereço da galeria como está na URL — é ele que o botão de voltar da
@@ -572,7 +608,7 @@ export function LibraryExplorer({
           </div>
 
           <div className="flex flex-col gap-3 sm:flex-row lg:ml-auto">
-            {variant !== "tools" && (
+            {variant === "default" && (
               <Dropdown<Category | "all">
                 value={category}
                 options={categoryOptions}
@@ -588,16 +624,18 @@ export function LibraryExplorer({
               />
             )}
 
-            <Dropdown<LicenseFamily | "all">
-              value={license}
-              options={licenseOptions}
-              onChange={(value) =>
-                pushParams({ [PARAM.license]: value, [PARAM.page]: null })
-              }
-              label={dict.filters.license}
-              placeholder={dict.filters.select}
-              className="w-full sm:w-[160px] md:w-[170px] lg:w-[160px] xl:w-[180px]"
-            />
+            {variant !== "ai" && (
+              <Dropdown<LicenseFamily | "all">
+                value={license}
+                options={licenseOptions}
+                onChange={(value) =>
+                  pushParams({ [PARAM.license]: value, [PARAM.page]: null })
+                }
+                label={dict.filters.license}
+                placeholder={dict.filters.select}
+                className="w-full sm:w-[160px] md:w-[170px] lg:w-[160px] xl:w-[180px]"
+              />
+            )}
 
             <Dropdown<SortOption>
               value={sort}
@@ -612,37 +650,75 @@ export function LibraryExplorer({
         </div>
 
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-border py-3">
-          <button
-            type="button"
-            onClick={() =>
-              pushParams({ [PARAM.framework]: null, [PARAM.page]: null })
-            }
-            className={filterButton(framework === "all")}
-          >
-            <span className={filterButtonLabel(framework === "all")}>
-              {dict.filters.all}
-            </span>
-            <span className="ml-1.5 font-mono text-[11px] opacity-60">
-              {libraries.length}
-            </span>
-          </button>
-          {frameworkFilters.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() =>
-                pushParams({ [PARAM.framework]: item, [PARAM.page]: null })
-              }
-              className={filterButton(framework === item)}
-            >
-              <span className={filterButtonLabel(framework === item)}>
-                {dict.frameworkLabels[item]}
-              </span>
-              <span className="ml-1.5 font-mono text-[11px] opacity-60">
-                {frameworkCounts.get(item) ?? 0}
-              </span>
-            </button>
-          ))}
+          {variant === "ai" ? (
+            <>
+              <button
+                type="button"
+                onClick={() =>
+                  pushParams({ [PARAM.kind]: null, [PARAM.page]: null })
+                }
+                className={filterButton(kind === "all")}
+              >
+                <span className={filterButtonLabel(kind === "all")}>
+                  {dict.filters.all}
+                </span>
+                <span className="ml-1.5 font-mono text-[11px] opacity-60">
+                  {libraries.length}
+                </span>
+              </button>
+              {(["tool", "assistant"] as const).map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() =>
+                    pushParams({ [PARAM.kind]: item, [PARAM.page]: null })
+                  }
+                  className={filterButton(kind === item)}
+                >
+                  <span className={filterButtonLabel(kind === item)}>
+                    {item === "tool" ? dict.ai.tools : dict.ai.assistants}
+                  </span>
+                  <span className="ml-1.5 font-mono text-[11px] opacity-60">
+                    {kindCounts.get(item) ?? 0}
+                  </span>
+                </button>
+              ))}
+            </>
+          ) : (
+            <>
+              <button
+                type="button"
+                onClick={() =>
+                  pushParams({ [PARAM.framework]: null, [PARAM.page]: null })
+                }
+                className={filterButton(framework === "all")}
+              >
+                <span className={filterButtonLabel(framework === "all")}>
+                  {dict.filters.all}
+                </span>
+                <span className="ml-1.5 font-mono text-[11px] opacity-60">
+                  {libraries.length}
+                </span>
+              </button>
+              {frameworkFilters.map((item) => (
+                <button
+                  key={item}
+                  type="button"
+                  onClick={() =>
+                    pushParams({ [PARAM.framework]: item, [PARAM.page]: null })
+                  }
+                  className={filterButton(framework === item)}
+                >
+                  <span className={filterButtonLabel(framework === item)}>
+                    {dict.frameworkLabels[item]}
+                  </span>
+                  <span className="ml-1.5 font-mono text-[11px] opacity-60">
+                    {frameworkCounts.get(item) ?? 0}
+                  </span>
+                </button>
+              ))}
+            </>
+          )}
         </div>
       </div>
 
@@ -689,6 +765,7 @@ export function LibraryExplorer({
                 [PARAM.framework]: null,
                 [PARAM.category]: null,
                 [PARAM.license]: null,
+                [PARAM.kind]: null,
                 [PARAM.page]: null,
               });
             }}

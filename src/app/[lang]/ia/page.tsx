@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { AssistantCard } from "@/components/assistant-card";
 import { ExplorerFallback } from "@/components/explorer-fallback";
 import { LibraryExplorer } from "@/components/library-explorer";
-import { assistants, localizeAssistant } from "@/lib/assistants";
+import { assistants, assistantToLibrary } from "@/lib/assistants";
 import { libraries } from "@/lib/libraries";
 import { isLocale } from "@/i18n/config";
 import { formatText } from "@/i18n/format";
@@ -15,9 +14,10 @@ type PageProps = {
 };
 
 /*
-  Recorte do catálogo só com ferramentas de IA (categoria `ia`). A galeria é
-  a mesma da home, com o explorador no modo "tools": fala em ferramentas e
-  esconde o filtro de categoria, já que a página inteira é uma categoria só.
+  Página de IA: o recorte de ferramentas do catálogo (categoria `ia`) e os
+  assistentes de chat no mesmo explorador da home. Os assistentes são
+  adaptados ao formato da galeria, mas o card aponta para o site oficial em
+  vez de abrir uma ficha interna.
 
   Como a rota lê os `params` no topo, a navegação para cá bloqueia até o
   idioma ser resolvido — `instant = false` assume isso, como nas outras
@@ -54,12 +54,12 @@ export default async function AiPage({ params }: PageProps) {
   const locale = isLocale(lang) ? lang : "pt";
   const dict = getDictionary(locale);
 
-  const aiLibraries = libraries
-    .filter((library) => library.category === "ia")
-    .map((library) => localizeLibrary(locale, library));
-  const aiAssistants = assistants.map((assistant) =>
-    localizeAssistant(locale, assistant),
-  );
+  const aiEntries = [
+    ...libraries
+      .filter((library) => library.category === "ia")
+      .map((library) => localizeLibrary(locale, library)),
+    ...assistants.map((assistant) => assistantToLibrary(locale, assistant)),
+  ];
 
   return (
     <>
@@ -72,7 +72,7 @@ export default async function AiPage({ params }: PageProps) {
             {dict.ai.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {formatText(dict.ai.intro, { n: aiLibraries.length })}
+            {formatText(dict.ai.intro, { n: aiEntries.length })}
           </p>
         </div>
       </section>
@@ -80,37 +80,13 @@ export default async function AiPage({ params }: PageProps) {
       <div className="mx-auto w-full max-w-6xl px-4">
         <Suspense fallback={<ExplorerFallback />}>
           <LibraryExplorer
-            libraries={aiLibraries}
+            libraries={aiEntries}
             locale={locale}
             dict={dict}
-            variant="tools"
+            variant="ai"
           />
         </Suspense>
       </div>
-
-      <section className="mt-14 border-t border-border">
-        <div className="mx-auto w-full max-w-6xl px-4 py-12">
-          <p className="font-mono text-[11px] uppercase tracking-wider text-muted-foreground">
-            {dict.ai.eyebrow}
-          </p>
-          <h2 className="mt-2 text-xl font-semibold tracking-tight sm:text-2xl">
-            {dict.ai.assistantsTitle}
-          </h2>
-          <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {dict.ai.assistantsIntro}
-          </p>
-
-          <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {aiAssistants.map((assistant) => (
-              <AssistantCard
-                key={assistant.slug}
-                assistant={assistant}
-                locale={locale}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
     </>
   );
 }

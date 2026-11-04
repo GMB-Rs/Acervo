@@ -52,11 +52,11 @@ export type Dictionary = {
     /** Sobretítulo da página: "seção do acervo". */
     eyebrow: string;
     title: string;
-    /** Intro da página: "{n} ferramentas para construir com LLMs...". */
+    /** Intro da página: "{n} IAs para construir e conversar...". */
     intro: string;
     /**
      * Rótulos dos resultados na página de IA. A galeria padrão fala em
-     * "bibliotecas"; aqui a mesma galeria fala em "ferramentas".
+     * "bibliotecas"; aqui a mesma galeria fala em "IAs".
      */
     results: {
       countOne: string;
@@ -65,10 +65,9 @@ export type Dictionary = {
       empty: string;
       emptyWithQuery: string;
     };
-    /** Título da seção de chats, depois da galeria de ferramentas. */
-    assistantsTitle: string;
-    /** Intro da seção de chats. */
-    assistantsIntro: string;
+    /** Filtro por tipo de IA, no lugar do filtro de framework. */
+    tools: string;
+    assistants: string;
   };
   search: {
     placeholder: string;
@@ -116,6 +115,10 @@ export type Dictionary = {
   card: {
     /** "{count} estrelas". */
     stars: string;
+    /** Tipo do card de assistente: "Assistente". */
+    assistant: string;
+    /** "desde {year}" para os assistentes. */
+    since: string;
   };
   detail: {
     back: string;

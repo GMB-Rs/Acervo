@@ -49,23 +49,22 @@ export const en: Dictionary = {
       "A curated collection of {n} libraries and tools for the web, from UI kits to validators, charts, date utilities and AI. Filter by framework, category and license.",
   },
   ai: {
-    metaTitle: "AI tools",
+    metaTitle: "AI tools and assistants",
     metaDescription:
-      "A catalogue of AI SDKs, agent frameworks, chat components and utilities for JavaScript and TypeScript.",
+      "A catalogue of AI SDKs, agent frameworks, chat components, protocols and the main AI assistants.",
     eyebrow: "acervo section",
-    title: "AI tools",
+    title: "AI tools and assistants",
     intro:
-      "{n} tools for building with LLMs: provider SDKs, agent frameworks, chat components and protocols.",
+      "{n} AIs for building, talking, researching and coding: provider SDKs, agent frameworks, chat components, protocols and assistants.",
     results: {
-      countOne: "1 tool",
-      countMany: "{n} tools",
-      showing: "Showing {from}–{to} of {total} tools",
-      empty: "No tools found",
-      emptyWithQuery: "No tools found for “{query}”",
+      countOne: "1 AI",
+      countMany: "{n} AIs",
+      showing: "Showing {from}–{to} of {total} AIs",
+      empty: "No AIs found",
+      emptyWithQuery: "No AIs found for “{query}”",
     },
-    assistantsTitle: "AI assistants",
-    assistantsIntro:
-      "The main chats for talking, researching, writing and coding — each with a direct link to the official site.",
+    tools: "Tools",
+    assistants: "Assistants",
   },
   search: {
     placeholder: "Search by name, tag or need",
@@ -112,6 +111,8 @@ export const en: Dictionary = {
   },
   card: {
     stars: "{count} stars",
+    assistant: "Assistant",
+    since: "since {year}",
   },
   detail: {
     back: "Back to Acervo",

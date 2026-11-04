@@ -49,23 +49,22 @@ export const pt: Dictionary = {
       "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA. Filtre por framework, categoria e licença.",
   },
   ai: {
-    metaTitle: "Ferramentas de IA",
+    metaTitle: "Ferramentas e assistentes de IA",
     metaDescription:
-      "Catálogo de SDKs, frameworks de agentes, componentes de chat e utilidades de IA para JavaScript e TypeScript.",
+      "Catálogo de SDKs, frameworks de agentes, componentes de chat, protocolos e os principais assistentes de IA.",
     eyebrow: "seção do acervo",
-    title: "Ferramentas de IA",
+    title: "Ferramentas e assistentes de IA",
     intro:
-      "{n} ferramentas para construir com LLMs: SDKs de provedores, frameworks de agentes, componentes de chat e protocolos.",
+      "{n} IAs para construir, conversar, pesquisar e programar: SDKs de provedores, frameworks de agentes, componentes de chat, protocolos e assistentes.",
     results: {
-      countOne: "1 ferramenta",
-      countMany: "{n} ferramentas",
-      showing: "Mostrando {from}–{to} de {total} ferramentas",
-      empty: "Nenhuma ferramenta encontrada",
-      emptyWithQuery: "Nenhuma ferramenta encontrada para “{query}”",
+      countOne: "1 IA",
+      countMany: "{n} IAs",
+      showing: "Mostrando {from}–{to} de {total} IAs",
+      empty: "Nenhuma IA encontrada",
+      emptyWithQuery: "Nenhuma IA encontrada para “{query}”",
     },
-    assistantsTitle: "Assistentes de IA",
-    assistantsIntro:
-      "Os principais chats para conversar, pesquisar, escrever e programar — com link direto para o site oficial.",
+    tools: "Ferramentas",
+    assistants: "Assistentes",
   },
   search: {
     placeholder: "Buscar por nome, tag ou necessidade",
@@ -112,6 +111,8 @@ export const pt: Dictionary = {
   },
   card: {
     stars: "{count} estrelas",
+    assistant: "Assistente",
+    since: "desde {year}",
   },
   detail: {
     back: "Voltar para o acervo",

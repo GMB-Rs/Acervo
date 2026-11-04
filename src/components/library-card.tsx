@@ -42,13 +42,14 @@ export function LibraryCard({
   const lightBg = isLightColor(library.color);
   const contrastColor = getContrastColor(library.color);
   const logoStyle = lightBg ? { filter: "invert(1)" as const } : {};
+  const isAssistant = library.kind === "assistant";
 
   const href = from
     ? `/${locale}/libraries/${library.slug}?from=${encodeURIComponent(from)}`
     : `/${locale}/libraries/${library.slug}`;
 
-  return (
-    <Link href={href} className="group block">
+  const content = (
+    <>
       <div
         className="flex aspect-[4/3] items-center justify-center overflow-hidden rounded-md border border-border px-3 transition-colors duration-200 group-hover:border-foreground/40"
         style={{ backgroundColor: library.color }}
@@ -94,15 +95,47 @@ export function LibraryCard({
       </div>
 
       <div className="mt-0.5 flex items-baseline justify-between gap-3">
-        <span className="truncate text-[11px] text-muted-foreground">
-          {dict.frameworkLabels[library.framework]}
-        </span>
-        <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
-          {formatText(dict.card.stars, {
-            count: formatCompact(library.stars, HTML_LANG[locale]),
-          })}
-        </span>
+        {isAssistant ? (
+          <>
+            <span className="truncate text-[11px] text-muted-foreground">
+              {dict.card.assistant}
+            </span>
+            <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+              {formatText(dict.card.since, { year: library.since })}
+            </span>
+          </>
+        ) : (
+          <>
+            <span className="truncate text-[11px] text-muted-foreground">
+              {dict.frameworkLabels[library.framework]}
+            </span>
+            <span className="shrink-0 font-mono text-[11px] text-muted-foreground">
+              {formatText(dict.card.stars, {
+                count: formatCompact(library.stars, HTML_LANG[locale]),
+              })}
+            </span>
+          </>
+        )}
       </div>
+    </>
+  );
+
+  if (isAssistant) {
+    return (
+      <a
+        href={library.website}
+        target="_blank"
+        rel="noreferrer"
+        className="group block"
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={href} className="group block">
+      {content}
     </Link>
   );
 }

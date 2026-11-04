@@ -70,6 +70,15 @@ export type Library = {
   maintained: boolean;
   /** Ano de lançamento/marco inicial do projeto */
   since: number;
+  /**
+   * Tipo de entrada na galeria:
+   * - "tool" (padrão): biblioteca/ferramenta com ficha interna;
+   * - "assistant": chat de IA — o card aponta para o site oficial.
+   *
+   * Só a página de IA usa "assistant"; o catálogo principal continua sem
+   * esse campo.
+   */
+  kind?: "tool" | "assistant";
 };
 
 /*
