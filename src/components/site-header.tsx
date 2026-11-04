@@ -17,32 +17,58 @@ export function SiteHeader({
       <div className="mx-auto flex h-14 w-full max-w-6xl items-center gap-2 px-4 sm:gap-6">
         <Link
           href={`/${locale}`}
-          className="text-base font-semibold tracking-tight"
+          className="shrink-0 text-base font-semibold tracking-tight"
         >
           Acervo
         </Link>
 
-        <nav className="flex items-center gap-3 sm:gap-4">
-          <Link
-            href={`/${locale}/ia`}
-            className="text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs"
-          >
-            {dict.nav.ai}
-          </Link>
-          <Link
-            href={`/${locale}/contributors`}
-            className="hidden text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:inline sm:text-xs"
-          >
+        {/*
+          As áreas são recortes do catálogo por etapa do projeto. A IA tem
+          página própria; Interface, Front, Back e DevOps caem na rota
+          dinâmica `[area]`. No mobile a lista rola na horizontal em vez de
+          quebrar a altura fixa da navbar.
+        */}
+        <nav className="scrollbar-hide flex min-w-0 items-center gap-3 overflow-x-auto whitespace-nowrap sm:gap-4">
+          <NavLink href={`/${locale}/ia`}>{dict.nav.ai}</NavLink>
+          <NavLink href={`/${locale}/interface`}>
+            {dict.areas.interface.nav}
+          </NavLink>
+          <NavLink href={`/${locale}/front`}>{dict.areas.front.nav}</NavLink>
+          <NavLink href={`/${locale}/back`}>{dict.areas.back.nav}</NavLink>
+          <NavLink href={`/${locale}/devops`}>
+            {dict.areas.devops.nav}
+          </NavLink>
+          <NavLink href={`/${locale}/contributors`} className="hidden sm:inline">
             {dict.nav.contributors}
-          </Link>
+          </NavLink>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 sm:gap-4">
+        <div className="ml-auto flex shrink-0 items-center gap-2 sm:gap-4">
           <RepoStars label={dict.nav.stars} />
           <LanguageSelect locale={locale} label={dict.nav.language} />
           <ThemeToggle dict={dict} />
         </div>
       </div>
     </header>
+  );
+}
+
+/** Link de navegação da navbar, com o mesmo peso visual em todas as áreas. */
+function NavLink({
+  href,
+  className = "",
+  children,
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`text-[11px] font-medium text-muted-foreground transition hover:text-foreground sm:text-xs ${className}`}
+    >
+      {children}
+    </Link>
   );
 }
