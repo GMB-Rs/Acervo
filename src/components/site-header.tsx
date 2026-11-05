@@ -23,12 +23,13 @@ export function SiteHeader({
         </Link>
 
         {/*
-          As áreas são recortes do catálogo por etapa do projeto. A IA tem
-          página própria; Interface, Front, Back e DevOps caem na rota
-          dinâmica `[area]`. No mobile a lista rola na horizontal em vez de
-          quebrar a altura fixa da navbar.
+          "Tudo" leva ao catálogo completo na home. As áreas são recortes por
+          etapa do projeto: a IA tem página própria e Interface, Front, Back e
+          DevOps caem na rota dinâmica `[area]`. No mobile a lista rola na
+          horizontal em vez de quebrar a altura fixa da navbar.
         */}
         <nav className="scrollbar-hide flex min-w-0 items-center gap-3 overflow-x-auto whitespace-nowrap sm:gap-4">
+          <NavLink href={`/${locale}`}>{dict.nav.all}</NavLink>
           <NavLink href={`/${locale}/ia`}>{dict.nav.ai}</NavLink>
           <NavLink href={`/${locale}/interface`}>
             {dict.areas.interface.nav}

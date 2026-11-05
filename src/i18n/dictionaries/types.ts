@@ -34,6 +34,8 @@ export type Dictionary = {
     /** Contador de estrelas do repositório: "Estrelas no GitHub: {n}". */
     stars: string;
     language: string;
+    /** Link da navbar para o catálogo completo. */
+    all: string;
     /** Link da navbar para a página de ferramentas de IA. */
     ai: string;
     /** Link da navbar para a página de contribuidores. */
