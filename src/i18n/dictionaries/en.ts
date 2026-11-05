@@ -28,6 +28,7 @@ export const en: Dictionary = {
   nav: {
     stars: "GitHub stars: {n}",
     language: "Language",
+    all: "All",
     ai: "AI",
     contributors: "Contributors",
   },
