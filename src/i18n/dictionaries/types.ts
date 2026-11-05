@@ -41,7 +41,7 @@ export type Dictionary = {
   };
   home: {
     title: string;
-    /** Intro: "Galeria de {n} bibliotecas que já existem: ...". */
+    /** Intro: "Um acervo curado de {n} recursos para web...". */
     intro: string;
   };
   ai: {
