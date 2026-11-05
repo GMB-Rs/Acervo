@@ -276,6 +276,7 @@ export function LibraryExplorer({
   locale,
   dict,
   variant = "default",
+  categories,
 }: {
   libraries: Library[];
   assistants?: Assistant[];
@@ -287,6 +288,12 @@ export function LibraryExplorer({
    * frameworks presentes no recorte.
    */
   variant?: "default" | "tools";
+  /**
+   * Categorias que aparecem no filtro. Nas páginas de área limita o seletor
+   * às categorias daquela área e impede que um `?categoria=` de outra área
+   * esvazie a galeria.
+   */
+  categories?: Category[];
 }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -315,14 +322,17 @@ export function LibraryExplorer({
     ? (rawFramework as Framework)
     : "all";
   const rawCategory = searchParams.get(PARAM.category) ?? "all";
+  /* Nas páginas de área o seletor só oferece as categorias daquele recorte. */
+  const categoryValues = categories ?? CATEGORIES;
   /*
     Na galeria de ferramentas a categoria é fixa: um `?categoria=` antigo na
-    URL não pode esvaziar a página que já é um recorte só.
+    URL não pode esvaziar a página que já é um recorte só. O mesmo vale para
+    uma categoria que não pertence à área atual.
   */
   const category: Category | "all" =
     variant === "tools"
       ? "all"
-      : CATEGORIES.includes(rawCategory as Category)
+      : categoryValues.includes(rawCategory as Category)
         ? (rawCategory as Category)
         : "all";
   const rawSort = searchParams.get(PARAM.sort) ?? "popular";
@@ -593,11 +603,11 @@ export function LibraryExplorer({
       value: "all",
       label: formatText(dict.filters.allCategories, { n: libraries.length }),
     },
-    ...CATEGORIES.map((item) => ({
+    ...categoryValues.map((item) => ({
       value: item,
       label: `${dict.categoryLabels[item]} (${categoryCounts.get(item) ?? 0})`,
     })),
-  ], [libraries.length, categoryCounts, dict]);
+  ], [libraries.length, categoryCounts, dict, categoryValues]);
 
   const sortOptions = useMemo<Array<DropdownOption & { value: SortOption }>>(() => [
     { value: "popular", label: dict.sorts.popular },
