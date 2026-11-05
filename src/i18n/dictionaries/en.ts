@@ -46,7 +46,7 @@ export const en: Dictionary = {
   home: {
     title: "The right libraries for your next project",
     intro:
-      "A curated collection of {n} libraries and tools for the web, from UI kits to validators, charts, date utilities and AI. Filter by framework, category and license.",
+      "A curated collection of {n} libraries and tools for the web, from UI kits to validators, charts, date utilities and AI — plus {assistants} AI assistants. Filter by framework, category and license.",
   },
   ai: {
     metaTitle: "AI tools and assistants",
@@ -69,7 +69,7 @@ export const en: Dictionary = {
   },
   search: {
     placeholder: "Search by name, tag or need",
-    label: "Search libraries",
+    label: "Search the catalog",
     clear: "Clear search",
   },
   filters: {
@@ -89,16 +89,16 @@ export const en: Dictionary = {
     recent: "Most recent",
   },
   results: {
-    countOne: "1 library",
-    countMany: "{n} libraries",
+    countOne: "1 resource",
+    countMany: "{n} resources",
     byRelevance: "by relevance",
     smart: "intent search",
     approximate: "approximate",
     approximateHint:
       "The search couldn't match every term; these results match part of your query.",
-    showing: "Showing {from}–{to} of {total} libraries",
-    empty: "No libraries found",
-    emptyWithQuery: "No libraries found for “{query}”",
+    showing: "Showing {from}–{to} of {total} resources",
+    empty: "No resources found",
+    emptyWithQuery: "No resources found for “{query}”",
     emptyHintMulti:
       "The search couldn't match every term. Try removing a word or describing what you need more briefly.",
     emptyHintSingle:
