@@ -28,48 +28,8 @@ export const en: Dictionary = {
   nav: {
     stars: "GitHub stars: {n}",
     language: "Language",
-    all: "All",
     ai: "AI",
     contributors: "Contributors",
-  },
-  areas: {
-    eyebrow: "catalog area",
-    interface: {
-      nav: "UI",
-      title: "Interface",
-      intro:
-        "The {n} libraries for UI kits, headless components, design systems, icons, animation and CSS utilities.",
-      metaTitle: "Interface: libraries and tools",
-      metaDescription:
-        "UI kits, headless components, design systems, icons, animation and CSS utilities for building the interface.",
-    },
-    front: {
-      nav: "Front-end",
-      title: "Front-end",
-      intro:
-        "The {n} libraries for forms, data, state, i18n, mobile, web and documentation that shape the application.",
-      metaTitle: "Front-end: libraries and tools",
-      metaDescription:
-        "Forms, tables, state, internationalisation, mobile, web components and documentation for front-end work.",
-    },
-    back: {
-      nav: "Back-end",
-      title: "Back-end",
-      intro:
-        "The {n} tools for backend, database, auth, security, CMS, payments and email that support the product.",
-      metaTitle: "Back-end: libraries and tools",
-      metaDescription:
-        "Backends, databases, authentication, security, CMS, payments and email for the server layer.",
-    },
-    devops: {
-      nav: "DevOps",
-      title: "DevOps",
-      intro:
-        "The {n} tools for build, quality, testing, observability, deploy and analytics that ship and keep the project running.",
-      metaTitle: "DevOps: libraries and tools",
-      metaDescription:
-        "Build, lint, testing, observability, deploy and analytics for the delivery cycle.",
-    },
   },
   contributors: {
     title: "Contributors",
