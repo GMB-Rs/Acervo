@@ -8,10 +8,10 @@ import type { Dictionary } from "./types";
 
 export const pt: Dictionary = {
   meta: {
-    title: "Acervo - Bibliotecas para web",
+    title: "Acervo - Bibliotecas, ferramentas e IA para web",
     template: "%s - Acervo",
     description:
-      "Acervo: catálogo curado de bibliotecas para web — UI kits, formulários, tabelas, gráficos, ícones, editores e utilitários. Filtre por framework, categoria e licença.",
+      "Acervo: catálogo curado de bibliotecas, ferramentas e assistentes de IA para web — UI kits, formulários, tabelas, gráficos, ícones, editores, utilitários e chats. Filtre por framework, categoria e licença.",
     keywords: [
       "bibliotecas para web",
       "bibliotecas de componentes",
@@ -43,9 +43,9 @@ export const pt: Dictionary = {
     ctaRepo: "Ver o repositório",
   },
   home: {
-    title: "As bibliotecas certas para o seu próximo projeto",
+    title: "Tudo para o seu próximo projeto web",
     intro:
-      "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA — além de {assistants} assistentes de IA. Filtre por framework, categoria e licença.",
+      "Um acervo curado de {n} recursos para web — bibliotecas, ferramentas e assistentes de IA. De UI kits e validadores a gráficos, utilitários de data e chats, com filtros por framework, categoria e licença.",
   },
   ai: {
     metaTitle: "IA: ferramentas e assistentes",

@@ -45,8 +45,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             {formatText(dict.home.intro, {
-              n: libraries.length,
-              assistants: assistants.length,
+              n: libraries.length + assistants.length,
             })}
           </p>
         </div>
