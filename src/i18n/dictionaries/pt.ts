@@ -31,45 +31,6 @@ export const pt: Dictionary = {
     ai: "IA",
     contributors: "Contribuidores",
   },
-  areas: {
-    eyebrow: "área do acervo",
-    interface: {
-      nav: "Interface",
-      title: "Interface",
-      intro:
-        "As {n} bibliotecas de UI kits, componentes headless, design systems, ícones, animação e utilitários de CSS.",
-      metaTitle: "Interface: bibliotecas e ferramentas",
-      metaDescription:
-        "UI kits, componentes headless, design systems, ícones, animação e utilitários de CSS para construir a interface.",
-    },
-    front: {
-      nav: "Front-end",
-      title: "Front-end",
-      intro:
-        "As {n} bibliotecas de formulários, dados, estado, i18n, mobile, web e documentação para montar a aplicação.",
-      metaTitle: "Front-end: bibliotecas e ferramentas",
-      metaDescription:
-        "Formulários, tabelas, estado, internacionalização, mobile, web components e documentação para o front-end.",
-    },
-    back: {
-      nav: "Back-end",
-      title: "Back-end",
-      intro:
-        "As {n} ferramentas de backend, banco, autenticação, segurança, CMS, pagamentos e e-mail para sustentar o produto.",
-      metaTitle: "Back-end: bibliotecas e ferramentas",
-      metaDescription:
-        "Backends, bancos de dados, autenticação, segurança, CMS, pagamentos e e-mail para construir a camada de servidor.",
-    },
-    devops: {
-      nav: "DevOps",
-      title: "DevOps",
-      intro:
-        "As {n} ferramentas de build, qualidade, testes, observabilidade, deploy e analytics para colocar e manter o projeto no ar.",
-      metaTitle: "DevOps: bibliotecas e ferramentas",
-      metaDescription:
-        "Build, lint, testes, observabilidade, deploy e analytics para o ciclo de entrega do projeto.",
-    },
-  },
   contributors: {
     title: "Contribuidores",
     intro:

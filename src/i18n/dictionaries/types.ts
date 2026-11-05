@@ -12,17 +12,6 @@ import type { Locale } from "@/i18n/config";
   GitHub: {n}".
 */
 
-/** Texto de uma área do catálogo (navbar e página própria). */
-export type AreaText = {
-  /** Rótulo curto da navbar: "Front", "Back", "DevOps". */
-  nav: string;
-  title: string;
-  /** Intro da página: "As {n} bibliotecas de ...". */
-  intro: string;
-  metaTitle: string;
-  metaDescription: string;
-};
-
 export type Dictionary = {
   meta: {
     title: string;
@@ -38,14 +27,6 @@ export type Dictionary = {
     ai: string;
     /** Link da navbar para a página de contribuidores. */
     contributors: string;
-  };
-  areas: {
-    /** Sobretítulo das páginas de área: "área do acervo". */
-    eyebrow: string;
-    interface: AreaText;
-    front: AreaText;
-    back: AreaText;
-    devops: AreaText;
   };
   contributors: {
     title: string;
