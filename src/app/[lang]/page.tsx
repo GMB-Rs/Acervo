@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { ExplorerFallback } from "@/components/explorer-fallback";
 import { LibraryExplorer } from "@/components/library-explorer";
+import { assistants, localizeAssistant } from "@/lib/assistants";
 import { libraries } from "@/lib/libraries";
 import { isLocale } from "@/i18n/config";
 import { getDictionary } from "@/i18n/get-dictionary";
@@ -24,9 +25,15 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
   /*
     A galeria busca no texto do idioma: em inglês, procurar "accessibility"
     acha a biblioteca pela descrição e pelas tags traduzidas.
+
+    Os assistentes de IA entram na mesma galeria da home: são produtos, então
+    abrem a ordem padrão e aparecem também no filtro da categoria IA.
   */
   const localizedLibraries = libraries.map((library) =>
     localizeLibrary(locale, library),
+  );
+  const localizedAssistants = assistants.map((assistant) =>
+    localizeAssistant(locale, assistant),
   );
 
   return (
@@ -37,7 +44,10 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
             {dict.home.title}
           </h1>
           <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            {formatText(dict.home.intro, { n: libraries.length })}
+            {formatText(dict.home.intro, {
+              n: libraries.length,
+              assistants: assistants.length,
+            })}
           </p>
         </div>
       </section>
@@ -46,6 +56,7 @@ export default async function HomePage({ params }: PageProps<"/[lang]">) {
         <Suspense fallback={<ExplorerFallback />}>
           <LibraryExplorer
             libraries={localizedLibraries}
+            assistants={localizedAssistants}
             locale={locale}
             dict={dict}
           />

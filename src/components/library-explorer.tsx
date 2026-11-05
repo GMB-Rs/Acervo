@@ -506,25 +506,34 @@ export function LibraryExplorer({
     };
   }, [libraries, query, searchLabels, framework, category, license, sort, locale]);
 
+  /*
+    Assistentes são produtos: não têm framework, categoria nem licença. Eles
+    entram na galeria quando nenhum filtro de biblioteca está ativo — ou
+    quando a categoria é IA, que é a casa deles.
+  */
+  const assistantsAllowed =
+    framework === "all" &&
+    license === "all" &&
+    (category === "all" || category === "ia");
+
   const assistantTokens = tokenize(query);
-  const matchingAssistants =
-    variant === "tools" && framework === "all" && license === "all"
-      ? assistants.filter((assistant) => {
-          if (assistantTokens.length === 0) return true;
-          const searchableText = normalize(
-            [
-              assistant.name,
-              assistant.website,
-              assistant.description,
-              assistant.highlight,
-              ...assistant.tags,
-            ].join(" "),
-          );
-          return assistantTokens.every((token) =>
-            matchesTerm(searchableText, token),
-          );
-        })
-      : [];
+  const matchingAssistants = assistantsAllowed
+    ? assistants.filter((assistant) => {
+        if (assistantTokens.length === 0) return true;
+        const searchableText = normalize(
+          [
+            assistant.name,
+            assistant.website,
+            assistant.description,
+            assistant.highlight,
+            ...assistant.tags,
+          ].join(" "),
+        );
+        return assistantTokens.every((token) =>
+          matchesTerm(searchableText, token),
+        );
+      })
+    : [];
 
   const filteredResults: GalleryItem[] = [
     ...searchResult.libraries.map((item) => ({
@@ -551,6 +560,15 @@ export function LibraryExplorer({
     );
   } else if (!query.trim()) {
     filteredResults.sort((a, b) => {
+      /*
+        Assistentes não têm estrelas. Na ordem padrão eles abrem a galeria,
+        para a IA aparecer já na primeira página; as bibliotecas seguem
+        ordenadas por popularidade.
+      */
+      const kindRank = (entry: GalleryItem) =>
+        entry.kind === "assistant" ? 0 : 1;
+      if (kindRank(a) !== kindRank(b)) return kindRank(a) - kindRank(b);
+
       const starsA = a.kind === "library" ? a.item.stars ?? 0 : 0;
       const starsB = b.kind === "library" ? b.item.stars ?? 0 : 0;
       return (

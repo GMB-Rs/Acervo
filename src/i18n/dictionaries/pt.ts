@@ -86,7 +86,7 @@ export const pt: Dictionary = {
   home: {
     title: "As bibliotecas certas para o seu próximo projeto",
     intro:
-      "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA. Filtre por framework, categoria e licença.",
+      "Um acervo curado de {n} bibliotecas e ferramentas para web, de UI kits a validadores, gráficos, utilitários de data e IA — além de {assistants} assistentes de IA. Filtre por framework, categoria e licença.",
   },
   ai: {
     metaTitle: "IA: ferramentas e assistentes",
@@ -109,7 +109,7 @@ export const pt: Dictionary = {
   },
   search: {
     placeholder: "Buscar por nome, tag ou necessidade",
-    label: "Buscar bibliotecas",
+    label: "Buscar no acervo",
     clear: "Limpar busca",
   },
   filters: {
@@ -129,16 +129,16 @@ export const pt: Dictionary = {
     recent: "Mais recentes",
   },
   results: {
-    countOne: "1 biblioteca",
-    countMany: "{n} bibliotecas",
+    countOne: "1 recurso",
+    countMany: "{n} recursos",
     byRelevance: "por relevância",
     smart: "busca por intenção",
     approximate: "aproximados",
     approximateHint:
       "A busca não encontrou todos os termos; estes resultados casam com parte da consulta.",
-    showing: "Mostrando {from}–{to} de {total} bibliotecas",
-    empty: "Nenhuma biblioteca encontrada",
-    emptyWithQuery: "Nenhuma biblioteca encontrada para “{query}”",
+    showing: "Mostrando {from}–{to} de {total} recursos",
+    empty: "Nenhum recurso encontrado",
+    emptyWithQuery: "Nenhum recurso encontrado para “{query}”",
     emptyHintMulti:
       "A busca não encontrou todos os termos. Tente remover uma palavra ou descrever o que precisa de forma mais curta.",
     emptyHintSingle:
