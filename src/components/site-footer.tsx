@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { RepoStars } from "@/components/repo-stars";
-import { AREAS } from "@/lib/areas";
 import { repo } from "@/lib/repo";
 import { FRAMEWORKS } from "@/types/library";
 import type { Locale } from "@/i18n/config";
@@ -61,13 +60,6 @@ export function SiteFooter({
                     {dict.ai.title}
                   </FooterLink>
                 </li>
-                {AREAS.map((area) => (
-                  <li key={area}>
-                    <FooterLink href={`/${locale}/${area}`}>
-                      {dict.areas[area].title}
-                    </FooterLink>
-                  </li>
-                ))}
                 <li>
                   <FooterLink href={`/${locale}/contributors`}>
                     {dict.nav.contributors}
