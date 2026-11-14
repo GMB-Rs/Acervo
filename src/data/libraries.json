@@ -18,13 +18,13 @@
       "acessível",
       "código aberto"
     ],
-    "stars": 126061,
-    "npmDownloads": 45990341,
+    "stars": 128158,
+    "npmDownloads": 65778238,
     "featured": true,
     "maintained": true,
     "since": 2023,
     "npmPackage": "shadcn",
-    "lastUpdate": "2026-10-20T20:37:52Z"
+    "lastUpdate": "2026-11-13T10:58:16Z"
   },
   {
     "slug": "radix-ui",
@@ -44,7 +44,7 @@
       "acessibilidade",
       "primitivas"
     ],
-    "stars": 19415,
+    "stars": 19499,
     "npmDownloads": 65570999,
     "featured": true,
     "maintained": true,
@@ -71,12 +71,12 @@
       "acessibilidade",
       "forms"
     ],
-    "stars": 15969,
-    "npmDownloads": 19558162,
+    "stars": 16035,
+    "npmDownloads": 31458027,
     "maintained": true,
     "since": 2023,
     "npmPackage": "react-aria-components",
-    "lastUpdate": "2026-10-21T00:33:57Z"
+    "lastUpdate": "2026-11-14T01:00:05Z"
   },
   {
     "slug": "headless-ui",
@@ -97,7 +97,7 @@
       "menu",
       "dialog"
     ],
-    "stars": 28784,
+    "stars": 28827,
     "npmDownloads": 29526245,
     "featured": true,
     "maintained": true,
@@ -123,12 +123,12 @@
       "multi-framework",
       "zag"
     ],
-    "stars": 5426,
-    "npmDownloads": 3855305,
+    "stars": 5468,
+    "npmDownloads": 5371789,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@ark-ui/react",
-    "lastUpdate": "2026-10-20T21:16:59Z"
+    "lastUpdate": "2026-11-14T07:20:13Z"
   },
   {
     "slug": "mantine",
@@ -149,13 +149,13 @@
       "dark mode",
       "forms"
     ],
-    "stars": 31849,
-    "npmDownloads": 10817069,
+    "stars": 31942,
+    "npmDownloads": 13791086,
     "featured": true,
     "maintained": true,
     "since": 2020,
     "npmPackage": "@mantine/core",
-    "lastUpdate": "2026-10-18T08:46:10Z"
+    "lastUpdate": "2026-11-12T14:58:46Z"
   },
   {
     "slug": "ant-design",
@@ -176,12 +176,12 @@
       "formulários",
       "i18n"
     ],
-    "stars": 99827,
-    "npmDownloads": 15281313,
+    "stars": 100201,
+    "npmDownloads": 19235893,
     "maintained": true,
     "since": 2016,
     "npmPackage": "antd",
-    "lastUpdate": "2026-10-21T00:53:26Z"
+    "lastUpdate": "2026-11-13T02:02:17Z"
   },
   {
     "slug": "mui",
@@ -201,13 +201,13 @@
       "enterprise",
       "temas"
     ],
-    "stars": 99255,
-    "npmDownloads": 41347463,
+    "stars": 99342,
+    "npmDownloads": 52180747,
     "featured": true,
     "maintained": true,
     "since": 2014,
     "npmPackage": "@mui/material",
-    "lastUpdate": "2026-10-21T00:47:25Z"
+    "lastUpdate": "2026-11-14T04:07:54Z"
   },
   {
     "slug": "chakra-ui",
@@ -227,12 +227,12 @@
       "temas",
       "produtividade"
     ],
-    "stars": 40699,
-    "npmDownloads": 6574296,
+    "stars": 40725,
+    "npmDownloads": 8116529,
     "maintained": true,
     "since": 2019,
     "npmPackage": "@chakra-ui/react",
-    "lastUpdate": "2026-10-17T21:51:23Z"
+    "lastUpdate": "2026-11-14T08:13:40Z"
   },
   {
     "slug": "heroui",
@@ -253,12 +253,12 @@
       "acessibilidade",
       "componentes"
     ],
-    "stars": 30977,
+    "stars": 31207,
     "npmDownloads": 2804854,
     "maintained": true,
     "since": 2021,
     "npmPackage": "@heroui/react",
-    "lastUpdate": "2026-10-22T03:00:56Z"
+    "lastUpdate": "2026-11-14T11:09:23Z"
   },
   {
     "slug": "semantic-ui-react",
@@ -277,8 +277,8 @@
       "semântico",
       "básico"
     ],
-    "stars": 13198,
-    "npmDownloads": 1309589,
+    "stars": 13194,
+    "npmDownloads": 1253687,
     "maintained": false,
     "since": 2015,
     "npmPackage": "semantic-ui-react",
@@ -302,12 +302,12 @@
       "acessibilidade",
       "mui"
     ],
-    "stars": 11192,
-    "npmDownloads": 1842222,
+    "stars": 11411,
+    "npmDownloads": 3345117,
     "maintained": true,
     "since": 2024,
     "npmPackage": "@base-ui-components/react",
-    "lastUpdate": "2026-10-21T00:44:57Z"
+    "lastUpdate": "2026-11-14T04:20:55Z"
   },
   {
     "slug": "tiptap",
@@ -329,12 +329,12 @@
       "texto-rico",
       "extensões"
     ],
-    "stars": 38819,
-    "npmDownloads": 86785762,
+    "stars": 39037,
+    "npmDownloads": 131131604,
     "maintained": true,
     "since": 2018,
     "npmPackage": "@tiptap/core",
-    "lastUpdate": "2026-10-22T13:00:31Z"
+    "lastUpdate": "2026-11-13T13:20:57Z"
   },
   {
     "slug": "lexical",
@@ -356,12 +356,12 @@
       "texto-rico",
       "acessibilidade"
     ],
-    "stars": 23975,
-    "npmDownloads": 24074543,
+    "stars": 24026,
+    "npmDownloads": 32644962,
     "maintained": true,
     "since": 2021,
     "npmPackage": "lexical",
-    "lastUpdate": "2026-10-23T02:43:06Z"
+    "lastUpdate": "2026-11-14T11:17:40Z"
   },
   {
     "slug": "slate",
@@ -382,12 +382,12 @@
       "texto-rico",
       "customizável"
     ],
-    "stars": 31741,
-    "npmDownloads": 11823036,
+    "stars": 31746,
+    "npmDownloads": 16087470,
     "maintained": true,
     "since": 2016,
     "npmPackage": "slate",
-    "lastUpdate": "2026-10-22T03:41:57Z"
+    "lastUpdate": "2026-11-11T17:56:28Z"
   },
   {
     "slug": "tanstack-form",
@@ -408,11 +408,11 @@
       "zod",
       "typescript"
     ],
-    "stars": 6739,
+    "stars": 6767,
     "npmDownloads": 900000,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-10-20T19:14:51Z"
+    "lastUpdate": "2026-11-12T13:16:48Z"
   },
   {
     "slug": "react-hook-form",
@@ -432,13 +432,13 @@
       "hooks",
       "validação"
     ],
-    "stars": 44869,
-    "npmDownloads": 235293865,
+    "stars": 44919,
+    "npmDownloads": 240069325,
     "featured": true,
     "maintained": true,
     "since": 2017,
     "npmPackage": "react-hook-form",
-    "lastUpdate": "2026-10-20T20:42:11Z"
+    "lastUpdate": "2026-11-14T10:32:04Z"
   },
   {
     "slug": "formik",
@@ -457,8 +457,8 @@
       "formulários",
       "render props"
     ],
-    "stars": 34308,
-    "npmDownloads": 18701344,
+    "stars": 34298,
+    "npmDownloads": 22718192,
     "maintained": true,
     "since": 2017,
     "npmPackage": "formik",
@@ -482,12 +482,12 @@
       "schema",
       "typescript"
     ],
-    "stars": 44173,
-    "npmDownloads": 1341079564,
+    "stars": 44323,
+    "npmDownloads": 1719938870,
     "maintained": true,
     "since": 2020,
     "npmPackage": "zod",
-    "lastUpdate": "2026-10-19T22:46:10Z"
+    "lastUpdate": "2026-11-13T20:30:02Z"
   },
   {
     "slug": "yup",
@@ -507,12 +507,12 @@
       "schema",
       "formulários"
     ],
-    "stars": 23656,
-    "npmDownloads": 49655525,
+    "stars": 23647,
+    "npmDownloads": 61635259,
     "maintained": true,
     "since": 2014,
     "npmPackage": "yup",
-    "lastUpdate": "2026-10-22T16:15:36Z"
+    "lastUpdate": "2026-11-13T22:09:35Z"
   },
   {
     "slug": "valibot",
@@ -532,12 +532,12 @@
       "typescript",
       "leve"
     ],
-    "stars": 9047,
-    "npmDownloads": 86996216,
+    "stars": 9068,
+    "npmDownloads": 121500796,
     "maintained": true,
     "since": 2023,
     "npmPackage": "valibot",
-    "lastUpdate": "2026-10-17T09:19:34Z",
+    "lastUpdate": "2026-11-14T09:24:31Z",
     "logoKind": "text"
   },
   {
@@ -559,13 +559,13 @@
       "dados",
       "multi-framework"
     ],
-    "stars": 28507,
-    "npmDownloads": 92288276,
+    "stars": 28573,
+    "npmDownloads": 131353997,
     "featured": true,
     "maintained": true,
     "since": 2020,
     "npmPackage": "@tanstack/react-table",
-    "lastUpdate": "2026-10-12T16:50:28Z"
+    "lastUpdate": "2026-11-02T21:34:42Z"
   },
   {
     "slug": "ag-grid",
@@ -585,12 +585,12 @@
       "performance",
       "enterprise"
     ],
-    "stars": 15647,
-    "npmDownloads": 10323966,
+    "stars": 15688,
+    "npmDownloads": 14888584,
     "maintained": true,
     "since": 2012,
     "npmPackage": "ag-grid-react",
-    "lastUpdate": "2026-10-21T00:24:57Z",
+    "lastUpdate": "2026-11-14T03:21:29Z",
     "logoKind": "text"
   },
   {
@@ -611,12 +611,12 @@
       "svg",
       "dados"
     ],
-    "stars": 27643,
-    "npmDownloads": 239787943,
+    "stars": 27712,
+    "npmDownloads": 248837551,
     "maintained": true,
     "since": 2016,
     "npmPackage": "recharts",
-    "lastUpdate": "2026-10-20T19:07:20Z",
+    "lastUpdate": "2026-11-13T21:09:01Z",
     "logoKind": "text"
   },
   {
@@ -637,8 +637,8 @@
       "d3",
       "low-level"
     ],
-    "stars": 21080,
-    "npmDownloads": 370807,
+    "stars": 21108,
+    "npmDownloads": 498496,
     "maintained": true,
     "since": 2019,
     "npmPackage": "@visx/visx",
@@ -663,12 +663,12 @@
       "dados",
       "leve"
     ],
-    "stars": 67752,
-    "npmDownloads": 51937298,
+    "stars": 67793,
+    "npmDownloads": 63516488,
     "maintained": true,
     "since": 2013,
     "npmPackage": "chart.js",
-    "lastUpdate": "2026-10-22T17:19:45Z"
+    "lastUpdate": "2026-11-09T02:22:25Z"
   },
   {
     "slug": "echarts",
@@ -689,8 +689,8 @@
       "canvas",
       "svg"
     ],
-    "stars": 67570,
-    "npmDownloads": 23453063,
+    "stars": 67720,
+    "npmDownloads": 36672654,
     "maintained": true,
     "since": 2013,
     "npmPackage": "echarts",
@@ -715,12 +715,12 @@
       "dados",
       "jquery"
     ],
-    "stars": 807,
-    "npmDownloads": 2805265,
+    "stars": 815,
+    "npmDownloads": 3402666,
     "maintained": true,
     "since": 2010,
     "npmPackage": "datatables.net",
-    "lastUpdate": "2026-10-20T08:27:21Z"
+    "lastUpdate": "2026-11-12T21:36:15Z"
   },
   {
     "slug": "handsontable",
@@ -732,7 +732,7 @@
     "website": "https://handsontable.com",
     "repo": "handsontable/handsontable",
     "docs": "https://handsontable.com/docs",
-    "license": "comercial",
+    "license": "NOASSERTION",
     "logo": "handsontable.svg",
     "color": "#000000",
     "tags": [
@@ -741,12 +741,12 @@
       "planilha",
       "enterprise"
     ],
-    "stars": 22069,
-    "npmDownloads": 1283741,
+    "stars": 22080,
+    "npmDownloads": 1445083,
     "maintained": true,
     "since": 2011,
     "npmPackage": "handsontable",
-    "lastUpdate": "2026-10-22T22:27:52Z"
+    "lastUpdate": "2026-11-14T03:59:41Z"
   },
   {
     "slug": "lucide-react",
@@ -766,13 +766,13 @@
       "svg",
       "tree-shaking"
     ],
-    "stars": 25177,
-    "npmDownloads": 457505731,
+    "stars": 25755,
+    "npmDownloads": 503117652,
     "featured": true,
     "maintained": true,
     "since": 2020,
     "npmPackage": "lucide-react",
-    "lastUpdate": "2026-10-21T00:37:59Z"
+    "lastUpdate": "2026-11-14T06:04:58Z"
   },
   {
     "slug": "phosphor-icons",
@@ -792,8 +792,8 @@
       "variantes",
       "svg"
     ],
-    "stars": 527,
-    "npmDownloads": 20702720,
+    "stars": 530,
+    "npmDownloads": 28333219,
     "maintained": true,
     "since": 2021,
     "npmPackage": "@phosphor-icons/react",
@@ -816,8 +816,8 @@
       "ícones",
       "tailwind"
     ],
-    "stars": 23872,
-    "npmDownloads": 17132877,
+    "stars": 23910,
+    "npmDownloads": 22896321,
     "maintained": true,
     "since": 2020,
     "npmPackage": "@heroicons/react",
@@ -842,12 +842,12 @@
       "multi-framework",
       "fonte-de-ícones"
     ],
-    "stars": 6372,
-    "npmDownloads": 4368722,
+    "stars": 6401,
+    "npmDownloads": 6088421,
     "maintained": true,
     "since": 2019,
     "npmPackage": "@iconify/react",
-    "lastUpdate": "2026-10-20T10:24:17Z"
+    "lastUpdate": "2026-11-14T02:32:32Z"
   },
   {
     "slug": "framer-motion",
@@ -867,13 +867,13 @@
       "gestos",
       "springs"
     ],
-    "stars": 34397,
-    "npmDownloads": 98698634,
+    "stars": 35133,
+    "npmDownloads": 130132352,
     "featured": true,
     "maintained": true,
     "since": 2018,
     "npmPackage": "motion",
-    "lastUpdate": "2026-10-20T18:49:51Z"
+    "lastUpdate": "2026-11-13T17:56:54Z"
   },
   {
     "slug": "gsap",
@@ -893,12 +893,12 @@
       "timeline",
       "performance"
     ],
-    "stars": 29545,
-    "npmDownloads": 23694473,
+    "stars": 30609,
+    "npmDownloads": 31033958,
     "maintained": true,
     "since": 2017,
     "npmPackage": "gsap",
-    "lastUpdate": "2026-04-13T13:08:58Z",
+    "lastUpdate": "2026-11-04T00:56:41Z",
     "logoKind": "wide"
   },
   {
@@ -919,12 +919,12 @@
       "simples",
       "zero-config"
     ],
-    "stars": 13935,
-    "npmDownloads": 6666218,
+    "stars": 13968,
+    "npmDownloads": 8748527,
     "maintained": true,
     "since": 2021,
     "npmPackage": "@formkit/auto-animate",
-    "lastUpdate": "2026-07-10T16:08:00Z"
+    "lastUpdate": "2026-11-07T16:55:06Z"
   },
   {
     "slug": "dotlottie-web",
@@ -945,12 +945,12 @@
       "wasm",
       "multi-framework"
     ],
-    "stars": 924,
+    "stars": 945,
     "npmDownloads": 6745353,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@lottiefiles/dotlottie-web",
-    "lastUpdate": "2026-10-22T14:04:09Z"
+    "lastUpdate": "2026-11-12T09:05:43Z"
   },
   {
     "slug": "tailwindcss",
@@ -970,13 +970,13 @@
       "utilitário",
       "tailwind"
     ],
-    "stars": 97947,
+    "stars": 98601,
     "npmDownloads": 562479872,
     "featured": true,
     "maintained": true,
     "since": 2017,
     "npmPackage": "tailwindcss",
-    "lastUpdate": "2026-10-19T15:50:56Z"
+    "lastUpdate": "2026-11-11T20:55:22Z"
   },
   {
     "slug": "unocss",
@@ -997,12 +997,12 @@
       "performance",
       "multi-framework"
     ],
-    "stars": 18982,
-    "npmDownloads": 1997793,
+    "stars": 18987,
+    "npmDownloads": 2876460,
     "maintained": true,
     "since": 2021,
     "npmPackage": "unocss",
-    "lastUpdate": "2026-10-20T14:05:22Z"
+    "lastUpdate": "2026-11-13T09:43:51Z"
   },
   {
     "slug": "panda-css",
@@ -1022,12 +1022,12 @@
       "tokens",
       "design system"
     ],
-    "stars": 6233,
-    "npmDownloads": 1857336,
+    "stars": 6252,
+    "npmDownloads": 2909734,
     "maintained": true,
     "since": 2021,
     "npmPackage": "@pandacss/dev",
-    "lastUpdate": "2026-10-20T22:29:55Z"
+    "lastUpdate": "2026-11-13T09:28:51Z"
   },
   {
     "slug": "styled-components",
@@ -1047,12 +1047,12 @@
       "temas",
       "tagged templates"
     ],
-    "stars": 41065,
-    "npmDownloads": 44568562,
+    "stars": 41047,
+    "npmDownloads": 55642704,
     "maintained": true,
     "since": 2015,
     "npmPackage": "styled-components",
-    "lastUpdate": "2026-10-19T02:55:32Z",
+    "lastUpdate": "2026-11-11T23:43:43Z",
     "logoKind": "text"
   },
   {
@@ -1072,12 +1072,12 @@
       "css-in-js",
       "performance"
     ],
-    "stars": 18018,
-    "npmDownloads": 83246807,
+    "stars": 18024,
+    "npmDownloads": 104843715,
     "maintained": true,
     "since": 2017,
     "npmPackage": "@emotion/react",
-    "lastUpdate": "2026-08-28T09:30:54Z"
+    "lastUpdate": "2026-10-23T11:24:31Z"
   },
   {
     "slug": "date-fns",
@@ -1097,12 +1097,12 @@
       "utilitário",
       "leve"
     ],
-    "stars": 36646,
-    "npmDownloads": 409866036,
+    "stars": 36656,
+    "npmDownloads": 456813239,
     "maintained": true,
     "since": 2014,
     "npmPackage": "date-fns",
-    "lastUpdate": "2026-10-22T10:51:05Z"
+    "lastUpdate": "2026-10-26T04:11:52Z"
   },
   {
     "slug": "dayjs",
@@ -1122,12 +1122,12 @@
       "utilitário",
       "leve"
     ],
-    "stars": 48653,
+    "stars": 48648,
     "npmDownloads": 301900597,
     "maintained": true,
     "since": 2018,
     "npmPackage": "dayjs",
-    "lastUpdate": "2026-09-15T11:35:36Z"
+    "lastUpdate": "2026-11-06T08:47:24Z"
   },
   {
     "slug": "vue",
@@ -1147,12 +1147,12 @@
       "reatividade",
       "progressivo"
     ],
-    "stars": 54712,
-    "npmDownloads": 69613652,
+    "stars": 55017,
+    "npmDownloads": 93061168,
     "maintained": true,
     "since": 2014,
     "npmPackage": "vue",
-    "lastUpdate": "2026-10-21T02:48:24Z"
+    "lastUpdate": "2026-11-14T08:32:39Z"
   },
   {
     "slug": "vuetify",
@@ -1172,12 +1172,12 @@
       "temas",
       "enterprise"
     ],
-    "stars": 41032,
-    "npmDownloads": 4291440,
+    "stars": 41039,
+    "npmDownloads": 5154986,
     "maintained": true,
     "since": 2016,
     "npmPackage": "vuetify",
-    "lastUpdate": "2026-10-20T23:24:55Z"
+    "lastUpdate": "2026-11-14T00:40:33Z"
   },
   {
     "slug": "naive-ui",
@@ -1197,12 +1197,12 @@
       "tree-shaking",
       "dark mode"
     ],
-    "stars": 18572,
-    "npmDownloads": 1035948,
+    "stars": 18608,
+    "npmDownloads": 771588,
     "maintained": true,
     "since": 2020,
     "npmPackage": "naive-ui",
-    "lastUpdate": "2026-10-05T15:39:50Z"
+    "lastUpdate": "2026-11-14T09:47:31Z"
   },
   {
     "slug": "element-plus",
@@ -1222,12 +1222,12 @@
       "tabelas",
       "enterprise"
     ],
-    "stars": 27819,
-    "npmDownloads": 2943883,
+    "stars": 27849,
+    "npmDownloads": 3044346,
     "maintained": true,
     "since": 2021,
     "npmPackage": "element-plus",
-    "lastUpdate": "2026-10-20T19:11:11Z"
+    "lastUpdate": "2026-11-13T13:40:40Z"
   },
   {
     "slug": "primevue",
@@ -1247,7 +1247,7 @@
       "temas",
       "completos"
     ],
-    "stars": 14447,
+    "stars": 14450,
     "npmDownloads": 3427878,
     "maintained": true,
     "since": 2018,
@@ -1272,12 +1272,12 @@
       "compilador",
       "leve"
     ],
-    "stars": 88408,
-    "npmDownloads": 26679465,
+    "stars": 88734,
+    "npmDownloads": 35380323,
     "maintained": true,
     "since": 2016,
     "npmPackage": "svelte",
-    "lastUpdate": "2026-10-21T01:10:54Z"
+    "lastUpdate": "2026-11-14T09:42:40Z"
   },
   {
     "slug": "shadcn-svelte",
@@ -1297,12 +1297,12 @@
       "radix",
       "código aberto"
     ],
-    "stars": 9199,
-    "npmDownloads": 714099,
+    "stars": 9258,
+    "npmDownloads": 1040485,
     "maintained": true,
     "since": 2023,
     "npmPackage": "shadcn-svelte",
-    "lastUpdate": "2026-10-20T18:20:46Z"
+    "lastUpdate": "2026-11-12T13:16:48Z"
   },
   {
     "slug": "skeleton",
@@ -1322,12 +1322,12 @@
       "tailwind",
       "temas"
     ],
-    "stars": 6080,
-    "npmDownloads": 284400,
+    "stars": 6090,
+    "npmDownloads": 385565,
     "maintained": true,
     "since": 2022,
     "npmPackage": "@skeletonlabs/skeleton",
-    "lastUpdate": "2026-10-21T02:12:28Z"
+    "lastUpdate": "2026-11-13T10:32:14Z"
   },
   {
     "slug": "angular-material",
@@ -1347,12 +1347,12 @@
       "oficial",
       "signals"
     ],
-    "stars": 25034,
-    "npmDownloads": 10185480,
+    "stars": 25045,
+    "npmDownloads": 12281447,
     "maintained": true,
     "since": 2016,
     "npmPackage": "@angular/material",
-    "lastUpdate": "2026-10-20T15:16:00Z"
+    "lastUpdate": "2026-11-13T15:41:22Z"
   },
   {
     "slug": "ngx-bootstrap",
@@ -1372,11 +1372,12 @@
       "datepicker",
       "angular"
     ],
-    "stars": 5508,
+    "stars": 5511,
     "npmDownloads": 1506975,
     "maintained": true,
     "since": 2015,
-    "npmPackage": "ngx-bootstrap"
+    "npmPackage": "ngx-bootstrap",
+    "lastUpdate": "2026-08-17T14:08:31Z"
   },
   {
     "slug": "kobalte",
@@ -1396,12 +1397,12 @@
       "acessibilidade",
       "solid"
     ],
-    "stars": 1878,
+    "stars": 1888,
     "npmDownloads": 9513367,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@kobalte/core",
-    "lastUpdate": "2026-10-20T22:55:38Z"
+    "lastUpdate": "2026-10-29T10:15:19Z"
   },
   {
     "slug": "hope-ui",
@@ -1420,8 +1421,8 @@
       "solid",
       "design system"
     ],
-    "stars": 13,
-    "npmDownloads": 6109,
+    "stars": 15,
+    "npmDownloads": 9182,
     "maintained": true,
     "since": 2022,
     "npmPackage": "@hope-ui/solid",
@@ -1445,8 +1446,8 @@
       "qwik",
       "resumability"
     ],
-    "stars": 695,
-    "npmDownloads": 32165,
+    "stars": 694,
+    "npmDownloads": 31062,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@qwik-ui/headless",
@@ -1470,12 +1471,12 @@
       "web components",
       "framework-agnostic"
     ],
-    "stars": 11356,
-    "npmDownloads": 573794,
+    "stars": 11442,
+    "npmDownloads": 727639,
     "maintained": true,
     "since": 2019,
     "npmPackage": "@material/web",
-    "lastUpdate": "2026-10-20T15:38:30Z"
+    "lastUpdate": "2026-11-13T23:05:05Z"
   },
   {
     "slug": "webawesome",
@@ -1495,11 +1496,12 @@
       "framework-agnostic",
       "temas"
     ],
-    "stars": 1372,
-    "npmDownloads": 2123687,
+    "stars": 1399,
+    "npmDownloads": 906280,
     "maintained": true,
     "since": 2020,
-    "npmPackage": "@awesome.me/webawesome"
+    "npmPackage": "@awesome.me/webawesome",
+    "lastUpdate": "2026-11-13T23:13:58Z"
   },
   {
     "slug": "lit",
@@ -1519,12 +1521,12 @@
       "leve",
       "typescript"
     ],
-    "stars": 21857,
-    "npmDownloads": 29389693,
+    "stars": 21898,
+    "npmDownloads": 36766976,
     "maintained": true,
     "since": 2017,
     "npmPackage": "lit",
-    "lastUpdate": "2026-09-24T17:21:02Z"
+    "lastUpdate": "2026-11-05T20:00:37Z"
   },
   {
     "slug": "ionic",
@@ -1544,12 +1546,12 @@
       "hybrid",
       "capacitor"
     ],
-    "stars": 52715,
-    "npmDownloads": 552020,
+    "stars": 52752,
+    "npmDownloads": 609263,
     "maintained": true,
     "since": 2015,
     "npmPackage": "@ionic/react",
-    "lastUpdate": "2026-10-20T23:30:08Z"
+    "lastUpdate": "2026-11-14T04:13:12Z"
   },
   {
     "slug": "hyperui",
@@ -1569,11 +1571,11 @@
       "código aberto",
       "gratuito"
     ],
-    "stars": 12265,
+    "stars": 12283,
     "npmDownloads": 0,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-10-21T01:31:39Z"
+    "lastUpdate": "2026-11-12T10:46:53Z"
   },
   {
     "slug": "uiverse",
@@ -1615,13 +1617,13 @@
       "temas",
       "plugin"
     ],
-    "stars": 42640,
-    "npmDownloads": 4323538,
+    "stars": 42834,
+    "npmDownloads": 5343313,
     "featured": true,
     "maintained": true,
     "since": 2020,
     "npmPackage": "daisyui",
-    "lastUpdate": "2026-10-17T16:05:50Z"
+    "lastUpdate": "2026-11-14T07:56:16Z"
   },
   {
     "slug": "flowbite",
@@ -1641,8 +1643,8 @@
       "templates",
       "blocos"
     ],
-    "stars": 9366,
-    "npmDownloads": 2584319,
+    "stars": 9384,
+    "npmDownloads": 2961355,
     "maintained": true,
     "since": 2021,
     "npmPackage": "flowbite",
@@ -1666,12 +1668,12 @@
       "eventos",
       "multi-framework"
     ],
-    "stars": 20711,
-    "npmDownloads": 10433703,
+    "stars": 20771,
+    "npmDownloads": 14454008,
     "maintained": true,
     "since": 2009,
     "npmPackage": "@fullcalendar/core",
-    "lastUpdate": "2026-10-16T03:03:44Z"
+    "lastUpdate": "2026-11-12T18:55:42Z"
   },
   {
     "slug": "bulma",
@@ -1691,11 +1693,12 @@
       "flexbox",
       "sass"
     ],
-    "stars": 50039,
-    "npmDownloads": 1398497,
+    "stars": 50033,
+    "npmDownloads": 1805441,
     "maintained": true,
     "since": 2015,
-    "npmPackage": "bulma"
+    "npmPackage": "bulma",
+    "lastUpdate": "2026-09-21T09:56:34Z"
   },
   {
     "slug": "open-props",
@@ -1715,8 +1718,8 @@
       "design tokens",
       "leve"
     ],
-    "stars": 5549,
-    "npmDownloads": 137681,
+    "stars": 5576,
+    "npmDownloads": 193486,
     "maintained": true,
     "since": 2021,
     "npmPackage": "open-props",
@@ -1741,12 +1744,12 @@
       "web",
       "performance"
     ],
-    "stars": 11500,
-    "npmDownloads": 1200000,
+    "stars": 14311,
+    "npmDownloads": 1113244,
     "maintained": true,
     "since": 2021,
     "npmPackage": "tamagui",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-11-13T12:26:55Z"
   },
   {
     "slug": "nativebase",
@@ -1767,12 +1770,12 @@
       "temas",
       "acessibilidade"
     ],
-    "stars": 19500,
-    "npmDownloads": 850000,
+    "stars": 20368,
+    "npmDownloads": 215680,
     "maintained": true,
     "since": 2016,
     "npmPackage": "native-base",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-01-31T17:46:33Z"
   },
   {
     "slug": "react-native-paper",
@@ -1793,12 +1796,12 @@
       "acessibilidade",
       "rtl"
     ],
-    "stars": 14200,
-    "npmDownloads": 1800000,
+    "stars": 14504,
+    "npmDownloads": 2318795,
     "maintained": true,
     "since": 2017,
     "npmPackage": "react-native-paper",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-11-13T18:40:05Z"
   },
   {
     "slug": "tabler-icons",
@@ -1819,12 +1822,12 @@
       "filled",
       "multi-framework"
     ],
-    "stars": 22000,
-    "npmDownloads": 5800000,
+    "stars": 22652,
+    "npmDownloads": 19435259,
     "maintained": true,
     "since": 2020,
     "npmPackage": "@tabler/icons-react",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-11-14T02:16:50Z"
   },
   {
     "slug": "remix-icon",
@@ -1836,7 +1839,7 @@
     "website": "https://remixicon.com",
     "repo": "Remix-Design/RemixIcon",
     "docs": "https://remixicon.com/",
-    "license": "Apache-2.0",
+    "license": "NOASSERTION",
     "logo": "remix-icon.svg",
     "color": "#0080FF",
     "tags": [
@@ -1845,12 +1848,12 @@
       "neutro",
       "multi-framework"
     ],
-    "stars": 18500,
-    "npmDownloads": 3200000,
+    "stars": 8459,
+    "npmDownloads": 5592397,
     "maintained": true,
     "since": 2020,
     "npmPackage": "@remixicon/react",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-04-28T09:25:21Z"
   },
   {
     "slug": "bootstrap-icons",
@@ -1871,12 +1874,12 @@
       "svg",
       "oficial"
     ],
-    "stars": 10500,
-    "npmDownloads": 4800000,
+    "stars": 8181,
+    "npmDownloads": 4023267,
     "maintained": true,
     "since": 2020,
     "npmPackage": "bootstrap-icons",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-11-14T01:13:47Z"
   },
   {
     "slug": "iconoir",
@@ -1923,12 +1926,12 @@
       "react-native",
       "lottie"
     ],
-    "stars": 7800,
-    "npmDownloads": 1200000,
-    "maintained": true,
+    "stars": 8809,
+    "npmDownloads": 46459,
+    "maintained": false,
     "since": 2019,
     "npmPackage": "@eva-design/eva",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2023-03-04T01:54:54Z"
   },
   {
     "slug": "material-icons",
@@ -1949,12 +1952,12 @@
       "google",
       "variable-font"
     ],
-    "stars": 52000,
-    "npmDownloads": 15000000,
+    "stars": 54298,
+    "npmDownloads": 38167671,
     "maintained": true,
     "since": 2014,
     "npmPackage": "@mui/icons-material",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-10-23T02:18:57Z"
   },
   {
     "slug": "radix-icons",
@@ -1975,12 +1978,12 @@
       "ui-density",
       "radix"
     ],
-    "stars": 5200,
-    "npmDownloads": 3500000,
+    "stars": 2709,
+    "npmDownloads": 28957853,
     "maintained": true,
     "since": 2021,
     "npmPackage": "@radix-ui/react-icons",
-    "lastUpdate": "2026-10-20T12:00:00Z"
+    "lastUpdate": "2026-04-02T03:59:31Z"
   },
   {
     "slug": "iconsax",
@@ -2000,8 +2003,8 @@
       "multi-framework",
       "web components"
     ],
-    "stars": 393,
-    "npmDownloads": 10820,
+    "stars": 394,
+    "npmDownloads": 13289,
     "maintained": false,
     "since": 2021,
     "npmPackage": "iconsax",
@@ -2024,8 +2027,8 @@
       "números",
       "web components"
     ],
-    "stars": 7758,
-    "npmDownloads": 8519456,
+    "stars": 7809,
+    "npmDownloads": 12595192,
     "maintained": true,
     "since": 2024,
     "npmPackage": "number-flow",
@@ -2051,12 +2054,12 @@
       "expo",
       "dark mode"
     ],
-    "stars": 8117,
-    "npmDownloads": 7796529,
+    "stars": 8126,
+    "npmDownloads": 9943171,
     "maintained": true,
     "since": 2022,
     "npmPackage": "nativewind",
-    "lastUpdate": "2026-10-16T09:04:59Z"
+    "lastUpdate": "2026-11-02T19:35:34Z"
   },
   {
     "slug": "gluestack-ui",
@@ -2078,8 +2081,8 @@
       "universal",
       "mobile"
     ],
-    "stars": 5328,
-    "npmDownloads": 416073,
+    "stars": 5358,
+    "npmDownloads": 565378,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@gluestack-ui/core",
@@ -2104,8 +2107,8 @@
       "acessibilidade",
       "material"
     ],
-    "stars": 10662,
-    "npmDownloads": 50334,
+    "stars": 10665,
+    "npmDownloads": 46260,
     "maintained": true,
     "since": 2016,
     "npmPackage": "@ui-kitten/components",
@@ -2130,8 +2133,8 @@
       "material",
       "acessibilidade"
     ],
-    "stars": 25870,
-    "npmDownloads": 208700,
+    "stars": 25871,
+    "npmDownloads": 246148,
     "maintained": true,
     "since": 2016,
     "npmPackage": "@rneui/themed",
@@ -2156,12 +2159,12 @@
       "shadcn",
       "expo"
     ],
-    "stars": 8701,
-    "npmDownloads": 22093,
+    "stars": 8731,
+    "npmDownloads": 51529,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@react-native-reusables/cli",
-    "lastUpdate": "2026-09-27T19:04:57Z"
+    "lastUpdate": "2026-11-14T11:28:21Z"
   },
   {
     "slug": "shadcn-io",
@@ -2195,7 +2198,7 @@
     "website": "https://ai-sdk.dev",
     "repo": "vercel/ai",
     "docs": "https://ai-sdk.dev/docs",
-    "license": "Apache-2.0",
+    "license": "NOASSERTION",
     "logo": "vercel-ai-sdk.svg",
     "color": "#000000",
     "tags": [
@@ -2204,12 +2207,12 @@
       "typescript",
       "provedores"
     ],
-    "stars": 27696,
-    "npmDownloads": 118365811,
+    "stars": 27931,
+    "npmDownloads": 165984216,
     "maintained": true,
     "since": 2023,
     "npmPackage": "ai",
-    "lastUpdate": "2026-11-03T01:22:05Z"
+    "lastUpdate": "2026-11-14T00:34:54Z"
   },
   {
     "slug": "langchain-js",
@@ -2230,12 +2233,12 @@
       "chains",
       "typescript"
     ],
-    "stars": 18314,
+    "stars": 18344,
     "npmDownloads": 11604192,
     "maintained": true,
     "since": 2023,
     "npmPackage": "langchain",
-    "lastUpdate": "2026-11-02T23:58:40Z"
+    "lastUpdate": "2026-11-13T18:26:23Z"
   },
   {
     "slug": "openai-node",
@@ -2256,12 +2259,12 @@
       "sdk",
       "typescript"
     ],
-    "stars": 11245,
-    "npmDownloads": 162002158,
+    "stars": 11261,
+    "npmDownloads": 215525860,
     "maintained": true,
     "since": 2021,
     "npmPackage": "openai",
-    "lastUpdate": "2026-11-02T21:12:44Z"
+    "lastUpdate": "2026-11-13T21:13:15Z"
   },
   {
     "slug": "copilotkit",
@@ -2282,12 +2285,12 @@
       "chat",
       "react"
     ],
-    "stars": 38479,
-    "npmDownloads": 1839687,
+    "stars": 38699,
+    "npmDownloads": 2579421,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@copilotkit/react-core",
-    "lastUpdate": "2026-11-03T01:24:07Z"
+    "lastUpdate": "2026-11-14T06:39:27Z"
   },
   {
     "slug": "assistant-ui",
@@ -2308,12 +2311,12 @@
       "acessível",
       "shadcn"
     ],
-    "stars": 12915,
-    "npmDownloads": 7862174,
+    "stars": 13126,
+    "npmDownloads": 11195015,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@assistant-ui/react",
-    "lastUpdate": "2026-11-03T01:08:11Z"
+    "lastUpdate": "2026-11-14T04:29:34Z"
   },
   {
     "slug": "mastra",
@@ -2325,7 +2328,7 @@
     "website": "https://mastra.ai",
     "repo": "mastra-ai/mastra",
     "docs": "https://mastra.ai/docs",
-    "license": "Apache-2.0",
+    "license": "NOASSERTION",
     "logo": "mastra.svg",
     "color": "#1A1A1A",
     "tags": [
@@ -2334,12 +2337,12 @@
       "workflows",
       "rag"
     ],
-    "stars": 29293,
-    "npmDownloads": 8388790,
+    "stars": 29514,
+    "npmDownloads": 11849378,
     "maintained": true,
     "since": 2024,
     "npmPackage": "@mastra/core",
-    "lastUpdate": "2026-11-03T01:24:52Z"
+    "lastUpdate": "2026-11-14T10:13:50Z"
   },
   {
     "slug": "transformers-js",
@@ -2360,12 +2363,12 @@
       "navegador",
       "embeddings"
     ],
-    "stars": 16399,
-    "npmDownloads": 14727655,
+    "stars": 16417,
+    "npmDownloads": 18422616,
     "maintained": true,
     "since": 2023,
     "npmPackage": "@huggingface/transformers",
-    "lastUpdate": "2026-10-30T06:30:43Z"
+    "lastUpdate": "2026-11-14T05:49:24Z"
   },
   {
     "slug": "mcp-typescript-sdk",
@@ -2377,7 +2380,7 @@
     "website": "https://modelcontextprotocol.io",
     "repo": "modelcontextprotocol/typescript-sdk",
     "docs": "https://ts.sdk.modelcontextprotocol.io/v2",
-    "license": "MIT",
+    "license": "NOASSERTION",
     "logo": "mcp-typescript-sdk.svg",
     "color": "#111827",
     "tags": [
@@ -2386,12 +2389,12 @@
       "protocolo",
       "typescript"
     ],
-    "stars": 13696,
+    "stars": 13768,
     "npmDownloads": 250159899,
     "maintained": true,
     "since": 2024,
     "npmPackage": "@modelcontextprotocol/sdk",
-    "lastUpdate": "2026-10-31T10:56:10Z"
+    "lastUpdate": "2026-11-10T14:38:41Z"
   },
   {
     "slug": "zustand",
@@ -2411,10 +2414,10 @@
       "hooks",
       "leve"
     ],
-    "stars": 58891,
+    "stars": 58918,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-03T01:35:59Z",
+    "lastUpdate": "2026-11-06T13:35:06Z",
     "npmPackage": "zustand",
     "npmDownloads": 251459586,
     "logoKind": "text"
@@ -2437,12 +2440,12 @@
       "react",
       "previsível"
     ],
-    "stars": 11239,
+    "stars": 11248,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-04T01:12:07Z",
+    "lastUpdate": "2026-11-08T17:14:04Z",
     "npmPackage": "@reduxjs/toolkit",
-    "npmDownloads": 133269242,
+    "npmDownloads": 179011083,
     "logo": "redux-toolkit.svg"
   },
   {
@@ -2463,12 +2466,12 @@
       "atômico",
       "leve"
     ],
-    "stars": 21305,
+    "stars": 21318,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-03T23:47:01Z",
+    "lastUpdate": "2026-11-09T03:01:40Z",
     "npmPackage": "jotai",
-    "npmDownloads": 26154322,
+    "npmDownloads": 35562269,
     "logoKind": "text"
   },
   {
@@ -2489,12 +2492,12 @@
       "vite",
       "rápido"
     ],
-    "stars": 17329,
+    "stars": 17375,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-11-03T22:57:59Z",
+    "lastUpdate": "2026-11-13T16:01:29Z",
     "npmPackage": "vitest",
-    "npmDownloads": 501877413,
+    "npmDownloads": 669628612,
     "logo": "vitest.svg"
   },
   {
@@ -2515,12 +2518,12 @@
       "navegador",
       "automação"
     ],
-    "stars": 99217,
+    "stars": 100142,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-03T23:19:24Z",
+    "lastUpdate": "2026-11-14T05:42:56Z",
     "npmPackage": "@playwright/test",
-    "npmDownloads": 305696209,
+    "npmDownloads": 430576220,
     "logo": "playwright.svg"
   },
   {
@@ -2541,12 +2544,12 @@
       "acessível",
       "dom"
     ],
-    "stars": 19678,
+    "stars": 19681,
     "maintained": true,
     "since": 2018,
     "lastUpdate": "2026-08-27T17:40:18Z",
     "npmPackage": "@testing-library/react",
-    "npmDownloads": 269862230,
+    "npmDownloads": 350950596,
     "logo": "testing-library.svg"
   },
   {
@@ -2567,12 +2570,12 @@
       "next.js",
       "sessão"
     ],
-    "stars": 28373,
+    "stars": 28377,
     "maintained": true,
     "since": 2018,
     "lastUpdate": "2026-07-22T19:42:19Z",
     "npmPackage": "next-auth",
-    "npmDownloads": 26836101,
+    "npmDownloads": 35147258,
     "logoKind": "text"
   },
   {
@@ -2593,12 +2596,12 @@
       "login",
       "saas"
     ],
-    "stars": 1776,
+    "stars": 1782,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-04T01:44:04Z",
+    "lastUpdate": "2026-11-14T10:22:15Z",
     "npmPackage": "@clerk/nextjs",
-    "npmDownloads": 10914923,
+    "npmDownloads": 14074937,
     "logo": "clerk.svg"
   },
   {
@@ -2619,12 +2622,12 @@
       "oauth",
       "sessão"
     ],
-    "stars": 30583,
+    "stars": 30744,
     "maintained": true,
     "since": 2024,
-    "lastUpdate": "2026-11-04T01:47:08Z",
+    "lastUpdate": "2026-11-14T11:27:16Z",
     "npmPackage": "better-auth",
-    "npmDownloads": 50213324,
+    "npmDownloads": 69092726,
     "logo": "better-auth.svg"
   },
   {
@@ -2645,12 +2648,12 @@
       "typescript",
       "sql"
     ],
-    "stars": 47660,
+    "stars": 47671,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-03T17:02:33Z",
+    "lastUpdate": "2026-11-13T20:42:09Z",
     "npmPackage": "prisma",
-    "npmDownloads": 75563476,
+    "npmDownloads": 98129924,
     "logo": "prisma.svg"
   },
   {
@@ -2671,12 +2674,12 @@
       "typescript",
       "sql"
     ],
-    "stars": 36207,
+    "stars": 36275,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-11-04T01:14:06Z",
+    "lastUpdate": "2026-11-14T10:13:19Z",
     "npmPackage": "drizzle-orm",
-    "npmDownloads": 122528559,
+    "npmDownloads": 173319669,
     "logo": "drizzle-orm.svg"
   },
   {
@@ -2697,12 +2700,12 @@
       "backend",
       "auth"
     ],
-    "stars": 114493,
+    "stars": 114999,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-04T01:38:51Z",
+    "lastUpdate": "2026-11-13T23:58:07Z",
     "npmPackage": "@supabase/supabase-js",
-    "npmDownloads": 151961324,
+    "npmDownloads": 230694261,
     "logo": "supabase.svg"
   },
   {
@@ -2723,10 +2726,10 @@
       "tradução",
       "typescript"
     ],
-    "stars": 4390,
+    "stars": 4391,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-10-02T11:00:52Z",
+    "lastUpdate": "2026-11-13T17:56:01Z",
     "npmPackage": "next-intl",
     "npmDownloads": 28040825,
     "logoKind": "text"
@@ -2749,12 +2752,12 @@
       "tradução",
       "hooks"
     ],
-    "stars": 10063,
+    "stars": 10066,
     "maintained": true,
     "since": 2015,
-    "lastUpdate": "2026-11-03T16:22:10Z",
+    "lastUpdate": "2026-11-13T14:25:38Z",
     "npmPackage": "react-i18next",
-    "npmDownloads": 70770895,
+    "npmDownloads": 95745149,
     "logo": "react-i18next.svg"
   },
   {
@@ -2775,12 +2778,12 @@
       "compilador",
       "typescript"
     ],
-    "stars": 5935,
+    "stars": 5937,
     "maintained": true,
     "since": 2017,
-    "lastUpdate": "2026-11-03T15:23:27Z",
+    "lastUpdate": "2026-11-10T07:25:05Z",
     "npmPackage": "@lingui/core",
-    "npmDownloads": 7269803,
+    "npmDownloads": 9817535,
     "logoKind": "text"
   },
   {
@@ -2801,12 +2804,12 @@
       "dev server",
       "frontend"
     ],
-    "stars": 83712,
+    "stars": 83898,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-02T09:23:48Z",
+    "lastUpdate": "2026-11-13T09:27:39Z",
     "npmPackage": "vite",
-    "npmDownloads": 759555046,
+    "npmDownloads": 993000336,
     "logo": "vite.svg"
   },
   {
@@ -2827,7 +2830,7 @@
       "rápido",
       "go"
     ],
-    "stars": 40120,
+    "stars": 40131,
     "maintained": true,
     "since": 2020,
     "lastUpdate": "2026-08-09T17:20:12Z",
@@ -2853,10 +2856,10 @@
       "cache",
       "tarefas"
     ],
-    "stars": 31298,
+    "stars": 31340,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-11-03T22:14:08Z",
+    "lastUpdate": "2026-11-14T05:23:51Z",
     "npmPackage": "turbo",
     "npmDownloads": 120900018,
     "logo": "turborepo.svg"
@@ -2879,12 +2882,12 @@
       "rust",
       "rápido"
     ],
-    "stars": 26047,
+    "stars": 26101,
     "maintained": true,
     "since": 2023,
-    "lastUpdate": "2026-11-04T01:00:39Z",
+    "lastUpdate": "2026-11-14T09:58:12Z",
     "npmPackage": "@biomejs/biome",
-    "npmDownloads": 72739819,
+    "npmDownloads": 98140570,
     "logo": "biome.svg"
   },
   {
@@ -2905,12 +2908,12 @@
       "regras",
       "qualidade"
     ],
-    "stars": 27604,
+    "stars": 27617,
     "maintained": true,
     "since": 2013,
-    "lastUpdate": "2026-11-02T19:42:38Z",
+    "lastUpdate": "2026-11-13T21:29:27Z",
     "npmPackage": "eslint",
-    "npmDownloads": 612690331,
+    "npmDownloads": 780801219,
     "logo": "eslint.svg"
   },
   {
@@ -2931,10 +2934,10 @@
       "estilo",
       "opinativo"
     ],
-    "stars": 52403,
+    "stars": 52412,
     "maintained": true,
     "since": 2017,
-    "lastUpdate": "2026-11-04T00:32:09Z",
+    "lastUpdate": "2026-11-14T08:59:34Z",
     "npmPackage": "prettier",
     "npmDownloads": 533449521,
     "logo": "prettier.svg"
@@ -2949,7 +2952,7 @@
     "website": "https://sentry.io",
     "repo": "getsentry/sentry-javascript",
     "docs": "https://sentry.io",
-    "license": "MIT",
+    "license": "NOASSERTION",
     "color": "#362D59",
     "tags": [
       "monitoramento",
@@ -2957,12 +2960,12 @@
       "performance",
       "tracing"
     ],
-    "stars": 8770,
+    "stars": 8775,
     "maintained": true,
     "since": 2012,
-    "lastUpdate": "2026-11-03T23:44:18Z",
+    "lastUpdate": "2026-11-14T08:51:12Z",
     "npmPackage": "@sentry/nextjs",
-    "npmDownloads": 47457413,
+    "npmDownloads": 62361526,
     "logo": "sentry.svg"
   },
   {
@@ -2983,10 +2986,10 @@
       "métricas",
       "padrão"
     ],
-    "stars": 3515,
+    "stars": 3522,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-03T19:08:25Z",
+    "lastUpdate": "2026-11-13T21:39:21Z",
     "npmPackage": "@opentelemetry/api",
     "npmDownloads": 379645677,
     "logo": "opentelemetry.svg"
@@ -3009,10 +3012,10 @@
       "json",
       "rápido"
     ],
-    "stars": 18285,
+    "stars": 18298,
     "maintained": true,
     "since": 2016,
-    "lastUpdate": "2026-10-06T15:34:15Z",
+    "lastUpdate": "2026-11-13T17:02:31Z",
     "npmPackage": "pino",
     "npmDownloads": 218095056,
     "logo": "pino.svg"
@@ -3035,12 +3038,12 @@
       "sanitização",
       "dom"
     ],
-    "stars": 17502,
+    "stars": 17527,
     "maintained": true,
     "since": 2014,
-    "lastUpdate": "2026-11-01T15:49:12Z",
+    "lastUpdate": "2026-11-14T11:10:51Z",
     "npmPackage": "dompurify",
-    "npmDownloads": 280580079,
+    "npmDownloads": 371086503,
     "logoKind": "text"
   },
   {
@@ -3061,12 +3064,12 @@
       "express",
       "http"
     ],
-    "stars": 10744,
+    "stars": 10748,
     "maintained": true,
     "since": 2012,
     "lastUpdate": "2026-11-01T00:54:22Z",
     "npmPackage": "helmet",
-    "npmDownloads": 65115810,
+    "npmDownloads": 85838463,
     "logoKind": "text"
   },
   {
@@ -3087,10 +3090,10 @@
       "assinaturas",
       "api"
     ],
-    "stars": 755,
+    "stars": 756,
     "maintained": true,
     "since": 2011,
-    "lastUpdate": "2026-11-02T19:30:59Z",
+    "lastUpdate": "2026-11-12T20:10:46Z",
     "npmPackage": "@stripe/stripe-js",
     "npmDownloads": 56119715,
     "logo": "stripe.svg"
@@ -3113,12 +3116,12 @@
       "licenças",
       "saas"
     ],
-    "stars": 539,
-    "maintained": true,
+    "stars": 541,
+    "maintained": false,
     "since": 2021,
     "lastUpdate": "2024-11-05T20:40:14Z",
     "npmPackage": "@lemonsqueezy/lemonsqueezy.js",
-    "npmDownloads": 496473,
+    "npmDownloads": 636590,
     "logo": "lemonsqueezy.svg"
   },
   {
@@ -3139,12 +3142,12 @@
       "open source",
       "saas"
     ],
-    "stars": 10455,
+    "stars": 10482,
     "maintained": true,
     "since": 2023,
-    "lastUpdate": "2026-11-03T21:30:05Z",
+    "lastUpdate": "2026-11-13T19:31:10Z",
     "npmPackage": "@polar-sh/sdk",
-    "npmDownloads": 1241103,
+    "npmDownloads": 1540822,
     "logoKind": "text"
   },
   {
@@ -3165,12 +3168,12 @@
       "api",
       "react email"
     ],
-    "stars": 974,
+    "stars": 978,
     "maintained": true,
     "since": 2023,
-    "lastUpdate": "2026-11-03T23:51:44Z",
+    "lastUpdate": "2026-11-14T03:38:00Z",
     "npmPackage": "resend",
-    "npmDownloads": 51723805,
+    "npmDownloads": 66533575,
     "logo": "resend.svg"
   },
   {
@@ -3191,12 +3194,12 @@
       "templates",
       "html"
     ],
-    "stars": 19903,
+    "stars": 19936,
     "maintained": true,
     "since": 2023,
-    "lastUpdate": "2026-10-30T18:57:17Z",
+    "lastUpdate": "2026-11-14T03:45:47Z",
     "npmPackage": "react-email",
-    "npmDownloads": 21760439,
+    "npmDownloads": 29213410,
     "logoKind": "text"
   },
   {
@@ -3209,7 +3212,7 @@
     "website": "https://nodemailer.com",
     "repo": "nodemailer/nodemailer",
     "docs": "https://nodemailer.com",
-    "license": "MIT",
+    "license": "NOASSERTION",
     "color": "#30B3E6",
     "tags": [
       "email",
@@ -3217,10 +3220,10 @@
       "node.js",
       "anexos"
     ],
-    "stars": 17701,
+    "stars": 17713,
     "maintained": true,
     "since": 2010,
-    "lastUpdate": "2026-10-29T14:01:28Z",
+    "lastUpdate": "2026-11-12T14:09:50Z",
     "npmPackage": "nodemailer",
     "npmDownloads": 103261066,
     "logoKind": "text"
@@ -3243,10 +3246,10 @@
       "headless",
       "realtime"
     ],
-    "stars": 6380,
+    "stars": 6394,
     "maintained": true,
     "since": 2015,
-    "lastUpdate": "2026-11-04T00:30:35Z",
+    "lastUpdate": "2026-11-14T08:10:47Z",
     "npmPackage": "sanity",
     "npmDownloads": 4159262,
     "logo": "sanity.svg"
@@ -3269,12 +3272,12 @@
       "next.js",
       "typescript"
     ],
-    "stars": 45648,
+    "stars": 45808,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-11-04T01:10:55Z",
+    "lastUpdate": "2026-11-14T07:13:01Z",
     "npmPackage": "payload",
-    "npmDownloads": 4242333,
+    "npmDownloads": 5748026,
     "logoKind": "text"
   },
   {
@@ -3287,7 +3290,7 @@
     "website": "https://strapi.io",
     "repo": "strapi/strapi",
     "docs": "https://strapi.io",
-    "license": "MIT",
+    "license": "NOASSERTION",
     "color": "#4945FF",
     "tags": [
       "cms",
@@ -3295,12 +3298,12 @@
       "api",
       "node.js"
     ],
-    "stars": 73431,
+    "stars": 73481,
     "maintained": true,
     "since": 2015,
-    "lastUpdate": "2026-11-03T21:44:40Z",
+    "lastUpdate": "2026-11-13T17:45:45Z",
     "npmPackage": "@strapi/strapi",
-    "npmDownloads": 901833,
+    "npmDownloads": 1100131,
     "logo": "strapi.svg"
   },
   {
@@ -3313,7 +3316,7 @@
     "website": "https://firebase.google.com",
     "repo": "firebase/firebase-js-sdk",
     "docs": "https://firebase.google.com",
-    "license": "Apache-2.0",
+    "license": "NOASSERTION",
     "color": "#FFCA28",
     "tags": [
       "backend",
@@ -3321,10 +3324,10 @@
       "auth",
       "database"
     ],
-    "stars": 5157,
+    "stars": 5160,
     "maintained": true,
     "since": 2014,
-    "lastUpdate": "2026-11-03T23:23:51Z",
+    "lastUpdate": "2026-11-14T07:02:44Z",
     "npmPackage": "firebase",
     "npmDownloads": 41057667,
     "logo": "firebase.svg"
@@ -3347,10 +3350,10 @@
       "auth",
       "database"
     ],
-    "stars": 57861,
+    "stars": 58085,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-04T01:43:14Z",
+    "lastUpdate": "2026-11-14T11:05:23Z",
     "npmPackage": "appwrite",
     "npmDownloads": 161672,
     "logo": "appwrite.svg"
@@ -3365,7 +3368,7 @@
     "website": "https://convex.dev",
     "repo": "get-convex/convex-backend",
     "docs": "https://convex.dev",
-    "license": "Apache-2.0",
+    "license": "NOASSERTION",
     "color": "#EE342F",
     "tags": [
       "backend",
@@ -3373,12 +3376,12 @@
       "database",
       "typescript"
     ],
-    "stars": 12774,
+    "stars": 12794,
     "maintained": true,
     "since": 2022,
-    "lastUpdate": "2026-11-04T01:19:30Z",
+    "lastUpdate": "2026-11-14T06:36:04Z",
     "npmPackage": "convex",
-    "npmDownloads": 7122475,
+    "npmDownloads": 9590081,
     "logo": "convex.svg"
   },
   {
@@ -3399,12 +3402,12 @@
       "ui",
       "testes"
     ],
-    "stars": 91445,
+    "stars": 91562,
     "maintained": true,
     "since": 2016,
-    "lastUpdate": "2026-11-03T21:14:38Z",
+    "lastUpdate": "2026-11-14T11:22:54Z",
     "npmPackage": "storybook",
-    "npmDownloads": 97351998,
+    "npmDownloads": 132357321,
     "logo": "storybook.svg"
   },
   {
@@ -3425,12 +3428,12 @@
       "react",
       "markdown"
     ],
-    "stars": 66648,
+    "stars": 66733,
     "maintained": true,
     "since": 2017,
-    "lastUpdate": "2026-11-02T09:46:35Z",
+    "lastUpdate": "2026-11-13T20:36:23Z",
     "npmPackage": "@docusaurus/core",
-    "npmDownloads": 5702346,
+    "npmDownloads": 7436922,
     "logo": "docusaurus.svg"
   },
   {
@@ -3451,12 +3454,12 @@
       "markdown",
       "typescript"
     ],
-    "stars": 13534,
+    "stars": 13619,
     "maintained": true,
     "since": 2023,
-    "lastUpdate": "2026-11-03T05:23:45Z",
+    "lastUpdate": "2026-11-14T11:07:50Z",
     "npmPackage": "fumadocs-core",
-    "npmDownloads": 9048829,
+    "npmDownloads": 11914106,
     "logoKind": "text"
   },
   {
@@ -3477,12 +3480,12 @@
       "next.js",
       "serverless"
     ],
-    "stars": 16517,
+    "stars": 16592,
     "maintained": true,
     "since": 2015,
-    "lastUpdate": "2026-11-03T17:53:37Z",
+    "lastUpdate": "2026-11-13T23:08:59Z",
     "npmPackage": "vercel",
-    "npmDownloads": 17177081,
+    "npmDownloads": 21455538,
     "logo": "vercel.svg"
   },
   {
@@ -3503,12 +3506,12 @@
       "jamstack",
       "serverless"
     ],
-    "stars": 1935,
+    "stars": 1934,
     "maintained": true,
     "since": 2014,
-    "lastUpdate": "2026-11-03T21:10:51Z",
+    "lastUpdate": "2026-11-14T06:06:23Z",
     "npmPackage": "netlify-cli",
-    "npmDownloads": 1482045,
+    "npmDownloads": 1909961,
     "logo": "netlify.svg"
   },
   {
@@ -3529,12 +3532,12 @@
       "edge",
       "serverless"
     ],
-    "stars": 4703,
+    "stars": 4726,
     "maintained": true,
     "since": 2021,
-    "lastUpdate": "2026-11-04T00:55:08Z",
+    "lastUpdate": "2026-11-14T08:33:29Z",
     "npmPackage": "wrangler",
-    "npmDownloads": 113018140,
+    "npmDownloads": 156249707,
     "logo": "cloudflare-pages.svg"
   },
   {
@@ -3547,7 +3550,7 @@
     "website": "https://posthog.com",
     "repo": "PostHog/posthog-js",
     "docs": "https://posthog.com",
-    "license": "MIT",
+    "license": "NOASSERTION",
     "color": "#F54E00",
     "tags": [
       "analytics",
@@ -3555,12 +3558,12 @@
       "sessões",
       "produto"
     ],
-    "stars": 640,
+    "stars": 646,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-04T01:26:28Z",
+    "lastUpdate": "2026-11-14T09:54:19Z",
     "npmPackage": "posthog-js",
-    "npmDownloads": 67177559,
+    "npmDownloads": 91670833,
     "logo": "posthog.svg"
   },
   {
@@ -3581,10 +3584,10 @@
       "leve",
       "sem cookies"
     ],
-    "stars": 29763,
+    "stars": 29844,
     "maintained": true,
     "since": 2019,
-    "lastUpdate": "2026-11-03T23:01:03Z",
+    "lastUpdate": "2026-11-13T20:22:54Z",
     "logoKind": "text"
   },
   {
@@ -3605,10 +3608,10 @@
       "self-hosted",
       "leve"
     ],
-    "stars": 39903,
+    "stars": 40137,
     "maintained": true,
     "since": 2020,
-    "lastUpdate": "2026-11-03T22:16:26Z",
+    "lastUpdate": "2026-11-14T08:07:44Z",
     "logo": "umami.svg"
   },
   {
@@ -3629,12 +3632,12 @@
       "jose",
       "criptografia"
     ],
-    "stars": 7864,
+    "stars": 7881,
     "maintained": true,
     "since": 2018,
-    "lastUpdate": "2026-11-02T13:43:46Z",
+    "lastUpdate": "2026-11-12T14:14:59Z",
     "npmPackage": "jose",
-    "npmDownloads": 625379397,
+    "npmDownloads": 843640041,
     "logoKind": "text"
   }
 ]
